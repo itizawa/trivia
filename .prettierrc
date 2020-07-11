@@ -1,0 +1,10 @@
+
+	{
+        "printWidth": 126,
+        "proseWrap": "always",
+		"trailingComma": "es5",
+		"tabWidth": 2,
+		"semi": true,
+        "endOfLine": "lf",
+        "bracketSpacing": true
+	}
