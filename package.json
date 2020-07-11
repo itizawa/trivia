@@ -11,7 +11,9 @@
     "start": "next start",
     "lint:js:fix": "eslint \"**/*.{js,jsx}\" --fix",
     "lint:js": "eslint \"**/*.{js,jsx}\"",
-    "lint": "npm-run-all -p lint:js"
+    "lint:styles:fix": "stylelint --fix styles/scss/**/*.scss",
+    "lint:styles": "stylelint styles/**/*.scss",
+    "lint": "npm-run-all -p lint:js lint:styles"
   },
   "dependencies": {
     "babel-eslint": "^10.1.0",
@@ -28,6 +30,8 @@
     "path": "^0.12.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "sass": "^1.26.10"
+    "sass": "^1.26.10",
+    "stylelint": "^13.6.1",
+    "stylelint-config-recess-order": "^2.0.4"
   }
 }
