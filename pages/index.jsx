@@ -1,5 +1,9 @@
-import React from "react"
+import React from "react";
 
-const IndexPage = () => <h1>Welcome to the Dockerized App!</h1>
+const IndexPage = () => (
+  <h1>
+    <img src="https://penguin-ogp.vercel.app/api/ogp?text=こんにちは人類" />
+  </h1>
+);
 
-export default IndexPage
+export default IndexPage;
