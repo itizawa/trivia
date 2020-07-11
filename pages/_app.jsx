@@ -1,6 +1,7 @@
-import "../styles/global.scss";
+import React from 'react';
+import '../styles/global.scss';
 
-import Navbar from "@components/commons/Navbar";
+import Navbar from '@components/commons/Navbar';
 
 function Page(pageProps) {
   return (
