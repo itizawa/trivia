@@ -1,9 +1,9 @@
 import React from "react";
 
 const IndexPage = () => (
-  <h1>
-    <img src="https://penguin-ogp.vercel.app/api/ogp?text=こんにちは人類" />
-  </h1>
+  <>
+    <img width="600" src="https://penguin-ogp.vercel.app/api/ogp?text=こんにちは人類" />
+  </>
 );
 
 export default IndexPage;
