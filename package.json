@@ -1,0 +1,8 @@
+{
+  "name": "summary-post",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/itizawa/Summary-Post.git",
+  "author": "itizawa <itizawa@weseek.co.jp>",
+  "license": "MIT"
+}
