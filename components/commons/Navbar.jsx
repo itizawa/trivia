@@ -7,6 +7,7 @@ function Navbar() {
         <a className="navbar-brand" href="#">
           Navbar
         </a>
+        <button className="btn btn-primary" type="button">hoge</button>
       </div>
     </nav>
   );
