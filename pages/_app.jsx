@@ -1,3 +1,5 @@
+import "../styles/global.scss";
+
 import Navbar from "@components/commons/Navbar";
 
 function Page(pageProps) {
