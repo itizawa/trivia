@@ -4,5 +4,16 @@
   "main": "index.js",
   "repository": "https://github.com/itizawa/Summary-Post.git",
   "author": "itizawa <itizawa@weseek.co.jp>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.0-alpha1",
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
 }
