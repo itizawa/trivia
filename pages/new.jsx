@@ -17,8 +17,7 @@ function Page() {
       Router.push('/');
     }
     catch (error) {
-      console.log(error);
-      toastError(error);
+      toastError(error, 'サマリーの作成に失敗しました。');
     }
   }
 
