@@ -7,7 +7,9 @@ function Page(pageProps) {
   return (
     <div>
       <Navbar {...pageProps} />
-      <pageProps.Component {...pageProps} />
+      <div className="container">
+        <pageProps.Component {...pageProps} />
+      </div>
     </div>
   );
 }

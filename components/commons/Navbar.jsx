@@ -2,12 +2,11 @@ import React from 'react';
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar bg-orange">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Navbar
+        <a className="navbar-brand text-white" href="#">
+          Summary Post
         </a>
-        <button className="btn btn-primary" type="button">hoge</button>
       </div>
     </nav>
   );
