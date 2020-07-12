@@ -17,7 +17,6 @@ function Page() {
       console.log(error);
       toastError(error);
     }
-    // TODO #8 post request
   }
 
   return (
