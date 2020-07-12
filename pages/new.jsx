@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import appContainer from '@containers/appContainer';
 
+import { toastError } from '@utils/toaster';
+
 function Page() {
   const { apiPost } = appContainer.useContainer();
 
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
 
-  function onClickSubmit() {
-    apiPost('/summarys');
+  async function onClickSubmit() {
+    try {
+      await apiPost('/summarys');
+    }
+    catch (error) {
+      console.log(error);
+      toastError(error);
+    }
     // TODO #8 post request
   }
 

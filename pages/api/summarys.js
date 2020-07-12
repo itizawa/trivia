@@ -15,11 +15,11 @@ export default async(req, res) => {
       //   tags,
       // });
       // await newPost.save();
-      // return res.status(200).send({ success: true, post: newPost });
+      return res.status(200).send({});
     }
     catch (err) {
       console.log(err);
-      // return res.status(400).send({ success: false });
+      return res.status(400).send({ success: false });
     }
   };
 
@@ -27,6 +27,7 @@ export default async(req, res) => {
     case 'POST':
       return post();
     default:
+      res.status(405).end(`Method ${req.method} Not Allowed`);
       break;
   }
 };
