@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Router from 'next/router';
+
 import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
@@ -11,7 +13,8 @@ function Page() {
 
   async function onClickSubmit() {
     try {
-      await apiPost('/summarys');
+      await apiPost('/summarys', { title, text });
+      Router.push('/');
     }
     catch (error) {
       console.log(error);

@@ -1,20 +1,17 @@
+import Summary from '@models/Summary';
+import dbConnect from '@lib/dbConnect';
 
-// import Post from "@models/Post";
-// import dbConnect from "@lib/dbConnect";
-
-// dbConnect();
+dbConnect();
 
 export default async(req, res) => {
   const post = async() => {
-    // const { title, body, tags } = req.body;
+    const { title, text } = req.body;
     try {
-      console.log('hoge');
-      // const newPost = new Post({
-      //   title,
-      //   body,
-      //   tags,
-      // });
-      // await newPost.save();
+      const newPost = new Summary({
+        title,
+        text,
+      });
+      await newPost.save();
       return res.status(200).send({});
     }
     catch (err) {
