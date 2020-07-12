@@ -1,2 +1,20 @@
 @import './variables.scss';
 @import './vender.scss';
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 660px;
+}
+
+html {
+  min-height: 100vh;
+  background-color: #dfdfdf;
+}
+
+body {
+  background-color: #dfdfdf;
+}
