@@ -5,12 +5,12 @@ import Navbar from '@components/commons/Navbar';
 
 function Page(pageProps) {
   return (
-    <div>
+    <>
       <Navbar {...pageProps} />
       <div className="container">
         <pageProps.Component {...pageProps} />
       </div>
-    </div>
+    </>
   );
 }
 
