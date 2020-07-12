@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import appContainer from '@containers/appContainer';
 
 function Page() {
+  const { apiPost } = appContainer.useContainer();
+
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
 
   function onClickSubmit() {
+    apiPost('/summarys');
     // TODO #8 post request
   }
 

@@ -16,6 +16,7 @@
     "lint": "npm-run-all -p lint:js lint:styles"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^5.0.0-alpha1",
     "dotenv": "^8.2.0",
@@ -32,6 +33,7 @@
     "react-dom": "^16.13.1",
     "sass": "^1.26.10",
     "stylelint": "^13.6.1",
-    "stylelint-config-recess-order": "^2.0.4"
+    "stylelint-config-recess-order": "^2.0.4",
+    "unstated-next": "^1.1.0"
   }
 }
