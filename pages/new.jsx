@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
+import Router from 'next/router';
+
+import appContainer from '@containers/appContainer';
+
+import { toastError } from '@utils/toaster';
 
 function Page() {
+  const { apiPost } = appContainer.useContainer();
+
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
 
-  function onClickSubmit() {
-    // TODO #8 post request
+  async function onClickSubmit() {
+    try {
+      await apiPost('/summarys', { title, text });
+      Router.push('/');
+    }
+    catch (error) {
+      toastError(error, 'サマリーの作成に失敗しました。');
+    }
   }
 
   return (
