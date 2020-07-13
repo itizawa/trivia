@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const TriviaSchema = new mongoose.Schema(
   {
@@ -21,5 +22,7 @@ const TriviaSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+TriviaSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.models.Trivia || mongoose.model('Trivia', TriviaSchema);
