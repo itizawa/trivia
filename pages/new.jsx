@@ -8,43 +8,55 @@ import { toastError } from '@utils/toaster';
 function Page() {
   const { apiPost } = appContainer.useContainer();
 
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
+  const [forwardText, setForwardText] = useState('');
+  const [backwardText, setBackwardText] = useState('');
+  const [userName, setUserName] = useState('');
 
   async function onClickSubmit() {
     try {
-      await apiPost('/summarys', { title, text });
+      await apiPost('/trivias', { forwardText, backwardText, userName });
       Router.push('/');
     }
     catch (error) {
-      toastError(error, 'サマリーの作成に失敗しました。');
+      toastError(error, 'トリビアの作成に失敗しました。');
     }
   }
 
   return (
     <div className="bg-snow rounded mt-3 p-3">
-      <h1 className="text-center">新規サマリーを作成する</h1>
+      <h1 className="text-center">トリビアを作成する</h1>
       <form className="mt-3">
         <div className="mb-3">
-          <label htmlFor="summaryTitle" className="form-label">タイトル</label>
-          <input
-            type="text"
-            className="form-control"
-            id="summaryTitle"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            aria-describedby="title"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="summaryText" className="form-label">本文</label>
+          <label htmlFor="forwardText" className="form-label">前の文</label>
           <textarea
             type="text"
             className="form-control"
-            id="summaryText"
-            value={text}
-            onChange={e => setText(e.target.value)}
-            rows="10"
+            id="forwardText"
+            value={forwardText}
+            onChange={e => setForwardText(e.target.value)}
+            rows="3"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="backwardText" className="form-label">後ろの文(モザイクで表示されます)</label>
+          <textarea
+            type="text"
+            className="form-control"
+            id="backwardText"
+            value={backwardText}
+            onChange={e => setBackwardText(e.target.value)}
+            rows="3"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="userName" className="form-label">名前</label>
+          <input
+            type="text"
+            className="form-control"
+            id="userName"
+            value={userName}
+            onChange={e => setUserName(e.target.value)}
+            aria-describedby="userName"
           />
         </div>
         <div className="text-right">
