@@ -4,7 +4,7 @@ import Router from 'next/router';
 const IndexPage = () => (
   <div className="bg-snow rounded mt-3 p-3">
     <div className="mb-3">
-      <img width="100%" src="/trivia-eye-catch@2x.png" />
+      <img width="100%" src="/eye-catch@2x.png" />
     </div>
     「生きていく上で何の役にも立たない無駄な知識、<br />しかし、つい人に教えたくなってしまうような<b>トリビア（雑学・知識）</b>」
     <br />
