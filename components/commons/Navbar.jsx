@@ -9,7 +9,7 @@ function Navbar() {
       <div className="container-fluid">
         <Link href="/">
           <a className="navbar-brand text-white">
-            Summary Post
+            トリビアの泉
           </a>
         </Link>
         <Link href="/new">
