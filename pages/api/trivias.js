@@ -29,4 +29,20 @@ handler.post(validator.summary, ApiValidator, async(req, res) => {
   }
 });
 
+handler.get(async(req, res) => {
+  const options = {
+    page: req.query.page || 1,
+    limit: 10,
+  };
+
+  try {
+    const trivias = await Trivia.paginate({}, options);
+    const { docs } = trivias;
+    return res.status(200).send({ docs });
+  }
+  catch (err) {
+    return res.status(500).send({ success: false });
+  }
+});
+
 export default handler;
