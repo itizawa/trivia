@@ -3,17 +3,19 @@ import Router from 'next/router';
 
 const IndexPage = () => (
   <div className="bg-snow rounded mt-3 p-3">
-    <div className="my-5">
-      <img width="100%" src="/eye-catch@2x.png" />
+    <div className="mb-3">
+      <img width="100%" src="/trivia-eye-catch@2x.png" />
     </div>
-    簡単に要約を作れるサイトです。Twitter連携で作ったサマリーをTweetできます。<br />あなたの言葉が世界の理を紡ぐ....
+    「生きていく上で何の役にも立たない無駄な知識、<br />しかし、つい人に教えたくなってしまうような<b>トリビア（雑学・知識）</b>」
+    <br />
+    共有するサイトです。
     <div className="my-5">
       <div className="d-flex justify-content-around">
         <button type="button" className="btn btn-orange text-white" onClick={() => { Router.push('/new') }}>
-          サマリーを作る
+          トリビアを作る
         </button>
         <button type="button" className="btn btn-teal text-white" onClick={() => { Router.push('/list') }}>
-          サマリーを見る
+          トリビアを見る
         </button>
       </div>
     </div>
