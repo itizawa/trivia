@@ -20,6 +20,8 @@ export default class MyDocument extends Document {
           <meta property="og:title" content="Summary Post" />
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:site" content="@weseek_inc" />
+
+          <title>トリビアの泉</title>
         </Head>
         <body>
           <Main />
