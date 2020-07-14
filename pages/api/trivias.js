@@ -16,9 +16,9 @@ validator.paginate = [
 ];
 
 validator.summary = [
-  body('forwardText').isString().isLength({ min: 1, max: 40 }).withMessage('タイトルは 40 文字以下です'),
-  body('backwardText').isString().isLength({ min: 1, max: 40 }).withMessage('タイトルは 40 文字以下です'),
-  body('userName').isString().isLength({ min: 1, max: 40 }).withMessage('タイトルは 40 文字以下です'),
+  body('forwardText').isString().isLength({ min: 1, max: 40 }).withMessage('前の文は 40 文字以下です'),
+  body('backwardText').isString().isLength({ min: 1, max: 40 }).withMessage('後ろの文は 40 文字以下です'),
+  body('userName').isString().isLength({ min: 1, max: 40 }).withMessage('名前は 40 文字以下です'),
 ];
 
 

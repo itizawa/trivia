@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function TriviaCard({ trivia }) {
-  const { forwardText, backwardText } = trivia;
+  const {
+    forwardText, backwardText, userName, acquisitionCount,
+  } = trivia;
 
   return (
     <div className="card">
@@ -12,8 +14,11 @@ function TriviaCard({ trivia }) {
         src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${forwardText}&backwardText=${backwardText}`}
         className="trivia-card-img"
       />
-      <div className="card-body">
-        <p className="card-text">by {trivia.userName}</p>
+      <div className="card-body text-right">
+        by {userName}
+        <span className="ml-2">
+          {acquisitionCount} へえ
+        </span>
       </div>
     </div>
   );

@@ -19,6 +19,10 @@ const TriviaSchema = new mongoose.Schema(
       required: [true, 'Please add a title'],
       maxlength: [40, 'UserName text cannot be more than 40 chars'],
     },
+    acquisitionCount: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true },
 );
