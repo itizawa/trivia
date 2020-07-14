@@ -30,7 +30,9 @@ function ListPage() {
         {triviasList.map((trivia) => {
           return (
             <div className="mb-3" key={trivia._id}>
-              <TriviaCard trivia={trivia} />
+              <React.Suspense fallback={<p>...loading</p>}>
+                <TriviaCard trivia={trivia} />
+              </React.Suspense>
             </div>
           );
         })}
