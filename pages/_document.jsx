@@ -21,7 +21,6 @@ export default class MyDocument extends Document {
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:site" content="@weseek_inc" />
 
-          <title>トリビアの泉</title>
         </Head>
         <body>
           <Main />

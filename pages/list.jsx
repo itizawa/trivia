@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import Head from 'next/head';
 
 import appContainer from '@containers/appContainer';
+import TriviaCard from '../components/commons/TriviaCard';
 
 function ListPage() {
   const { apiGet } = appContainer.useContainer();
@@ -19,14 +21,21 @@ function ListPage() {
   }, [retrieveTrivias]);
 
   return (
-    <div className="bg-snow rounded mt-3 p-3">
-      <h1 className="text-center">トリビア一覧</h1>
-      {triviasList.map((trivia) => {
-        return (
-          <p>{trivia.userName}</p>
-        );
-      })}
-    </div>
+    <>
+      <Head>
+        <title>トリビア一覧</title>
+      </Head>
+      <div className="bg-snow rounded mt-3 p-3">
+        <h1 className="text-center">トリビア一覧</h1>
+        {triviasList.map((trivia) => {
+          return (
+            <div className="mb-3" key={trivia._id}>
+              <TriviaCard trivia={trivia} />
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
 
