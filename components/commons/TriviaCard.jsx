@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import TriviaListContainer from '@containers/TriviaListContainer';
+
 function TriviaCard({ trivia }) {
   const {
     forwardText, backwardText, userName, acquisitionCount,
   } = trivia;
 
+  const { openTriviaModal } = TriviaListContainer.useContainer();
+
   return (
-    <div className="card">
+    <div className="card" onClick={() => { openTriviaModal(trivia) }}>
       <img
         width="100%"
         height="auto"

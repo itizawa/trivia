@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import TriviaListContainer from '../containers/TriviaListContainer';
 import TriviaCard from '../components/commons/TriviaCard';
+import TriviaModal from '../components/commons/TriviaModal';
 
 function ListPage() {
   const { triviasList } = TriviaListContainer.useContainer();
@@ -24,6 +25,7 @@ function ListPage() {
           );
         })}
       </div>
+      <TriviaModal />
     </>
   );
 }

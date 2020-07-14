@@ -9,6 +9,7 @@ function TriviaListContainer() {
 
   const [page] = useState(1);
   const [triviasList, setTriviasList] = useState([]);
+  const [triviaForModal, setTriviaForModal] = useState(null);
 
   const retrieveTrivias = (useCallback(async() => {
     const res = await apiGet(`/trivias?page=${page}`);
@@ -20,8 +21,16 @@ function TriviaListContainer() {
     retrieveTrivias();
   }, [retrieveTrivias]);
 
+  const openTriviaModal = (trivia) => {
+    setTriviaForModal(trivia);
+  };
+
+  const closeTriviaModal = (trivia) => {
+    setTriviaForModal(null);
+  };
+
   return {
-    retrieveTrivias, triviasList,
+    retrieveTrivias, triviasList, triviaForModal, openTriviaModal, closeTriviaModal,
   };
 }
 
