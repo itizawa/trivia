@@ -16,7 +16,9 @@ function TriviaModal() {
         </div>
       </ModalBody>
       <ModalFooter>
-        hoge
+        <button type="button" className="btn btn-info btn-trivia text-snow mx-auto rounded-circle">
+          へぇ
+        </button>
       </ModalFooter>
     </Modal>
   );
