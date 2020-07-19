@@ -4,7 +4,7 @@ import '../styles/global.scss';
 import Navbar from '@components/commons/Navbar';
 import appContainer from '@containers/appContainer';
 import TriviaListContainer from '@containers/TriviaListContainer';
-import StickyFooter from '@components/commons/StickyFooter';
+import FixedFooter from '../components/commons/FexedFooter';
 
 function Page(pageProps) {
   return (
@@ -14,7 +14,7 @@ function Page(pageProps) {
         <div className="container mb-5">
           <pageProps.Component {...pageProps} />
         </div>
-        <StickyFooter {...pageProps} />
+        <FixedFooter />
       </TriviaListContainer.Provider>
     </appContainer.Provider>
   );
