@@ -8,12 +8,12 @@ function Navbar() {
     <nav className="navbar bg-orange">
       <div className="container-fluid">
         <Link href="/">
-          <a className="navbar-brand text-white d-md-block d-none">
+          <a className="navbar-brand text-white">
             トリビアの泉
           </a>
         </Link>
         <Link href="/new">
-          <a className="text-white">
+          <a className="text-white d-md-block d-none">
             <Pencil width="24px" height="24px" />
             <span className="ml-1 align-bottom">作成する</span>
           </a>
