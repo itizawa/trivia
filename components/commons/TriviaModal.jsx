@@ -4,12 +4,19 @@ import { Modal, ModalBody } from 'reactstrap';
 import TriviaListContainer from '@containers/TriviaListContainer';
 
 function TriviaModal() {
-  const { triviaForModal, closeTriviaModal } = TriviaListContainer.useContainer();
+  const { triviaForModal, closeTriviaModal, isOpenTriviaModal } = TriviaListContainer.useContainer();
   const [count, setCount] = useState(0);
   const totalCount = count + triviaForModal?.acquisitionCount;
 
+  function closeModalHandler() {
+    setCount(0);
+    if (closeTriviaModal != null) {
+      closeTriviaModal();
+    }
+  }
+
   return (
-    <Modal size="lg" isOpen={triviaForModal != null} toggle={closeTriviaModal} className="trivia-modal">
+    <Modal size="lg" isOpen={isOpenTriviaModal} toggle={closeModalHandler} className="trivia-modal">
       <ModalBody className="trivia-modal-body text-center p-5 d-flex align-items-center">
         <div className="w-100">
           {triviaForModal?.forwardText}
