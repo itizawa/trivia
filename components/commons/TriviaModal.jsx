@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, ModalBody } from 'reactstrap';
 
 import TriviaListContainer from '@containers/TriviaListContainer';
 
 function TriviaModal() {
   const { triviaForModal, closeTriviaModal } = TriviaListContainer.useContainer();
+  const [count, setCount] = useState(0);
+  const totalCount = count + triviaForModal?.acquisitionCount;
 
   return (
     <Modal size="lg" isOpen={triviaForModal != null} toggle={closeTriviaModal} className="trivia-modal">
@@ -17,16 +19,21 @@ function TriviaModal() {
       </ModalBody>
       <div className="d-flex p-3">
         <div className="col-4 align-bottom d-flex align-items-center">
-          0 へえ
+          {count} へえ
         </div>
         <div className="col-4 text-center">
-          <button type="button" className="btn btn-info btn-trivia text-snow rounded-circle">
+          <button
+            type="button"
+            className="btn btn-info btn-trivia text-snow rounded-circle"
+            onClick={() => { setCount(count + 1) }}
+            disabled={count >= 20}
+          >
             へぇ
           </button>
         </div>
         <div className="col-4 text-right">
           by {triviaForModal?.userName}<br />
-          合計 {triviaForModal?.acquisitionCount} へえ
+          合計 {totalCount} へえ
         </div>
       </div>
     </Modal>
