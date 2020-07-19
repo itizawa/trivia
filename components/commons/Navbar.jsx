@@ -15,7 +15,7 @@ function Navbar() {
         <Link href="/new">
           <a className="text-white">
             <Pencil width="24px" height="24px" />
-            <span className="ml-1">作成する</span>
+            <span className="ml-1 align-bottom">作成する</span>
           </a>
         </Link>
       </div>

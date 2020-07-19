@@ -13,6 +13,9 @@ a {
 html {
   min-height: 100vh;
   background-color: #dfdfdf;
+  @include media-breakpoint-down(sm) {
+    font-size: 14px;
+  }
 }
 
 body {

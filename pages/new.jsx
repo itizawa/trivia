@@ -19,7 +19,7 @@ function Page() {
       Router.push('/list');
     }
     catch (error) {
-      toastError(error, 'トリビアの作成に失敗しました。');
+      toastError(error, 'Error');
     }
   }
 
