@@ -8,7 +8,7 @@ function Navbar() {
     <nav className="navbar bg-orange">
       <div className="container-fluid">
         <Link href="/">
-          <a className="navbar-brand text-white">
+          <a className="navbar-brand text-white d-md-block d-none">
             トリビアの泉
           </a>
         </Link>
