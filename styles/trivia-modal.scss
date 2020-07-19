@@ -1,0 +1,24 @@
+.trivia-modal {
+  @include media-breakpoint-down(xs) {
+    margin-top: 100px;
+  }
+  .modal-content {
+    border: unset;
+  }
+  .trivia-modal-body {
+    width: calc(100vw - 14px);
+    height: calc((100vw - 14px) / 1200 * 660);
+    font-size: 1.3rem;
+    background-image: url('/trivia-background@2x.png');
+    background-size: cover;
+    border-radius: 0.3rem;
+    @include media-breakpoint-up(md) {
+      width: 500px;
+      height: calc(500px / 1200 * 660);
+    }
+    @include media-breakpoint-up(lg) {
+      width: 800px;
+      height: calc(800px / 1200 * 660);
+    }
+  }
+}

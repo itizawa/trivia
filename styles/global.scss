@@ -13,6 +13,9 @@ a {
 html {
   min-height: 100vh;
   background-color: #dfdfdf;
+  @include media-breakpoint-down(sm) {
+    font-size: 14px;
+  }
 }
 
 body {
@@ -29,3 +32,10 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+.btn-trivia {
+  width: 64px;
+  height: 64px;
+}
+
+@import './trivia-modal.scss';

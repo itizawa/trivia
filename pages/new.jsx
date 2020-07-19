@@ -16,10 +16,10 @@ function Page() {
   async function onClickSubmit() {
     try {
       await apiPost('/trivias', { forwardText, backwardText, userName });
-      Router.push('/');
+      Router.push('/list');
     }
     catch (error) {
-      toastError(error, 'トリビアの作成に失敗しました。');
+      toastError(error, 'Error');
     }
   }
 

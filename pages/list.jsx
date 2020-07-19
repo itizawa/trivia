@@ -1,24 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import Head from 'next/head';
 
-import appContainer from '@containers/appContainer';
+import TriviaListContainer from '../containers/TriviaListContainer';
 import TriviaCard from '../components/commons/TriviaCard';
+import TriviaModal from '../components/commons/TriviaModal';
 
 function ListPage() {
-  const { apiGet } = appContainer.useContainer();
-
-  const [page] = useState(1);
-  const [triviasList, setTriviasList] = useState([]);
-
-  const retrieveTrivias = useCallback(async() => {
-    const res = await apiGet(`/trivias?page=${page}`);
-    const trivias = res.docs;
-    setTriviasList(trivias);
-  }, [apiGet, page]);
-
-  useEffect(() => {
-    retrieveTrivias();
-  }, [retrieveTrivias]);
+  const { triviasList } = TriviaListContainer.useContainer();
 
   return (
     <>
@@ -37,6 +25,7 @@ function ListPage() {
           );
         })}
       </div>
+      <TriviaModal />
     </>
   );
 }
