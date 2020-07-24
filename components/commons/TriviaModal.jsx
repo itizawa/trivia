@@ -18,6 +18,9 @@ function TriviaModal() {
   return (
     <Modal size="lg" isOpen={isOpenTriviaModal} toggle={closeModalHandler} className="trivia-modal">
       <ModalBody className="trivia-modal-body text-center p-5 d-flex align-items-center">
+        <div className="trivia-scroll">
+          <span>へぇ</span>
+        </div>
         <div className="w-100">
           {triviaForModal?.forwardText}
           <br />
