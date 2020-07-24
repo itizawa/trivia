@@ -14,6 +14,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/ fb# prefix属性: http://ogp.me/ns/ prefix属性#" />
+          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 
           <meta property="og:url" content="https://tips.weseek.co.jp/" />
           <meta property="og:type" content="website" />
