@@ -39,6 +39,18 @@ body {
 .btn-trivia {
   width: 64px;
   height: 64px;
+  box-shadow: 1px 5px darken($info, 20%);
+
+  &:active {
+    box-shadow: none;
+    position: relative;
+    top: 5px;
+  }
+
+  &:focus {
+    box-shadow: 1px 5px darken($info, 20%);
+
+  }
 }
 
 @import './trivia-modal.scss';
