@@ -21,7 +21,7 @@ function TriviaModal() {
     const marginTop = Math.random() * Math.floor(100) - 50;
     const __flowingWords = flowingWords;
     __flowingWords.push(
-      <div key={count} className="trivia-scroll" style={{ 'margin-top': `${marginTop}%` }}>
+      <div key={count} className="trivia-scroll" style={{ marginTop: `${marginTop}%` }}>
         <span>へぇ</span>
       </div>,
     );
