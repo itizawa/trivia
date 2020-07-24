@@ -11,7 +11,7 @@
     "start": "next start",
     "lint:js:fix": "eslint \"**/*.{js,jsx}\" --fix",
     "lint:js": "eslint \"**/*.{js,jsx}\"",
-    "lint:styles:fix": "stylelint --fix styles/scss/**/*.scss",
+    "lint:styles:fix": "stylelint --fix styles/**/*.scss",
     "lint:styles": "stylelint styles/**/*.scss",
     "lint": "npm-run-all -p lint:js lint:styles"
   },

@@ -6,18 +6,37 @@ import TriviaListContainer from '@containers/TriviaListContainer';
 function TriviaModal() {
   const { triviaForModal, closeTriviaModal, isOpenTriviaModal } = TriviaListContainer.useContainer();
   const [count, setCount] = useState(0);
+  const [flowingWords, setFlowingWords] = useState([]);
   const totalCount = count + triviaForModal?.acquisitionCount;
 
   function closeModalHandler() {
     setCount(0);
     if (closeTriviaModal != null) {
+      setFlowingWords([]);
       closeTriviaModal();
     }
+  }
+
+  function generateFlowingWords() {
+    const marginTop = Math.random() * Math.floor(100) - 50;
+    const __flowingWords = flowingWords;
+    __flowingWords.push(
+      <div key={count} className="trivia-scroll" style={{ marginTop: `${marginTop}%` }}>
+        <span>へぇ</span>
+      </div>,
+    );
+    setFlowingWords(__flowingWords);
+  }
+
+  function pushHeButtonHandler() {
+    setCount(count + 1);
+    generateFlowingWords();
   }
 
   return (
     <Modal size="lg" isOpen={isOpenTriviaModal} toggle={closeModalHandler} className="trivia-modal">
       <ModalBody className="trivia-modal-body text-center p-5 d-flex align-items-center">
+        {flowingWords}
         <div className="w-100">
           {triviaForModal?.forwardText}
           <br />
@@ -32,7 +51,7 @@ function TriviaModal() {
           <button
             type="button"
             className="btn btn-info btn-trivia text-snow rounded-circle"
-            onClick={() => { setCount(count + 1) }}
+            onClick={pushHeButtonHandler}
             disabled={count >= 20}
           >
             へぇ
