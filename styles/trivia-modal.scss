@@ -8,15 +8,15 @@
   }
 
   .trivia-modal-body {
+
+    position: relative;
     width: calc(100vw - 14px);
     height: calc((100vw - 14px) / 1200 * 660);
+    overflow: hidden;
     font-size: 1.3rem;
     background-image: url('/trivia-background@2x.png');
     background-size: cover;
     border-radius: 0.3rem;
-
-    position: relative;
-    overflow: hidden;
 
     @include media-breakpoint-up(md) {
       width: 500px;
@@ -30,13 +30,13 @@
   }
 
   .trivia-scroll {
-    margin-left: -48px;
     position: absolute;
     width: 100%;
-    font-size: 140%;
     padding-left: 110%;
-    white-space: nowrap;
+    margin-left: -48px;
+    font-size: 140%;
     line-height: 1em;
+    white-space: nowrap;
     animation: scrollAnime 3s linear;
   }
 
