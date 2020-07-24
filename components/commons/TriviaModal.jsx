@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, ModalBody } from 'reactstrap';
 
 import TriviaListContainer from '@containers/TriviaListContainer';
@@ -12,14 +12,16 @@ function TriviaModal() {
   function closeModalHandler() {
     setCount(0);
     if (closeTriviaModal != null) {
+      setFlowingWords([]);
       closeTriviaModal();
     }
   }
 
   function generateFlowingWords() {
+    const marginTop = Math.random() * Math.floor(100) - 50;
     const __flowingWords = flowingWords;
     __flowingWords.push(
-      <div key={count} className="trivia-scroll">
+      <div key={count} className="trivia-scroll" style={{ 'margin-top': `${marginTop}%` }}>
         <span>へぇ</span>
       </div>,
     );
@@ -34,9 +36,6 @@ function TriviaModal() {
   return (
     <Modal size="lg" isOpen={isOpenTriviaModal} toggle={closeModalHandler} className="trivia-modal">
       <ModalBody className="trivia-modal-body text-center p-5 d-flex align-items-center">
-        <div className="trivia-scroll">
-          <span>へぇ</span>
-        </div>
         {flowingWords}
         <div className="w-100">
           {triviaForModal?.forwardText}
