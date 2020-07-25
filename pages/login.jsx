@@ -1,14 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 
-import UserContainer from '@containers/UserContainer';
+import { signin } from 'next-auth/client';
 
 function IndexPage() {
-  const { login } = UserContainer.useContainer();
-
-  function loginHandler() {
-    login();
-  }
 
   return (
     <>
@@ -20,7 +15,7 @@ function IndexPage() {
         <div className="my-5">
           <div className="row">
             <div className="col-12 col-md-6 px-2 mb-4 mb-md-0">
-              <button type="button" className="btn btn-google text-white w-100" onClick={loginHandler}>
+              <button type="button" className="btn btn-google text-white w-100" onClick={() => signin('google')}>
                 <i className="fab fa-google mr-2"></i>
                 Google
               </button>
