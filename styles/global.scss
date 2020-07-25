@@ -37,15 +37,15 @@ body {
 }
 
 .btn-trivia {
-  font-size: 20px;
   width: 72px;
   height: 72px;
+  font-size: 20px;
   box-shadow: 1px 5px darken($info, 20%);
 
   &:active {
-    box-shadow: none;
     position: relative;
     top: 5px;
+    box-shadow: none;
   }
 
   &:focus {

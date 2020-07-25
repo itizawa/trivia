@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-
-import Pencil from './atoms/svg/Pencil';
+import firebase from '@lib/authConnect';
 
 function Navbar() {
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log(user);
+    });
+  }, []);
+
+  function loginHandler() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+  }
+
   return (
     <nav className="navbar bg-orange">
       <div className="container-fluid">
@@ -12,12 +23,13 @@ function Navbar() {
             トリビアの泉
           </a>
         </Link>
-        <Link href="/new">
-          <a className="text-white d-md-block d-none">
-            <Pencil width="24px" height="24px" />
-            <span className="ml-1 align-bottom">作成する</span>
-          </a>
-        </Link>
+        <button
+          type="button"
+          className="btn btn-info"
+          onClick={loginHandler}
+        >
+          login
+        </button>
       </div>
     </nav>
   );
