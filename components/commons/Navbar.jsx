@@ -6,11 +6,8 @@ import PersonalDropdown from '../Navbar/PersonalDropdown';
 import ArrowInRight from './atoms/svg/ArrowInRight';
 
 function Navbar() {
-  const { login, loadingUser, currentUser } = UserContainer.useContainer();
+  const { loadingUser, currentUser } = UserContainer.useContainer();
 
-  function loginHandler() {
-    login();
-  }
 
   function renderPersonalDropdown() {
     if (loadingUser) {
@@ -18,17 +15,14 @@ function Navbar() {
     }
     return (
       <>
-        { currentUser == null
-      && (
-      <button
-        type="button"
-        className="btn btn-teal text-white"
-        onClick={loginHandler}
-      >
-        <ArrowInRight />
-        <span className="ml-2">login</span>
-      </button>
-      )}
+        { currentUser == null && (
+        <Link href="/login">
+          <a className="text-white text-center">
+            <ArrowInRight />
+            <span className="ml-2">login</span>
+          </a>
+        </Link>
+        )}
         { currentUser != null && <PersonalDropdown /> }
       </>
     );
