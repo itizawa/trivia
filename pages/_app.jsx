@@ -1,16 +1,19 @@
 import React from 'react';
 import '../styles/global.scss';
 
+import { Provider } from 'next-auth/client';
+
 import Navbar from '@components/commons/Navbar';
 import appContainer from '@containers/appContainer';
 import TriviaListContainer from '@containers/TriviaListContainer';
 import FixedFooter from '../components/commons/FexedFooter';
-import UserContainer from '../containers/UserContainer';
 
 function Page(pageProps) {
+  const { session } = pageProps;
+
   return (
     <appContainer.Provider>
-      <UserContainer.Provider>
+      <Provider session={session}>
         <TriviaListContainer.Provider>
           <Navbar {...pageProps} />
           <div className="container mb-5">
@@ -18,7 +21,7 @@ function Page(pageProps) {
           </div>
           <FixedFooter />
         </TriviaListContainer.Provider>
-      </UserContainer.Provider>
+      </Provider>
     </appContainer.Provider>
   );
 }

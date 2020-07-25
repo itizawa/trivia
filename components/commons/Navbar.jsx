@@ -1,21 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
 
-import UserContainer from '../../containers/UserContainer';
+import { useSession } from 'next-auth/client';
+
 import PersonalDropdown from '../Navbar/PersonalDropdown';
 import ArrowInRight from './atoms/svg/ArrowInRight';
 
 function Navbar() {
-  const { loadingUser, currentUser } = UserContainer.useContainer();
-
+  const [session, loading] = useSession();
 
   function renderPersonalDropdown() {
-    if (loadingUser) {
+    if (loading) {
       return null;
     }
     return (
       <>
-        { currentUser == null && (
+        { session == null && (
         <Link href="/login">
           <a className="text-white text-center">
             <ArrowInRight />
@@ -23,7 +23,7 @@ function Navbar() {
           </a>
         </Link>
         )}
-        { currentUser != null && <PersonalDropdown /> }
+        { session != null && <PersonalDropdown /> }
       </>
     );
   }
