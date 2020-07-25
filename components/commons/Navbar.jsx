@@ -1,18 +1,35 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import firebase from '@lib/authConnect';
+
+import UserContainer from '../../containers/UserContainer';
+import PersonalDropdown from '../Navbar/PersonalDropdown';
 
 function Navbar() {
-
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
-    });
-  }, []);
+  const { login, loadingUser, currentUser } = UserContainer.useContainer();
 
   function loginHandler() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+    login();
+  }
+
+  function renderPersonalDropdown() {
+    if (loadingUser) {
+      return null;
+    }
+    return (
+      <>
+        { currentUser == null
+      && (
+      <button
+        type="button"
+        className="btn btn-info text-white"
+        onClick={loginHandler}
+      >
+        login
+      </button>
+      )}
+        { currentUser != null && <PersonalDropdown /> }
+      </>
+    );
   }
 
   return (
@@ -23,13 +40,7 @@ function Navbar() {
             トリビアの泉
           </a>
         </Link>
-        <button
-          type="button"
-          className="btn btn-info"
-          onClick={loginHandler}
-        >
-          login
-        </button>
+        {renderPersonalDropdown()}
       </div>
     </nav>
   );
