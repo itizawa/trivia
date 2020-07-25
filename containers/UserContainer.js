@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
+import Router from 'next/router';
 import { createContainer } from 'unstated-next';
-import { toastError } from '@utils/toaster';
 
+import { toastError, toastSuccess } from '@utils/toaster';
 import firebase from '@lib/authConnect';
+
 
 function UserContainer() {
 
@@ -45,6 +47,8 @@ function UserContainer() {
   const logout = async() => {
     await firebase.auth().signOut();
     retrieveCurrentUser();
+    toastSuccess('ログアウトしました');
+    Router.push('/');
   };
 
   return {

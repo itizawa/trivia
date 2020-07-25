@@ -22,7 +22,7 @@ function Navbar() {
       && (
       <button
         type="button"
-        className="btn btn-info text-white"
+        className="btn btn-teal text-white"
         onClick={loginHandler}
       >
         <ArrowInRight />
