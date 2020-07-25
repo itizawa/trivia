@@ -16,6 +16,7 @@
     "lint": "npm-run-all -p lint:js lint:styles"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "axios": "^0.19.2",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^5.0.0-alpha1",
