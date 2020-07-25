@@ -35,7 +35,13 @@ function UserContainer() {
   }, []));
 
   useEffect(() => {
-    retrieveCurrentUser();
+    try {
+      retrieveCurrentUser();
+    }
+    catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
   }, [retrieveCurrentUser]);
 
   const login = async() => {
