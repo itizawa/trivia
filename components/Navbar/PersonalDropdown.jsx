@@ -10,7 +10,7 @@ function PersonalDropdown() {
 
   async function logoutHandler() {
     await logout();
-    toastSuccess('ログアウトにしました');
+    toastSuccess('ログアウトしました');
     Router.push('/');
   }
 

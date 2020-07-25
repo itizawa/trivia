@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import UserContainer from '../../containers/UserContainer';
 import PersonalDropdown from '../Navbar/PersonalDropdown';
+import ArrowInRight from './atoms/svg/ArrowInRight';
 
 function Navbar() {
   const { login, loadingUser, currentUser } = UserContainer.useContainer();
@@ -24,7 +25,8 @@ function Navbar() {
         className="btn btn-info text-white"
         onClick={loginHandler}
       >
-        login
+        <ArrowInRight />
+        <span className="ml-2">login</span>
       </button>
       )}
         { currentUser != null && <PersonalDropdown /> }
