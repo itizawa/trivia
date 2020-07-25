@@ -47,7 +47,6 @@ function UserContainer() {
   const login = async() => {
     const provider = new firebase.auth.GoogleAuthProvider();
     await firebase.auth().signInWithRedirect(provider);
-    retrieveCurrentUser();
   };
 
   const logout = async() => {

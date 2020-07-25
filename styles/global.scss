@@ -36,27 +36,5 @@ body {
   background-position: center center;
 }
 
-.btn-trivia {
-  width: 72px;
-  height: 72px;
-  font-size: 20px;
-  box-shadow: 1px 5px darken($info, 20%);
-
-  &:active {
-    position: relative;
-    top: 5px;
-    box-shadow: none;
-  }
-
-  &:focus {
-    box-shadow: 1px 5px darken($info, 20%);
-
-    &:active {
-      box-shadow: 0 0 40px 10px $info;
-
-    }
-  }
-
-}
-
+@import './btn.scss';
 @import './trivia-modal.scss';
