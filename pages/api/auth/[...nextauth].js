@@ -4,14 +4,6 @@ import Providers from 'next-auth/providers';
 const options = {
   site: process.env.SITE || 'http://localhost:3000',
   providers: [
-    // Providers.Email({
-    //   // SMTP connection string or nodemailer configuration object https://nodemailer.com/
-    //   server: process.env.EMAIL_SERVER,
-    //   // Email services often only allow sending email from a valid/verified address
-    //   from: process.env.EMAIL_FROM,
-    // }),
-    // When configuring oAuth providers make sure you enabling requesting
-    // permission to get the users email address (required to sign in)
     Providers.Google({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
