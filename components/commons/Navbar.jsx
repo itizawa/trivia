@@ -1,9 +1,39 @@
 import React from 'react';
 import Link from 'next/link';
 
-import Pencil from './atoms/svg/Pencil';
+import UserContainer from '../../containers/UserContainer';
+import PersonalDropdown from '../Navbar/PersonalDropdown';
+import ArrowInRight from './atoms/svg/ArrowInRight';
 
 function Navbar() {
+  const { login, loadingUser, currentUser } = UserContainer.useContainer();
+
+  function loginHandler() {
+    login();
+  }
+
+  function renderPersonalDropdown() {
+    if (loadingUser) {
+      return null;
+    }
+    return (
+      <>
+        { currentUser == null
+      && (
+      <button
+        type="button"
+        className="btn btn-teal text-white"
+        onClick={loginHandler}
+      >
+        <ArrowInRight />
+        <span className="ml-2">login</span>
+      </button>
+      )}
+        { currentUser != null && <PersonalDropdown /> }
+      </>
+    );
+  }
+
   return (
     <nav className="navbar bg-orange">
       <div className="container-fluid">
@@ -12,12 +42,7 @@ function Navbar() {
             トリビアの泉
           </a>
         </Link>
-        <Link href="/new">
-          <a className="text-white d-md-block d-none">
-            <Pencil width="24px" height="24px" />
-            <span className="ml-1 align-bottom">作成する</span>
-          </a>
-        </Link>
+        {renderPersonalDropdown()}
       </div>
     </nav>
   );

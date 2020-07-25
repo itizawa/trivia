@@ -37,7 +37,7 @@
     font-size: 140%;
     line-height: 1em;
     white-space: nowrap;
-    animation: scrollAnime 3s linear;
+    animation: scrollAnime 3s linear forwards;
   }
 
   @keyframes scrollAnime {
