@@ -14,7 +14,4 @@ module.exports = {
     config.resolve.alias['@models'] = path.join(__dirname, 'models');
     return config;
   },
-  env: {
-    MONGO_URI: process.env.MONGO_URI,
-  },
 };
