@@ -18,7 +18,7 @@ const LoginRequired = function(Page) {
     }
 
     if (session == null) {
-      Router.push('/login');
+      Router.push('/login?isRedirect=true');
       return null;
     }
 
