@@ -7,6 +7,7 @@ import { body, query } from 'express-validator';
 import Trivia from '@models/Trivia';
 import dbConnect from '@middlewares/dbConnect';
 import AccessTokenParser from '@middlewares/AccessTokenParser';
+import LoginRequired from '../../lib/middlewares/LoginRequired';
 
 const handler = nextConnect();
 
@@ -37,7 +38,7 @@ handler.get(validator.paginate, ApiValidator, async(req, res) => {
   }
 });
 
-handler.post(AccessTokenParser, validator.summary, ApiValidator, async(req, res) => {
+handler.post(validator.summary, ApiValidator, AccessTokenParser, LoginRequired, async(req, res) => {
   const { forwardText, backwardText, userName } = req.body;
   try {
     const trivia = new Trivia({ forwardText, backwardText, userName });
