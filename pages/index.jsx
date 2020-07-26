@@ -2,6 +2,9 @@ import React from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
+import Pencil from '@components/commons/atoms/svg/Pencil';
+import ViewList from '@components/commons/atoms/svg/ViewList';
+
 const IndexPage = () => (
   <>
     <Head>
@@ -15,13 +18,23 @@ const IndexPage = () => (
       <br />
       共有するサイトです。
       <div className="my-5">
-        <div className="d-flex justify-content-around">
-          <button type="button" className="btn btn-orange text-white" onClick={() => { Router.push('/new') }}>
-            トリビアを作る
-          </button>
-          <button type="button" className="btn btn-teal text-white" onClick={() => { Router.push('/list') }}>
-            トリビアを見る
-          </button>
+        <div className="row">
+          <div className="col-12 col-md-6 px-2 mb-4 mb-md-0">
+            <button type="button" className="btn btn-orange text-white w-100" onClick={() => { Router.push('/new') }}>
+              <Pencil />
+              <span className="ml-2">
+                トリビアを作る
+              </span>
+            </button>
+          </div>
+          <div className="col-12 col-md-6 px-2 mb-4 mb-md-0">
+            <button type="button" className="btn btn-teal text-white w-100" onClick={() => { Router.push('/list') }}>
+              <ViewList />
+              <span className="ml-2">
+                トリビアを見る
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
