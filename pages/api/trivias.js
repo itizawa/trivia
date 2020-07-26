@@ -39,9 +39,11 @@ handler.get(validator.paginate, ApiValidator, async(req, res) => {
 });
 
 handler.post(validator.summary, ApiValidator, AccessTokenParser, LoginRequired, async(req, res) => {
-  const { forwardText, backwardText, userName } = req.body;
+  const { forwardText, backwardText } = req.body;
+  const creatorId = req.user._id;
+
   try {
-    const trivia = new Trivia({ forwardText, backwardText, userName });
+    const trivia = new Trivia({ forwardText, backwardText, creatorId });
     const createdTrivia = await trivia.save();
     return res.status(200).send({ createdTrivia });
   }

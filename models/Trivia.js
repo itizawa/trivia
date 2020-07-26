@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
+const { Schema } = require('mongoose');
 
 const TriviaSchema = new mongoose.Schema(
   {
@@ -14,10 +15,10 @@ const TriviaSchema = new mongoose.Schema(
       required: [true, 'Please add a backward text'],
       maxlength: [40, 'Backward text cannot be more than 40 chars'],
     },
-    userName: {
-      type: String,
-      required: [true, 'Please add a title'],
-      maxlength: [40, 'UserName text cannot be more than 40 chars'],
+    creatorId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'user',
     },
     acquisitionCount: {
       type: Number,
