@@ -5,6 +5,7 @@ import Head from 'next/head';
 import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
+import LoginRequired from '@components/LoginRequired';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
@@ -75,4 +76,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default LoginRequired(Page);
