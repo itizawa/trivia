@@ -5,7 +5,7 @@ import TriviaListContainer from '@containers/TriviaListContainer';
 
 function TriviaModal() {
   const { triviaForModal, closeTriviaModal, isOpenTriviaModal } = TriviaListContainer.useContainer();
-  const { creator } = triviaForModal;
+  const creator = triviaForModal?.creator;
 
   const [count, setCount] = useState(0);
   const [flowingWords, setFlowingWords] = useState([]);
