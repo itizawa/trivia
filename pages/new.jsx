@@ -6,13 +6,14 @@ import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
 import LoginRequired from '@components/LoginRequired';
+import { useSession } from 'next-auth/client';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
-
+  const [session] = useSession();
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
-  const [userName, setUserName] = useState('');
+  const [userName] = useState(session.user.name);
 
   async function onClickSubmit() {
     try {
@@ -52,17 +53,6 @@ function Page() {
               value={backwardText}
               onChange={e => setBackwardText(e.target.value)}
               rows="3"
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="userName" className="form-label">名前</label>
-            <input
-              type="text"
-              className="form-control"
-              id="userName"
-              value={userName}
-              onChange={e => setUserName(e.target.value)}
-              aria-describedby="userName"
             />
           </div>
           <div className="text-right">
