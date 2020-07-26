@@ -6,18 +6,15 @@ import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
 import LoginRequired from '@components/LoginRequired';
-import { useSession } from 'next-auth/client';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
-  const [session] = useSession();
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
-  const [userName] = useState(session.user.name);
 
   async function onClickSubmit() {
     try {
-      await apiPost('/trivias', { forwardText, backwardText, userName });
+      await apiPost('/trivias', { forwardText, backwardText });
       Router.push('/list');
     }
     catch (error) {

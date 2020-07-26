@@ -6,6 +6,7 @@ import { body, query } from 'express-validator';
 
 import Trivia from '@models/Trivia';
 import dbConnect from '@middlewares/dbConnect';
+import AccessTokenParser from '@middlewares/AccessTokenParser';
 
 const handler = nextConnect();
 
@@ -18,9 +19,7 @@ validator.paginate = [
 validator.summary = [
   body('forwardText').isString().isLength({ min: 1, max: 40 }).withMessage('前の文は 40 文字以下です'),
   body('backwardText').isString().isLength({ min: 1, max: 40 }).withMessage('後ろの文は 40 文字以下です'),
-  body('userName').isString().isLength({ min: 1, max: 40 }).withMessage('名前は 40 文字以下です'),
 ];
-
 
 handler.get(validator.paginate, ApiValidator, async(req, res) => {
   const options = {
@@ -38,7 +37,7 @@ handler.get(validator.paginate, ApiValidator, async(req, res) => {
   }
 });
 
-handler.post(validator.summary, ApiValidator, async(req, res) => {
+handler.post(AccessTokenParser, validator.summary, ApiValidator, async(req, res) => {
   const { forwardText, backwardText, userName } = req.body;
   try {
     const trivia = new Trivia({ forwardText, backwardText, userName });
