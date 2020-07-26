@@ -3,6 +3,8 @@ import Head from 'next/head';
 
 import { signin } from 'next-auth/client';
 
+import LogoutRequired from '@components/LogoutRequired';
+
 function IndexPage() {
 
   return (
@@ -33,4 +35,4 @@ function IndexPage() {
   );
 }
 
-export default IndexPage;
+export default LogoutRequired(IndexPage);
