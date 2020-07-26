@@ -5,6 +5,7 @@ import ApiValidator from '@middlewares/ApiValidator';
 import { body, query } from 'express-validator';
 
 import Trivia from '@models/Trivia';
+import User from '@models/User';
 import dbConnect from '@middlewares/dbConnect';
 import AccessTokenParser from '@middlewares/AccessTokenParser';
 import LoginRequired from '../../lib/middlewares/LoginRequired';
@@ -25,7 +26,9 @@ validator.summary = [
 handler.get(validator.paginate, ApiValidator, async(req, res) => {
   const options = {
     page: req.query.page || 1,
+    sort: { createdAt: -1 },
     limit: 10,
+    populate: { path: 'creator', model: User },
   };
 
   try {
@@ -40,10 +43,10 @@ handler.get(validator.paginate, ApiValidator, async(req, res) => {
 
 handler.post(validator.summary, ApiValidator, AccessTokenParser, LoginRequired, async(req, res) => {
   const { forwardText, backwardText } = req.body;
-  const creatorId = req.user._id;
+  const creator = req.user._id;
 
   try {
-    const trivia = new Trivia({ forwardText, backwardText, creatorId });
+    const trivia = new Trivia({ forwardText, backwardText, creator });
     const createdTrivia = await trivia.save();
     return res.status(200).send({ createdTrivia });
   }

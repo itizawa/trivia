@@ -15,7 +15,7 @@ const TriviaSchema = new mongoose.Schema(
       required: [true, 'Please add a backward text'],
       maxlength: [40, 'Backward text cannot be more than 40 chars'],
     },
-    creatorId: {
+    creator: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'user',
