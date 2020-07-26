@@ -2,10 +2,16 @@ import { createContainer } from 'unstated-next';
 import Axios from 'axios';
 import urljoin from 'url-join';
 import toArrayIfNot from '@utils/toArrayIfNot';
+import { getSession } from 'next-auth/client';
 
 function appContainer() {
   // API
   const apiRequest = async(method, path, params) => {
+
+    // set accessToken
+    const session = await getSession();
+    params.accessToken = session?.accessToken;
+
     try {
       const res = await Axios[method](urljoin('api', path), params);
       return res.data;

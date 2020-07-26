@@ -5,7 +5,10 @@ import ApiValidator from '@middlewares/ApiValidator';
 import { body, query } from 'express-validator';
 
 import Trivia from '@models/Trivia';
+import User from '@models/User';
 import dbConnect from '@middlewares/dbConnect';
+import AccessTokenParser from '@middlewares/AccessTokenParser';
+import LoginRequired from '../../lib/middlewares/LoginRequired';
 
 const handler = nextConnect();
 
@@ -18,14 +21,14 @@ validator.paginate = [
 validator.summary = [
   body('forwardText').isString().isLength({ min: 1, max: 40 }).withMessage('前の文は 40 文字以下です'),
   body('backwardText').isString().isLength({ min: 1, max: 40 }).withMessage('後ろの文は 40 文字以下です'),
-  body('userName').isString().isLength({ min: 1, max: 40 }).withMessage('名前は 40 文字以下です'),
 ];
-
 
 handler.get(validator.paginate, ApiValidator, async(req, res) => {
   const options = {
     page: req.query.page || 1,
+    sort: { createdAt: -1 },
     limit: 10,
+    populate: { path: 'creator', model: User },
   };
 
   try {
@@ -38,10 +41,12 @@ handler.get(validator.paginate, ApiValidator, async(req, res) => {
   }
 });
 
-handler.post(validator.summary, ApiValidator, async(req, res) => {
-  const { forwardText, backwardText, userName } = req.body;
+handler.post(validator.summary, ApiValidator, AccessTokenParser, LoginRequired, async(req, res) => {
+  const { forwardText, backwardText } = req.body;
+  const creator = req.user._id;
+
   try {
-    const trivia = new Trivia({ forwardText, backwardText, userName });
+    const trivia = new Trivia({ forwardText, backwardText, creator });
     const createdTrivia = await trivia.save();
     return res.status(200).send({ createdTrivia });
   }

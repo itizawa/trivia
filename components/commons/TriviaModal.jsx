@@ -5,6 +5,8 @@ import TriviaListContainer from '@containers/TriviaListContainer';
 
 function TriviaModal() {
   const { triviaForModal, closeTriviaModal, isOpenTriviaModal } = TriviaListContainer.useContainer();
+  const creator = triviaForModal?.creator;
+
   const [count, setCount] = useState(0);
   const [flowingWords, setFlowingWords] = useState([]);
   const totalCount = count + triviaForModal?.acquisitionCount;
@@ -58,7 +60,7 @@ function TriviaModal() {
           </button>
         </div>
         <div className="col-4 text-right">
-          by {triviaForModal?.userName}<br />
+          {creator?.name}<br />
           合計 {totalCount} へえ
         </div>
       </div>
