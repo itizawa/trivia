@@ -11,6 +11,7 @@ function Page() {
   const { apiPost } = appContainer.useContainer();
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
+  const [previewUrl, setPreviewUrl] = useState('');
 
   async function onClickSubmit() {
     try {
@@ -23,7 +24,7 @@ function Page() {
   }
 
   function generatePreview() {
-    console.log('push');
+    setPreviewUrl(`forwardText=${forwardText}&backwardText=${backwardText}`);
   }
 
   return (
@@ -65,6 +66,11 @@ function Page() {
             </button>
           </div>
         </form>
+        <img
+          className="mt-3"
+          width="100%"
+          src={`https://trivia-ogp.vercel.app/api/ogp?${previewUrl}`}
+        />
       </div>
     </>
   );
