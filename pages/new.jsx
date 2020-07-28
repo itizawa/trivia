@@ -15,7 +15,7 @@ function Page() {
   const [backwardText, setBackwardText] = useState('');
   const [invalidFormValue, setInvalidFormValue] = useState(false);
 
-  const [previewUrl, setPreviewUrl] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
   async function onClickSubmit() {
@@ -76,7 +76,7 @@ function Page() {
                 className="btn btn-orange text-snow mr-3 w-100"
                 onClick={generatePreview}
               >
-                { previewUrl == null ? 'プレビューを見る' : 'プレビューを更新する'}
+                { isOpen ? 'プレビューを更新する' : 'プレビューを見る'}
               </button>
             </div>
             <Collapse isOpen={isOpen}>
