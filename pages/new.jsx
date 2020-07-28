@@ -34,6 +34,7 @@ function Page() {
   }
 
   useEffect(() => {
+    // validate form
     const bool = (forwardText === '' || backwardText === '');
     setInvalidFormValue(bool);
   }, [forwardText, backwardText]);
