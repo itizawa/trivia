@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
+import { Collapse } from 'reactstrap';
 import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
@@ -11,7 +12,8 @@ function Page() {
   const { apiPost } = appContainer.useContainer();
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
-  const [previewUrl, setPreviewUrl] = useState('');
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   async function onClickSubmit() {
     try {
@@ -24,6 +26,7 @@ function Page() {
   }
 
   function generatePreview() {
+    setIsOpen(true);
     setPreviewUrl(`forwardText=${forwardText}&backwardText=${backwardText}`);
   }
 
@@ -63,21 +66,17 @@ function Page() {
                 type="button"
                 className="btn btn-orange text-snow mr-3 w-100"
                 onClick={generatePreview}
-                data-toggle="collapse"
-                data-target="#collapseExample"
-                aria-expanded="false"
-                aria-controls="collapseExample"
               >
-                プレビュー
+                { previewUrl == null ? 'プレビューを見る' : 'プレビューを更新する'}
               </button>
             </div>
-            <div className="collapse" id="collapseExample">
+            <Collapse isOpen={isOpen}>
               <img
                 className="mt-3"
                 width="100%"
                 src={`https://trivia-ogp.vercel.app/api/ogp?${previewUrl}`}
               />
-            </div>
+            </Collapse>
             <div className="col-12 px-2 mb-4 mb-md-0 mt-3">
               <button type="button" className="btn btn-teal text-snow w-100" onClick={onClickSubmit}>
                 作成する！
