@@ -22,6 +22,10 @@ function Page() {
     }
   }
 
+  function generatePreview() {
+    console.log('push');
+  }
+
   return (
     <>
       <Head>
@@ -53,7 +57,10 @@ function Page() {
             />
           </div>
           <div className="text-right">
-            <button type="button" className="btn btn-orange text-snow" onClick={onClickSubmit}>
+            <button type="button" className="btn btn-orange text-snow mr-3" onClick={generatePreview}>
+              プレビュー
+            </button>
+            <button type="button" className="btn btn-teal text-snow" onClick={onClickSubmit}>
               作成する！
             </button>
           </div>
