@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
-import { Collapse } from 'reactstrap';
+import { Collapse, Button } from 'reactstrap';
 import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
@@ -10,8 +10,11 @@ import LoginRequired from '@components/LoginRequired';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
+
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
+  const [invalidFormValue, setInvalidFormValue] = useState(false);
+
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -29,6 +32,11 @@ function Page() {
     setIsOpen(true);
     setPreviewUrl(`forwardText=${forwardText}&backwardText=${backwardText}`);
   }
+
+  useEffect(() => {
+    const bool = (forwardText === '' || backwardText === '');
+    setInvalidFormValue(bool);
+  }, [forwardText, backwardText]);
 
   return (
     <>
@@ -78,9 +86,14 @@ function Page() {
               />
             </Collapse>
             <div className="col-12 px-2 mb-4 mb-md-0 mt-3">
-              <button type="button" className="btn btn-teal text-snow w-100" onClick={onClickSubmit}>
+              <Button
+                type="button"
+                className="btn btn-teal text-snow w-100"
+                disabled={invalidFormValue}
+                onClick={onClickSubmit}
+              >
                 作成する！
-              </button>
+              </Button>
             </div>
           </div>
         </form>
