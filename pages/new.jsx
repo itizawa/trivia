@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
+import { Collapse, Button } from 'reactstrap';
 import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
@@ -9,8 +10,13 @@ import LoginRequired from '@components/LoginRequired';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
+
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
+  const [invalidFormValue, setInvalidFormValue] = useState(false);
+
+  const [previewUrl, setPreviewUrl] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   async function onClickSubmit() {
     try {
@@ -21,6 +27,17 @@ function Page() {
       toastError(error, 'Error');
     }
   }
+
+  function generatePreview() {
+    setIsOpen(true);
+    setPreviewUrl(`forwardText=${forwardText}&backwardText=${backwardText}`);
+  }
+
+  useEffect(() => {
+    // validate form
+    const bool = (forwardText === '' || backwardText === '');
+    setInvalidFormValue(bool);
+  }, [forwardText, backwardText]);
 
   return (
     <>
@@ -52,12 +69,36 @@ function Page() {
               rows="3"
             />
           </div>
-          <div className="text-right">
-            <button type="button" className="btn btn-orange text-snow" onClick={onClickSubmit}>
-              作成する！
-            </button>
+          <div className="row">
+            <div className="col-12 px-2 mb-md-0">
+              <button
+                type="button"
+                className="btn btn-orange text-snow mr-3 w-100"
+                onClick={generatePreview}
+              >
+                { isOpen ? 'プレビューを更新する' : 'プレビューを見る'}
+              </button>
+            </div>
+            <Collapse isOpen={isOpen}>
+              <img
+                className="mt-3"
+                width="100%"
+                src={`https://trivia-ogp.vercel.app/api/ogp?${previewUrl}`}
+              />
+            </Collapse>
+            <div className="col-12 px-2 mb-4 mb-md-0 mt-3">
+              <Button
+                type="button"
+                className="btn btn-teal text-snow w-100"
+                disabled={invalidFormValue}
+                onClick={onClickSubmit}
+              >
+                作成する！
+              </Button>
+            </div>
           </div>
         </form>
+
       </div>
     </>
   );

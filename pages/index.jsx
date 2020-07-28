@@ -19,7 +19,7 @@ const IndexPage = () => (
       共有するサイトです。
       <div className="my-5">
         <div className="row">
-          <div className="col-12 col-md-6 px-2 mb-4 mb-md-0">
+          <div className="col-12 col-md-6 px-2 mb-3 mb-md-0">
             <button type="button" className="btn btn-orange text-white w-100" onClick={() => { Router.push('/new') }}>
               <Pencil />
               <span className="ml-2">
@@ -27,7 +27,7 @@ const IndexPage = () => (
               </span>
             </button>
           </div>
-          <div className="col-12 col-md-6 px-2 mb-4 mb-md-0">
+          <div className="col-12 col-md-6 px-2 mb-3 mb-md-0">
             <button type="button" className="btn btn-teal text-white w-100" onClick={() => { Router.push('/list') }}>
               <ViewList />
               <span className="ml-2">
