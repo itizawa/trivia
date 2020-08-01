@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
+import React, {
+  useState, useCallback, useEffect, useRef,
+} from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
+
 import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
+
 
 function Page({ pageProps }) {
   const { trivia } = pageProps;
   const { creator } = trivia;
 
   const [count, setCount] = useState(0);
+  const triviaCardEl = useRef();
 
-  // TODO redirect
-  console.log(trivia);
+  function generateFlowingWords() {
+    const div = document.createElement('div');
+    div.classList.add('trivia-scroll');
+    div.innerText = 'へぇ';
+    triviaCardEl.current.prepend(div);
+  }
 
   function pushHeButtonHandler() {
     setCount(count + 1);
-    // generateFlowingWords();
+    generateFlowingWords();
   }
 
   return (
@@ -30,9 +39,7 @@ function Page({ pageProps }) {
           <span className="mr-auto">{fromTimeStampToDate(trivia.createdAt)}</span>
           <span>合計 {trivia.acquisitionCount} へえ</span>
         </div>
-
-        <div className="trivia-box ">
-          {/* {flowingWords} */}
+        <div className="trivia-card" ref={triviaCardEl}>
           <img
             width="100%"
             height="auto"
@@ -40,7 +47,7 @@ function Page({ pageProps }) {
             className="trivia-card-img rounded"
           />
         </div>
-        <div className="d-flex p-3">
+        <div className="row mt-2">
           <div className="col-4">
             {count} へえ
           </div>
