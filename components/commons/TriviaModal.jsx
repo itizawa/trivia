@@ -37,7 +37,7 @@ function TriviaModal() {
 
   return (
     <Modal size="lg" isOpen={isOpenTriviaModal} toggle={closeModalHandler} className="trivia-modal">
-      <ModalBody className="p-0">
+      <ModalBody className="p-0 trivia-modal-body">
         {flowingWords}
         <img
           width="100%"
