@@ -1,17 +1,19 @@
 import React from 'react';
+import Router from 'next/router';
 import PropTypes from 'prop-types';
-
-import TriviaListContainer from '@containers/TriviaListContainer';
 
 function TriviaCard({ trivia }) {
   const {
     forwardText, backwardText, acquisitionCount,
   } = trivia;
   const { creator } = trivia;
-  const { openTriviaModal } = TriviaListContainer.useContainer();
+
+  function onCLickTriviaCardHandler(triviaId) {
+    Router.push(`/trivias/${triviaId}`);
+  }
 
   return (
-    <div className="card" onClick={() => { openTriviaModal(trivia) }}>
+    <div className="card" onClick={() => { onCLickTriviaCardHandler(trivia?._id) }}>
       <img
         width="100%"
         height="auto"
