@@ -1,6 +1,5 @@
-import React, {
-  useState, useCallback, useEffect, useRef,
-} from 'react';
+import React, { useState, useRef } from 'react';
+import Router from 'next/router';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
@@ -33,11 +32,14 @@ function Page({ pageProps }) {
         <title>{trivia.forwardText}</title>
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
-        <img height="24px" className="rounded-circle bg-white mr-2" src={creator.image} />
-        <span className="text-center">{creator.name} </span><br />
+        <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.back() }}>リストに戻る</button>
+        <div>
+          <img height="24px" className="rounded-circle bg-white mr-2" src={creator.image} />
+          <span className="text-center">{creator.name} </span><br />
+        </div>
         <div className="d-flex">
           <span className="mr-auto">{fromTimeStampToDate(trivia.createdAt)}</span>
-          <span>合計 {trivia.acquisitionCount} へえ</span>
+          <span>合計 {count + trivia.acquisitionCount} へえ</span>
         </div>
         <div className="trivia-card" ref={triviaCardEl}>
           <img
