@@ -20,7 +20,7 @@ function TriviaModal() {
   }
 
   function generateFlowingWords() {
-    const marginTop = Math.random() * Math.floor(100) - 50;
+    const marginTop = Math.random() * Math.floor(50);
     const __flowingWords = flowingWords;
     __flowingWords.push(
       <div key={count} className="trivia-scroll" style={{ marginTop: `${marginTop}%` }}>
@@ -37,13 +37,14 @@ function TriviaModal() {
 
   return (
     <Modal size="lg" isOpen={isOpenTriviaModal} toggle={closeModalHandler} className="trivia-modal">
-      <ModalBody className="trivia-modal-body text-center p-5 d-flex align-items-center">
+      <ModalBody className="p-0">
         {flowingWords}
-        <div className="w-100">
-          {triviaForModal?.forwardText}
-          <br />
-          {triviaForModal?.backwardText}
-        </div>
+        <img
+          width="100%"
+          height="auto"
+          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${triviaForModal?.forwardText}&backwardText=${triviaForModal?.backwardText}&isShow=true`}
+          className="trivia-card-img"
+        />
       </ModalBody>
       <div className="d-flex p-3">
         <div className="col-4 align-bottom d-flex align-items-center">
