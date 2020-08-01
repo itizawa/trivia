@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
@@ -7,8 +7,17 @@ function Page({ pageProps }) {
   const { trivia } = pageProps;
   const { creator } = trivia;
 
+  const [count, setCount] = useState(0);
+
   // TODO redirect
   console.log(trivia);
+
+  function pushHeButtonHandler() {
+    setCount(count + 1);
+    // generateFlowingWords();
+  }
+
+
   return (
     <>
       <Head>
@@ -17,8 +26,39 @@ function Page({ pageProps }) {
       <div className="bg-snow rounded mt-3 p-3">
         <img height="24px" className="rounded-circle bg-white mr-2" src={creator.image} />
         <span className="text-center">{creator.name} </span><br />
-        <span>{trivia.createdAt}</span>
+        <div className="d-flex">
+          <span className="mr-auto">{trivia.createdAt}</span>
+          <span>合計 {trivia.acquisitionCount} へえ</span>
+        </div>
+
+        <div className="trivia-box ">
+          {/* {flowingWords} */}
+          <img
+            width="100%"
+            height="auto"
+            src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`}
+            className="trivia-card-img rounded"
+          />
+        </div>
+        <div className="d-flex p-3">
+          <div className="col-4">
+            {count} へえ
+          </div>
+          <div className="col-4 text-center">
+            <button
+              type="button"
+              className="btn btn-info btn-trivia text-snow rounded-circle"
+              onClick={pushHeButtonHandler}
+              disabled={count >= 20}
+            >
+              へぇ
+            </button>
+          </div>
+          <div className="col-4 text-right">
+          </div>
+        </div>
       </div>
+
     </>
   );
 }
