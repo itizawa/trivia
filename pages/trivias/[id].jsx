@@ -5,14 +5,19 @@ import Axios from 'axios';
 
 function Page({ pageProps }) {
   const { trivia } = pageProps;
+  const { creator } = trivia;
+
+  // TODO redirect
   console.log(trivia);
   return (
     <>
       <Head>
-        <title>トリビア一覧</title>
+        <title>{trivia.forwardText}</title>
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
-        <h1 className="text-center">トリビア </h1>
+        <img height="24px" className="rounded-circle bg-white mr-2" src={creator.image} />
+        <span className="text-center">{creator.name} </span><br />
+        <span>{trivia.createdAt}</span>
       </div>
     </>
   );
