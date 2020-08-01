@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
-import { Modal, ModalBody } from 'reactstrap';
+import React, { useState, useRef } from 'react';
+import Link from 'next/link';
+
+import { Modal, ModalBody, ModalFooter } from 'reactstrap';
+
+import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
 
 import TriviaListContainer from '@containers/TriviaListContainer';
 
@@ -8,63 +12,71 @@ function TriviaModal() {
   const creator = triviaForModal?.creator;
 
   const [count, setCount] = useState(0);
-  const [flowingWords, setFlowingWords] = useState([]);
-  const totalCount = count + triviaForModal?.acquisitionCount;
+  const triviaCardEl = useRef();
 
   function closeModalHandler() {
     setCount(0);
     if (closeTriviaModal != null) {
-      setFlowingWords([]);
       closeTriviaModal();
     }
   }
 
   function generateFlowingWords() {
-    const marginTop = Math.random() * Math.floor(50);
-    const __flowingWords = flowingWords;
-    __flowingWords.push(
-      <div key={count} className="trivia-scroll" style={{ marginTop: `${marginTop}%` }}>
-        <span>へぇ</span>
-      </div>,
-    );
-    setFlowingWords(__flowingWords);
+    const div = document.createElement('div');
+    div.classList.add('trivia-scroll');
+    div.innerText = 'へぇ';
+    triviaCardEl.current.prepend(div);
   }
 
   function pushHeButtonHandler() {
     setCount(count + 1);
     generateFlowingWords();
   }
-
   return (
-    <Modal size="lg" isOpen={isOpenTriviaModal} toggle={closeModalHandler} className="trivia-modal">
-      <ModalBody className="p-0 trivia-modal-body">
-        {flowingWords}
-        <img
-          width="100%"
-          height="auto"
-          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${triviaForModal?.forwardText}&backwardText=${triviaForModal?.backwardText}&isShow=true`}
-          className="trivia-card-img"
-        />
+    <Modal size="lg" isOpen={isOpenTriviaModal} toggle={closeModalHandler}>
+      <ModalBody>
+        <div>
+          <img height="24px" className="rounded-circle bg-white mr-2" src={creator?.image} />
+          <span className="text-center">{creator?.name} </span><br />
+        </div>
+        <div className="d-flex">
+          <span className="mr-auto">{fromTimeStampToDate(triviaForModal?.createdAt)}</span>
+          <span>合計 {count + triviaForModal?.acquisitionCount} へえ</span>
+        </div>
+        <div className="trivia-card" ref={triviaCardEl}>
+          <img
+            width="100%"
+            height="auto"
+            src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${triviaForModal?.forwardText}&backwardText=${triviaForModal?.backwardText}&isShow=true`}
+            className="trivia-card-img rounded"
+          />
+        </div>
+        <div className="row mt-2">
+          <div className="col-4">
+            {count} へえ
+          </div>
+          <div className="col-4 text-center">
+            <button
+              type="button"
+              className="btn btn-info btn-trivia text-snow rounded-circle"
+              onClick={pushHeButtonHandler}
+              disabled={count >= 20}
+            >
+              へぇ
+            </button>
+          </div>
+          <div className="col-4 text-right">
+          </div>
+        </div>
+
       </ModalBody>
-      <div className="d-flex p-3">
-        <div className="col-4 align-bottom d-flex align-items-center">
-          {count} へえ
-        </div>
-        <div className="col-4 text-center">
-          <button
-            type="button"
-            className="btn btn-info btn-trivia text-snow rounded-circle"
-            onClick={pushHeButtonHandler}
-            disabled={count >= 20}
-          >
-            へぇ
-          </button>
-        </div>
-        <div className="col-4 text-right">
-          {creator?.name}<br />
-          合計 {totalCount} へえ
-        </div>
-      </div>
+      <ModalFooter>
+        <Link href={`/trivias/${triviaForModal?._id}`}>
+          <a className="text-center">
+            <span className="ml-2">もっと見る</span>
+          </a>
+        </Link>
+      </ModalFooter>
     </Modal>
   );
 }

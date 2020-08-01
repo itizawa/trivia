@@ -10,6 +10,7 @@ function TriviaCard({ trivia }) {
   const { creator } = trivia;
   const { openTriviaModal } = TriviaListContainer.useContainer();
 
+
   return (
     <div className="card" onClick={() => { openTriviaModal(trivia) }}>
       <img

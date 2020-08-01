@@ -1,0 +1,45 @@
+.trivia-card {
+  position: relative;
+  overflow: hidden;
+
+  @for $i from 1 through 20 {
+    div:nth-last-child(#{$i}) {
+      margin-top: random(100) / 100 * 40%;
+    }
+  }
+
+}
+
+.trivia-scroll {
+  position: absolute;
+  width: 100%;
+  padding-left: 110%;
+  margin-left: -48px;
+  font-size: 140%;
+  line-height: 1em;
+  white-space: nowrap;
+  animation: scrollAnime 3s linear forwards;
+}
+
+@keyframes scrollAnime {
+  0% {
+    transform: translateX(0)
+  }
+
+  100% {
+    transform: translateX(-120%)
+  }
+}
+
+.trivia-card-img {
+  width: 100%;
+  min-height: 162px;
+
+  @include media-breakpoint-up(sm) {
+    min-height: 311px;
+  }
+
+  background-image: url('/spinner.gif');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
