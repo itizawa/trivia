@@ -47,7 +47,7 @@ function TriviaModal() {
           <img
             width="100%"
             height="auto"
-            src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${triviaForModal?.forwardText}&backwardText=${triviaForModal?.backwardText}`}
+            src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${triviaForModal?.forwardText}&backwardText=${triviaForModal?.backwardText}&isShow=true`}
             className="trivia-card-img rounded"
           />
         </div>
