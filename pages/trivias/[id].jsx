@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
+import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
 
 function Page({ pageProps }) {
   const { trivia } = pageProps;
@@ -17,7 +18,6 @@ function Page({ pageProps }) {
     // generateFlowingWords();
   }
 
-
   return (
     <>
       <Head>
@@ -27,7 +27,7 @@ function Page({ pageProps }) {
         <img height="24px" className="rounded-circle bg-white mr-2" src={creator.image} />
         <span className="text-center">{creator.name} </span><br />
         <div className="d-flex">
-          <span className="mr-auto">{trivia.createdAt}</span>
+          <span className="mr-auto">{fromTimeStampToDate(trivia.createdAt)}</span>
           <span>合計 {trivia.acquisitionCount} へえ</span>
         </div>
 
