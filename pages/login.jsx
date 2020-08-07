@@ -25,7 +25,7 @@ function IndexPage() {
             </button>
           </div>
           <div className="col-12 col-md-6 px-2">
-            <button type="button" className="btn btn-twitter text-white w-100" disabled>
+            <button type="button" className="btn btn-twitter text-white w-100" onClick={() => signin('twitter')}>
               <i className="fab fa-twitter mr-2"></i>
               Twitter
             </button>
