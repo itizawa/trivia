@@ -8,10 +8,10 @@ const options = {
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
-    // Providers.Twitter({
-    //   clientId: process.env.TWITTER_ID,
-    //   clientSecret: process.env.TWITTER_SECRET,
-    // }),
+    Providers.Twitter({
+      clientId: process.env.TWITTER_ID,
+      clientSecret: process.env.TWITTER_SECRET,
+    }),
     // Providers.GitHub({
     //   clientId: "ef1d8402175e4ff95fe8",
     //   clientSecret: "d586040128bd938a5f197da132120c5bd35fd8ae",
