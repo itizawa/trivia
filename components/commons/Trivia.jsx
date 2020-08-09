@@ -8,7 +8,7 @@ function Trivia(props) {
   const creator = props.trivia?.creator;
 
   const triviaCardEl = useRef();
-  const shareUrl = `${process.env.SITE_URL}/trivias/${trivia?._id}`;
+  const shareUrl = `https://summary-post.vercel.app/trivias/${trivia?._id}`;
   const [count, setCount] = useState(0);
 
   if (trivia == null) {
