@@ -13,6 +13,8 @@ function Page({ pageProps }) {
 
   const [count, setCount] = useState(0);
   const triviaCardEl = useRef();
+  const url = `https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}`;
+  const shareUrl = `${process.env.SITE_URL}/trivias/${trivia._id}`;
 
   function generateFlowingWords() {
     const div = document.createElement('div');
@@ -30,6 +32,7 @@ function Page({ pageProps }) {
     <>
       <Head>
         <title>{trivia.forwardText}</title>
+        <meta property="og:image" content={url} />
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.back() }}>リストに戻る</button>
@@ -45,7 +48,7 @@ function Page({ pageProps }) {
           <img
             width="100%"
             height="auto"
-            src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`}
+            src={`${url}&isShow=true`}
             className="trivia-card-img rounded"
           />
         </div>
@@ -64,6 +67,10 @@ function Page({ pageProps }) {
             </button>
           </div>
           <div className="col-4 text-right">
+            <a href={`https://twitter.com/intent/tweet?text=${shareUrl}`} rel="noopener noreferrer" target="_blank">
+              <i className="fab fa-twitter mr-2"></i>
+              Twitter で共有
+            </a>
           </div>
         </div>
       </div>
