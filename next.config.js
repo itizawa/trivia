@@ -14,4 +14,7 @@ module.exports = {
     config.resolve.alias['@models'] = path.join(__dirname, 'models');
     return config;
   },
+  env: {
+    SITE_URL: process.env.SITE_URL,
+  },
 };
