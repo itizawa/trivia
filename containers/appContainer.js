@@ -23,8 +23,22 @@ function appContainer() {
     }
   };
 
-  const apiGet = (route, params) => {
-    return apiRequest('get', route, { params });
+  const apiGet = async(route, __params = {}) => {
+    const params = __params;
+
+    // set accessToken
+    const session = await getSession();
+    params.accessToken = session?.accessToken;
+
+    try {
+      const res = await Axios.get(urljoin('api', route), { params });
+      return res.data;
+    }
+    catch (_err) {
+      const err = _err.response ? _err.response.data.errors : _err;
+      const errs = toArrayIfNot(err);
+      throw errs;
+    }
   };
 
   const apiPost = (route, params = {}) => {

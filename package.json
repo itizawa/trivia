@@ -47,6 +47,7 @@
     "toastr": "^2.1.4",
     "unstated-next": "^1.1.0",
     "url-join": "^4.0.1",
+    "use-debounce": "^3.4.3",
     "validator": "^13.1.1"
   }
 }
