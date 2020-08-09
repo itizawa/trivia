@@ -18,10 +18,6 @@ function TriviaListContainer() {
     setTriviasList(trivias);
   }, [apiGet, page]));
 
-  useEffect(() => {
-    retrieveTrivias();
-  }, [retrieveTrivias]);
-
   const openTriviaModal = (trivia) => {
     setIsOpenTriviaModal(true);
     setTriviaForModal(trivia);

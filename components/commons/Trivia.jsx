@@ -75,7 +75,7 @@ function Trivia(props) {
 }
 
 Trivia.propTypes = {
-  trivia: PropTypes.object.isRequired,
+  trivia: PropTypes.object,
 };
 
 

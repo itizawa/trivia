@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 
 import TriviaListContainer from '../containers/TriviaListContainer';
@@ -6,7 +6,11 @@ import TriviaCard from '../components/commons/TriviaCard';
 import TriviaModal from '../components/commons/TriviaModal';
 
 function ListPage() {
-  const { triviasList } = TriviaListContainer.useContainer();
+  const { retrieveTrivias, triviasList } = TriviaListContainer.useContainer();
+
+  useEffect(() => {
+    retrieveTrivias();
+  }, [retrieveTrivias]);
 
   return (
     <>
