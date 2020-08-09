@@ -11,7 +11,19 @@ import { useDebouncedCallback } from 'use-debounce';
 import { toastError } from '@utils/toaster';
 
 import appContainer from '@containers/appContainer';
+import { Spinner } from 'reactstrap';
 import ArrowInRight from './atoms/svg/ArrowInRight';
+
+function AdmirationCount({ count }) {
+  if (count == null) {
+    throw new Promise(() => {});
+  }
+  return (
+    <>
+      {count} へえ
+    </>
+  );
+}
 
 function Trivia(props) {
   const { apiPut, apiGet } = appContainer.useContainer();
@@ -95,7 +107,7 @@ function Trivia(props) {
       </div>
       <div className="d-flex">
         <span className="mr-auto">{fromTimeStampToDate(trivia?.createdAt)}</span>
-        <span>合計 {count + trivia?.acquisitionCount} へえ</span>
+        <span>合計 {trivia?.acquisitionCount} へえ</span>
       </div>
       <div className="trivia-card" ref={triviaCardEl}>
         <img
@@ -120,7 +132,9 @@ function Trivia(props) {
       )}
       <div className="row mt-2">
         <div className="col-4">
-          {count} へえ
+          <React.Suspense fallback={<Spinner type="grow" size="sm" color="secondary" />}>
+            <AdmirationCount count={count} />
+          </React.Suspense>
         </div>
         <div className="col-4 text-center">
           <button
@@ -151,5 +165,8 @@ Trivia.propTypes = {
   trivia: PropTypes.object,
 };
 
+AdmirationCount.propTypes = {
+  count: PropTypes.number,
+};
 
 export default Trivia;
