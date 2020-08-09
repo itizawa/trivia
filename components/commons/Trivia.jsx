@@ -45,7 +45,8 @@ function Trivia(props) {
       toastError(error, 'Error');
     }
   },
-  [apiGet, trivia?._id, session]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  [session]);
 
   function generateFlowingWords() {
     const div = document.createElement('div');
