@@ -13,7 +13,7 @@ function TriviaModal() {
 
   const [count, setCount] = useState(0);
   const triviaCardEl = useRef();
-  const shareUrl = `${process.env.SITE_URL}/trivias/${triviaForModal._id}`;
+  const shareUrl = `${process.env.SITE_URL}/trivias/${triviaForModal?._id}`;
 
   function closeModalHandler() {
     setCount(0);
