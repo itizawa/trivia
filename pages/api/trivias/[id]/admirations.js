@@ -1,6 +1,10 @@
 
 import nextConnect from 'next-connect';
 
+import validator from 'validator';
+import ApiValidator from '@middlewares/ApiValidator';
+import { body } from 'express-validator';
+
 import dbConnect from '@middlewares/dbConnect';
 import AccessTokenParser from '@middlewares/AccessTokenParser';
 import LoginRequired from '@middlewares/LoginRequired';
@@ -11,7 +15,11 @@ const handler = nextConnect();
 
 dbConnect();
 
-handler.put(AccessTokenParser, LoginRequired, async(req, res) => {
+validator.update = [
+  body('count').isInt({ min: 1, max: 20 }),
+];
+
+handler.put(AccessTokenParser, LoginRequired, validator.update, ApiValidator, async(req, res) => {
   const { id } = req.query;
   const userId = req.user._id;
   const { count } = req.body;

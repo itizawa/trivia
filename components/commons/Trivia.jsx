@@ -41,7 +41,6 @@ function Trivia(props) {
   const [debouncedCallback] = useDebouncedCallback(
     () => {
       updateOwnAdmiration(count);
-      console.log(count);
     }, 500,
   );
 
