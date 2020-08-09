@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { createContainer } from 'unstated-next';
 
 import appContainer from '@containers/appContainer';
@@ -17,10 +17,6 @@ function TriviaListContainer() {
     const trivias = res.docs;
     setTriviasList(trivias);
   }, [apiGet, page]));
-
-  useEffect(() => {
-    retrieveTrivias();
-  }, [retrieveTrivias]);
 
   const openTriviaModal = (trivia) => {
     setIsOpenTriviaModal(true);
