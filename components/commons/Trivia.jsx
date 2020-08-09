@@ -2,8 +2,14 @@ import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
+import { useDebouncedCallback } from 'use-debounce';
+import { toastError } from '@utils/toaster';
+
+import appContainer from '@containers/appContainer';
 
 function Trivia(props) {
+  const { apiPut } = appContainer.useContainer();
+
   const { trivia } = props;
   const creator = props.trivia?.creator;
 
@@ -22,9 +28,27 @@ function Trivia(props) {
     triviaCardEl.current.prepend(div);
   }
 
+  async function updateOwnAdmiration() {
+    try {
+      await apiPut(`/trivias/${trivia?._id}/admirations`, { count });
+    }
+    catch (error) {
+      toastError(error, 'Error');
+    }
+  }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [debouncedCallback] = useDebouncedCallback(
+    () => {
+      updateOwnAdmiration(count);
+      console.log(count);
+    }, 500,
+  );
+
   function pushHeButtonHandler() {
     setCount(count + 1);
     generateFlowingWords();
+    debouncedCallback();
   }
 
   return (
