@@ -68,7 +68,6 @@ function TriviaModal() {
           <div className="col-4 text-right">
           </div>
         </div>
-
       </ModalBody>
       <ModalFooter>
         <Link href={`/trivias/${triviaForModal?._id}`}>
