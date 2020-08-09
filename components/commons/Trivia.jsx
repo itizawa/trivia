@@ -11,19 +11,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { toastError } from '@utils/toaster';
 
 import appContainer from '@containers/appContainer';
-import { Spinner } from 'reactstrap';
 import ArrowInRight from './atoms/svg/ArrowInRight';
-
-function AdmirationCount({ count }) {
-  if (count == null) {
-    throw new Promise(() => {});
-  }
-  return (
-    <>
-      {count} へえ
-    </>
-  );
-}
 
 function Trivia(props) {
   const { apiPut, apiGet } = appContainer.useContainer();
@@ -132,9 +120,7 @@ function Trivia(props) {
       )}
       <div className="row mt-2">
         <div className="col-4">
-          <React.Suspense fallback={<Spinner type="grow" size="sm" color="secondary" />}>
-            <AdmirationCount count={count} />
-          </React.Suspense>
+          {count} へえ
         </div>
         <div className="col-4 text-center">
           <button
@@ -165,8 +151,5 @@ Trivia.propTypes = {
   trivia: PropTypes.object,
 };
 
-AdmirationCount.propTypes = {
-  count: PropTypes.number,
-};
 
 export default Trivia;
