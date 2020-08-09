@@ -5,6 +5,7 @@ import toArrayIfNot from '@utils/toArrayIfNot';
 import { getSession } from 'next-auth/client';
 
 function appContainer() {
+  Axios.defaults.baseURL = process.env.SITE_URL || 'http://localhost:3000/';
   // API
   const apiRequest = async(method, path, params) => {
 
