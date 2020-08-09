@@ -16,7 +16,7 @@ import ArrowInRight from './atoms/svg/ArrowInRight';
 function Trivia(props) {
   const { apiPut, apiGet } = appContainer.useContainer();
 
-  const [session] = useSession();
+  const [session, isLoading] = useSession();
 
   const { trivia } = props;
   const creator = props.trivia?.creator;
@@ -105,7 +105,7 @@ function Trivia(props) {
           className="trivia-card-img rounded"
         />
       </div>
-      {(session == null) && (
+      {(session == null && !isLoading) && (
         <>
           <p className="alert alert-info my-3 text-center">
             <span className="mr-2">ログインして <b>へぇ</b> をカウントしよう</span>
