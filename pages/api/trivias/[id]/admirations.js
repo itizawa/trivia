@@ -19,6 +19,19 @@ validator.update = [
   body('count').isInt({ min: 1, max: 20 }),
 ];
 
+handler.get(AccessTokenParser, LoginRequired, async(req, res) => {
+  const { id } = req.query;
+  const userId = req.user?._id;
+
+  try {
+    const data = await TriviaAdmirationRelation.findOne({ user: userId, trivia: id });
+    return res.status(200).send({ data });
+  }
+  catch (err) {
+    return res.status(500).send({ success: false });
+  }
+});
+
 handler.put(AccessTokenParser, LoginRequired, validator.update, ApiValidator, async(req, res) => {
   const { id } = req.query;
   const userId = req.user._id;

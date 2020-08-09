@@ -1,4 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, {
+  useState, useRef, useEffect, useCallback,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
@@ -8,7 +10,7 @@ import { toastError } from '@utils/toaster';
 import appContainer from '@containers/appContainer';
 
 function Trivia(props) {
-  const { apiPut } = appContainer.useContainer();
+  const { apiPut, apiGet } = appContainer.useContainer();
 
   const { trivia } = props;
   const creator = props.trivia?.creator;
@@ -20,6 +22,14 @@ function Trivia(props) {
   if (trivia == null) {
     return null;
   }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const retrieveAdmirations = useCallback(async() => {
+    const res = await apiGet(`/trivias/${trivia?._id}/admirations`);
+    const count = res?.data?.count || 0;
+    return setCount(count);
+  },
+  [apiGet, trivia?._id]);
 
   function generateFlowingWords() {
     const div = document.createElement('div');
@@ -43,6 +53,11 @@ function Trivia(props) {
       updateOwnAdmiration(count);
     }, 500,
   );
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    retrieveAdmirations();
+  }, [retrieveAdmirations]);
 
   function pushHeButtonHandler() {
     setCount(count + 1);
