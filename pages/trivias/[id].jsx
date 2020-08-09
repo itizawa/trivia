@@ -18,7 +18,7 @@ function Page({ pageProps }) {
         <meta property="og:image" content={url} />
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
-        <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.back() }}>リストに戻る</button>
+        <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.push('/list') }}>リストに戻る</button>
         <Trivia trivia={trivia} />
       </div>
 
