@@ -24,6 +24,7 @@ const TriviaSchema = new mongoose.Schema(
     acquisitionCount: {
       type: Number,
       default: 0,
+      index: true,
     },
   },
   { timestamps: true },

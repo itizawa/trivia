@@ -17,6 +17,7 @@ const TriviaAdmirationRelation = new mongoose.Schema({
   },
   count: {
     type: Number,
+    index: true,
   },
 });
 
