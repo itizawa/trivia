@@ -19,6 +19,7 @@ const TriviaSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'user',
+      index: true,
     },
     acquisitionCount: {
       type: Number,
