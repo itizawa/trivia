@@ -25,9 +25,14 @@ function Trivia(props) {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const retrieveAdmirations = useCallback(async() => {
-    const res = await apiGet(`/trivias/${trivia?._id}/admirations`);
-    const count = res?.data?.count || 0;
-    return setCount(count);
+    try {
+      const res = await apiGet(`/trivias/${trivia?._id}/admirations`);
+      const count = res?.data?.count || 0;
+      return setCount(count);
+    }
+    catch (error) {
+      toastError(error, 'Error');
+    }
   },
   [apiGet, trivia?._id]);
 
