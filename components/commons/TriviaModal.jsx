@@ -13,6 +13,7 @@ function TriviaModal() {
 
   const [count, setCount] = useState(0);
   const triviaCardEl = useRef();
+  const shareUrl = `${process.env.SITE_URL}/trivias/${triviaForModal._id}`;
 
   function closeModalHandler() {
     setCount(0);
@@ -66,6 +67,10 @@ function TriviaModal() {
             </button>
           </div>
           <div className="col-4 text-right">
+            <a href={`https://twitter.com/intent/tweet?text=${shareUrl}`} rel="noopener noreferrer" target="_blank">
+              <i className="fab fa-twitter mr-2"></i>
+              Twitter で共有
+            </a>
           </div>
         </div>
       </ModalBody>

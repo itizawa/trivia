@@ -17,12 +17,15 @@ export default class MyDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
           <meta name="google-site-verification" content="iT9UqKdRcRp9KwhH5MrYL6HeWcNbQYFESsnONwk4Tro" />
 
-          <meta property="og:url" content="https://tips.weseek.co.jp/" />
+          <meta property="og:url" content="https://summary-post.vercel.app/" />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="Summary Post" />
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:site" content="@weseek_inc" />
-
+          <meta property="og:title" content="トリビアの泉" />
+          <meta
+            property="og:description"
+            content="「生きていく上で何の役にも立たない無駄な知識、しかし、つい人に教えたくなってしまうようなトリビア（雑学・知識）」共有するサイトです。"
+          />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@itizawa_pen" />
         </Head>
         <body>
           <Main />
