@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { createContainer } from 'unstated-next';
 
 import appContainer from '@containers/appContainer';
