@@ -4,4 +4,4 @@
 
 ## Image
 
-<img width="100%" src="/trivia.gif">
+<img width="100%" src="https://trivia-ogp.vercel.app/api/ogp?forwardText=ティラノサウルスは&backwardText=走れない&isShow=true">
