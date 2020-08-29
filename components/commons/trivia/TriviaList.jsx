@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useSWR from 'swr';
 import Skeleton from 'react-loading-skeleton';
 
 import appContainer from '@containers/appContainer';
 import TriviaCard from '@components/commons/TriviaCard';
+import TriviaModal from '@components/commons/TriviaModal';
 
 function TriviaList() {
 
+  const [triviaForModal, setTriviaForModal] = useState(null);
+
   const { apiGet } = appContainer.useContainer();
   const { data, error } = useSWR('/trivias/list', () => apiGet('/trivias/list', { page: 1 }));
+
+  /**
+   * open trivia modal
+   * @param {string} id id of trivia
+   */
+  function onClickTriviaCard(id) {
+    setTriviaForModal(id);
+  }
+
+  /**
+   * close trivia modal
+   * @param {string} id id of trivia
+   */
+  function onCloseModal() {
+    setTriviaForModal(null);
+  }
 
   if (error) return <div>failed to load</div>;
   if (!data) return <Skeleton height={400} />;
@@ -19,9 +38,8 @@ function TriviaList() {
       {triviasList.map((trivia) => {
         return (
           <div className="mb-3" key={trivia._id}>
-            <React.Suspense fallback={<p>...loading</p>}>
-              <TriviaCard trivia={trivia} />
-            </React.Suspense>
+            <TriviaCard trivia={trivia} onClickTriviaCard={onClickTriviaCard} />
+            <TriviaModal trivia={trivia} isOpen={triviaForModal === trivia._id} onClose={onCloseModal} />
           </div>
         );
       })}

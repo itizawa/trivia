@@ -1,13 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 
-
 import TriviaList from '@components/commons/trivia/triviaList';
-import TriviaModal from '../components/commons/TriviaModal';
-
 
 function ListPage() {
-
 
   return (
     <>
@@ -18,7 +14,6 @@ function ListPage() {
         <h1 className="text-center">トリビア一覧</h1>
         <TriviaList />
       </div>
-      <TriviaModal />
     </>
   );
 }

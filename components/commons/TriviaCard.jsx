@@ -1,18 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TriviaListContainer from '@containers/TriviaListContainer';
-
-function TriviaCard({ trivia }) {
+function TriviaCard(props) {
   const {
-    forwardText, backwardText, acquisitionCount,
-  } = trivia;
-  const { creator } = trivia;
-  const { openTriviaModal } = TriviaListContainer.useContainer();
+    _id, forwardText, backwardText, acquisitionCount, creator,
+  } = props.trivia;
 
+  /**
+   * open trivia modal
+   * @param {string} id id of trivia
+   */
+  function openTriviaModalHandler(id) {
+    if (props.onClickTriviaCard != null) {
+      props.onClickTriviaCard(id);
+    }
+  }
 
   return (
-    <div className="card" onClick={() => { openTriviaModal(trivia) }}>
+    <div className="card" onClick={() => { openTriviaModalHandler(_id) }}>
       <img
         width="100%"
         height="auto"
@@ -32,6 +37,7 @@ function TriviaCard({ trivia }) {
 
 TriviaCard.propTypes = {
   trivia: PropTypes.object.isRequired,
+  onClickTriviaCard: PropTypes.func,
 };
 
 export default TriviaCard;

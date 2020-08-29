@@ -1,27 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 import { Modal, ModalBody, ModalFooter } from 'reactstrap';
 
-import TriviaListContainer from '@containers/TriviaListContainer';
 import Trivia from '@components/commons/Trivia';
 
-function TriviaModal() {
-  const { triviaForModal, closeTriviaModal, isOpenTriviaModal } = TriviaListContainer.useContainer();
+function TriviaModal(props) {
 
   function closeModalHandler() {
-    if (closeTriviaModal != null) {
-      closeTriviaModal();
+    if (props.onClose != null) {
+      props.onClose();
     }
   }
 
   return (
-    <Modal size="lg" isOpen={isOpenTriviaModal} toggle={closeModalHandler}>
+    <Modal size="lg" isOpen={props.isOpen} toggle={closeModalHandler}>
       <ModalBody>
-        <Trivia trivia={triviaForModal} />
+        <Trivia trivia={props.trivia} />
       </ModalBody>
       <ModalFooter>
-        <Link href={`/trivias/${triviaForModal?._id}`}>
+        <Link href={`/trivias/${props.trivia?._id}`}>
           <a className="text-center">
             <span className="ml-2">もっと見る</span>
           </a>
@@ -30,5 +29,12 @@ function TriviaModal() {
     </Modal>
   );
 }
+
+TriviaModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+
+  trivia: PropTypes.object,
+};
 
 export default TriviaModal;

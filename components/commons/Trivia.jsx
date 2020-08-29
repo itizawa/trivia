@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import Skeleton from 'react-loading-skeleton';
 
 import { useSession } from 'next-auth/client';
 
@@ -23,7 +24,7 @@ function Trivia(props) {
 
   const triviaCardEl = useRef();
   const shareUrl = `https://summary-post.vercel.app/trivias/${trivia?._id}`;
-  const [count, setCount] = useState('--');
+  const [count, setCount] = useState(<Skeleton width={30} />);
 
   if (trivia == null) {
     return null;
