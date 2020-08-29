@@ -28,11 +28,9 @@ function appContainer() {
     const params = __params;
 
     // set accessToken
-    // const session = await getSession();
-    // params.accessToken = session?.accessToken;
-    console.log('huga1', 'huga');
+    const session = await getSession();
+    params.accessToken = session?.accessToken;
 
-    console.log(params);
     try {
       const res = await Axios.get(urljoin('api', route), { params });
       return res.data;
