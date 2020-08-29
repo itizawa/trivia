@@ -23,24 +23,6 @@ validator.summary = [
   body('backwardText').isString().isLength({ min: 1, max: 40 }).withMessage('後ろの文は 40 文字以下です'),
 ];
 
-handler.get(validator.paginate, ApiValidator, async(req, res) => {
-  const options = {
-    page: req.query.page || 1,
-    sort: { createdAt: -1 },
-    limit: 10,
-    populate: { path: 'creator', model: User },
-  };
-
-  try {
-    const trivias = await Trivia.paginate({}, options);
-    const { docs } = trivias;
-    return res.status(200).send({ docs });
-  }
-  catch (err) {
-    return res.status(500).send({ success: false });
-  }
-});
-
 handler.post(validator.summary, ApiValidator, AccessTokenParser, LoginRequired, async(req, res) => {
   const { forwardText, backwardText } = req.body;
   const creator = req.user._id;
