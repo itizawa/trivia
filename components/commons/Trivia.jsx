@@ -35,7 +35,7 @@ function Trivia(props) {
   const retrieveAdmirations = useCallback(async() => {
     // guest user
     if (session == null) {
-      return;
+      return setCount(0);
     }
 
     try {
