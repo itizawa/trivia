@@ -5,7 +5,6 @@ import ApiValidator from '@middlewares/ApiValidator';
 import { body, query } from 'express-validator';
 
 import Trivia from '@models/Trivia';
-import User from '@models/User';
 import dbConnect from '@middlewares/dbConnect';
 import AccessTokenParser from '@middlewares/AccessTokenParser';
 import LoginRequired from '../../lib/middlewares/LoginRequired';
