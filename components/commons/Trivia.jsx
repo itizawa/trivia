@@ -12,6 +12,8 @@ import { toastError } from '@utils/toaster';
 
 import appContainer from '@containers/appContainer';
 import ArrowInRight from './atoms/svg/ArrowInRight';
+import AdmirationCounter from './trivia/AdmirationCounter';
+import AdmirationButton from './trivia/AdmirationButton';
 
 function Trivia(props) {
   const { apiPut, apiGet } = appContainer.useContainer();
@@ -23,7 +25,7 @@ function Trivia(props) {
 
   const triviaCardEl = useRef();
   const shareUrl = `https://summary-post.vercel.app/trivias/${trivia?._id}`;
-  const [count, setCount] = useState('--');
+  const [count, setCount] = useState(null);
 
   if (trivia == null) {
     return null;
@@ -31,14 +33,20 @@ function Trivia(props) {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const retrieveAdmirations = useCallback(async() => {
+
+    // for loading
+    if (isLoading) {
+      return;
+    }
+
     // guest user
     if (session == null) {
-      return;
+      return setCount(0);
     }
 
     try {
       const res = await apiGet(`/trivias/${trivia?._id}/admirations`);
-      const count = res?.data?.count || 0;
+      const count = res?.admiration?.count || 0;
       return setCount(count);
     }
     catch (error) {
@@ -46,7 +54,7 @@ function Trivia(props) {
     }
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [session]);
+  [isLoading]);
 
   function generateFlowingWords() {
     const div = document.createElement('div');
@@ -81,7 +89,7 @@ function Trivia(props) {
     retrieveAdmirations();
   }, [retrieveAdmirations]);
 
-  function pushHeButtonHandler() {
+  function pushAdmirationButtonHandler() {
     setCount(count + 1);
     generateFlowingWords();
     debouncedCallback();
@@ -120,17 +128,14 @@ function Trivia(props) {
       )}
       <div className="row mt-2">
         <div className="col-4">
-          {count} へえ
+          <AdmirationCounter count={count} />
         </div>
         <div className="col-4 text-center">
-          <button
-            type="button"
-            className="btn btn-info btn-trivia text-snow rounded-circle"
-            onClick={pushHeButtonHandler}
+          <AdmirationButton
+            onClick={pushAdmirationButtonHandler}
+            isSkeleton={count == null}
             disabled={count >= 20}
-          >
-            へぇ
-          </button>
+          />
         </div>
         <div className="col-4 text-right">
           <a
