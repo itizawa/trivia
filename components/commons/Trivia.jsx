@@ -13,6 +13,7 @@ import { toastError } from '@utils/toaster';
 import appContainer from '@containers/appContainer';
 import ArrowInRight from './atoms/svg/ArrowInRight';
 import AdmirationCounter from './trivia/AdmirationCounter';
+import AdmirationButton from './trivia/AdmirationButton';
 
 function Trivia(props) {
   const { apiPut, apiGet } = appContainer.useContainer();
@@ -82,7 +83,7 @@ function Trivia(props) {
     retrieveAdmirations();
   }, [retrieveAdmirations]);
 
-  function pushHeButtonHandler() {
+  function pushAdmirationButtonHandler() {
     setCount(count + 1);
     generateFlowingWords();
     debouncedCallback();
@@ -124,14 +125,11 @@ function Trivia(props) {
           <AdmirationCounter count={count} />
         </div>
         <div className="col-4 text-center">
-          <button
-            type="button"
-            className="btn btn-info btn-trivia text-snow rounded-circle"
-            onClick={pushHeButtonHandler}
+          <AdmirationButton
+            onClick={pushAdmirationButtonHandler}
+            isSkeleton={count == null}
             disabled={count >= 20}
-          >
-            へぇ
-          </button>
+          />
         </div>
         <div className="col-4 text-right">
           <a
