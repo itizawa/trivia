@@ -33,6 +33,12 @@ function Trivia(props) {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const retrieveAdmirations = useCallback(async() => {
+
+    // for loading
+    if (isLoading) {
+      return;
+    }
+
     // guest user
     if (session == null) {
       return setCount(0);
@@ -48,7 +54,7 @@ function Trivia(props) {
     }
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [session]);
+  [isLoading]);
 
   function generateFlowingWords() {
     const div = document.createElement('div');
