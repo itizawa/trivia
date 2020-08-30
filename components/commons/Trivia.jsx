@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import Skeleton from 'react-loading-skeleton';
 
 import { useSession } from 'next-auth/client';
 
@@ -13,6 +12,7 @@ import { toastError } from '@utils/toaster';
 
 import appContainer from '@containers/appContainer';
 import ArrowInRight from './atoms/svg/ArrowInRight';
+import AdmirationCounter from './trivia/AdmirationCounter';
 
 function Trivia(props) {
   const { apiPut, apiGet } = appContainer.useContainer();
@@ -24,7 +24,7 @@ function Trivia(props) {
 
   const triviaCardEl = useRef();
   const shareUrl = `https://summary-post.vercel.app/trivias/${trivia?._id}`;
-  const [count, setCount] = useState(<Skeleton width={30} />);
+  const [count, setCount] = useState(null);
 
   if (trivia == null) {
     return null;
@@ -121,7 +121,7 @@ function Trivia(props) {
       )}
       <div className="row mt-2">
         <div className="col-4">
-          {count} へえ
+          <AdmirationCounter count={count} />
         </div>
         <div className="col-4 text-center">
           <button
