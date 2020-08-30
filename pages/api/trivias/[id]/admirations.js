@@ -24,8 +24,8 @@ handler.get(AccessTokenParser, LoginRequired, async(req, res) => {
   const userId = req.user?._id;
 
   try {
-    const data = await TriviaAdmirationRelation.findOne({ user: userId, trivia: id });
-    return res.status(200).send({ data });
+    const admiration = await TriviaAdmirationRelation.findOne({ user: userId, trivia: id });
+    return res.status(200).send({ admiration });
   }
   catch (err) {
     return res.status(500).send({ success: false });
