@@ -9,6 +9,7 @@ import AccessTokenParser from '@middlewares/AccessTokenParser';
 import LoginRequired from '@middlewares/LoginRequired';
 
 import TriviaAdmirationRelation from '@models/TriviaAdmirationRelation';
+import Trivia from '@models/Trivia';
 
 const handler = nextConnect();
 
@@ -43,8 +44,11 @@ handler.put(AccessTokenParser, LoginRequired, validator.put, ApiValidator, async
   const { count } = req.body;
 
   try {
-    const data = await TriviaAdmirationRelation.updateOne({ user: userId, trivia: id }, { $set: { count } }, { upsert: true });
-    return res.status(200).send({ data });
+    await Promise.all([
+      Trivia.findOneAndUpdate({ _id: id }, { $inc: { acquisitionCount: count } }),
+      TriviaAdmirationRelation.updateOne({ user: userId, trivia: id }, { $inc: { count } }, { upsert: true }),
+    ]);
+    return res.status(200).send({});
   }
   catch (err) {
     return res.status(500).send({ success: false });
