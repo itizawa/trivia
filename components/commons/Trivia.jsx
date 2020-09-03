@@ -27,6 +27,9 @@ function Trivia(props) {
   const shareUrl = `https://summary-post.vercel.app/trivias/${trivia?._id}`;
   const [count, setCount] = useState(null);
 
+  // count for increment DB
+  const [incrementCount, setIncrementCount] = useState(0);
+
   if (trivia == null) {
     return null;
   }
@@ -70,6 +73,8 @@ function Trivia(props) {
     }
 
     try {
+      const count = incrementCount;
+      setIncrementCount(0);
       await apiPut(`/trivias/${trivia?._id}/admirations`, { count });
     }
     catch (error) {
@@ -80,7 +85,7 @@ function Trivia(props) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [debouncedCallback] = useDebouncedCallback(
     () => {
-      updateOwnAdmiration(count);
+      updateOwnAdmiration();
     }, 500,
   );
 
@@ -90,6 +95,7 @@ function Trivia(props) {
   }, [retrieveAdmirations]);
 
   function pushAdmirationButtonHandler() {
+    setIncrementCount(incrementCount + 1);
     setCount(count + 1);
     generateFlowingWords();
     debouncedCallback();
