@@ -9,7 +9,7 @@ function AdmirationCounter(props) {
     return <Skeleton width={25} />;
   }
 
-  return <p>{props.count}</p>;
+  return <p>{props.count} へぇ</p>;
 }
 
 AdmirationCounter.propTypes = {
