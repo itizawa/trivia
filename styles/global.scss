@@ -24,5 +24,23 @@ body {
   background-color: #dfdfdf;
 }
 
+.img-box-fix-aspect {
+  width: 100%;
+  padding-top: 55%;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+
+    // show spinner
+    background-image: url('/spinner.gif');
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
 @import './btn.scss';
 @import './trivia.scss';
