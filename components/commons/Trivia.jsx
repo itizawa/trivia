@@ -63,7 +63,7 @@ function Trivia(props) {
     const div = document.createElement('div');
     div.classList.add('trivia-scroll');
     div.innerText = 'へぇ';
-    triviaCardEl.current.prepend(div);
+    triviaCardEl.current.append(div);
   }
 
   async function updateOwnAdmiration() {
@@ -111,7 +111,7 @@ function Trivia(props) {
         <span className="mr-auto">{fromTimeStampToDate(trivia?.createdAt)}</span>
         <span>合計 {trivia?.acquisitionCount} へえ</span>
       </div>
-      <div className="img-box-fix-aspect" ref={triviaCardEl}>
+      <div className="img-box-fix-aspect trivia-card" ref={triviaCardEl}>
         <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`} />
       </div>
       {(session == null && !isLoading) && (
