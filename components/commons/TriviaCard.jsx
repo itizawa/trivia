@@ -18,12 +18,9 @@ function TriviaCard(props) {
 
   return (
     <div className="card" onClick={() => { openTriviaModalHandler(_id) }}>
-      <img
-        width="100%"
-        height="auto"
-        src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${forwardText}&backwardText=${backwardText}`}
-        className="trivia-card-img"
-      />
+      <div className="img-box-fix-aspect">
+        <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${forwardText}&backwardText=${backwardText}`} />
+      </div>
       <div className="card-body d-flex">
         <img height="24px" className="rounded-circle bg-white border mr-2" src={creator?.image} />
         by {creator?.name}

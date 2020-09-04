@@ -111,13 +111,8 @@ function Trivia(props) {
         <span className="mr-auto">{fromTimeStampToDate(trivia?.createdAt)}</span>
         <span>合計 {trivia?.acquisitionCount} へえ</span>
       </div>
-      <div className="trivia-card" ref={triviaCardEl}>
-        <img
-          width="100%"
-          height="auto"
-          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`}
-          className="trivia-card-img rounded"
-        />
+      <div className="img-box-fix-aspect" ref={triviaCardEl}>
+        <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`} />
       </div>
       {(session == null && !isLoading) && (
         <>

@@ -30,16 +30,3 @@
     transform: translateX(-120%)
   }
 }
-
-.trivia-card-img {
-  width: 100%;
-  min-height: 162px;
-
-  @include media-breakpoint-up(sm) {
-    min-height: 311px;
-  }
-
-  background-image: url('/spinner.gif');
-  background-repeat: no-repeat;
-  background-position: center center;
-}

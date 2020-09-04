@@ -30,7 +30,20 @@ function TriviaList() {
   }
 
   if (error) return <div>failed to load</div>;
-  if (!data) return <Skeleton height={400} />;
+
+  if (!data) {
+    const Skeletons = [];
+
+    for (let index = 0; index < 10; index++) {
+      Skeletons.push(<Skeleton className="box-fix-aspect mb-5" />);
+    }
+
+    return (
+      <>
+        {Skeletons}
+      </>
+    );
+  }
 
   const triviasList = data?.docs;
   return (
