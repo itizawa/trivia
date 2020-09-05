@@ -59,7 +59,11 @@ function Page() {
         <label className="form-label">ジャンル</label>
         <TagDropdown selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre} />
         <label className="form-label mt-3">タグ (3件まで)</label>
-        <TagsInput value={tags} onChange={onChangeTagsValue} maxTags="3" />
+        <TagsInput
+          value={tags}
+          onChange={onChangeTagsValue}
+          maxTags="3"
+        />
         <form className="mt-3">
           <div className="mb-3">
             <label htmlFor="forwardText" className="form-label">前の文</label>
