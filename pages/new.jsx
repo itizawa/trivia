@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
-import { Collapse, Button } from 'reactstrap';
+import {
+  Collapse, Button,
+} from 'reactstrap';
 import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
 import LoginRequired from '@components/LoginRequired';
+import TagDropdown from '../components/form/TagDropdown';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
 
+  const [selectedGenre, setSelectedGenre] = useState(null);
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
   const [invalidFormValue, setInvalidFormValue] = useState(false);
@@ -45,7 +49,9 @@ function Page() {
         <title>トリビアを作る</title>
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
-        <h1 className="text-center">トリビアを作成する</h1>
+        <h1 className="text-center border-bottom mb-3">トリビアを作成する</h1>
+        <label htmlFor="forwardText" className="form-label">ジャンル</label>
+        <TagDropdown selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre} />
         <form className="mt-3">
           <div className="mb-3">
             <label htmlFor="forwardText" className="form-label">前の文</label>
