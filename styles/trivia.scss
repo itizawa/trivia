@@ -29,3 +29,29 @@
     transform: translateX(-120%)
   }
 }
+
+.count-for-trivia-card {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+
+  @include media-breakpoint-down(sm) {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .count-text {
+    font-size: 36pt;
+    color: #DA8E00;
+    letter-spacing: 2px;
+    background: -webkit-linear-gradient(-45deg, #F7DE05, #DA8E00, #EDAC06, #F7DE05, #ECB802, #DAAF08, #B67B03, #DA8E00, #EDAC06, #F7DE05, #ECB802, #EDAC06);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @include media-breakpoint-down(sm) {
+      right: 20px;
+      bottom: 20px;
+      font-size: 24px;
+    }
+  }
+}
