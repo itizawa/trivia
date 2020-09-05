@@ -11,9 +11,9 @@ import { useDebouncedCallback } from 'use-debounce';
 import { toastError } from '@utils/toaster';
 
 import appContainer from '@containers/appContainer';
-import ArrowInRight from './icons/ArrowInRight';
-import AdmirationCounter from './trivia/AdmirationCounter';
-import AdmirationButton from './trivia/AdmirationButton';
+import ArrowInRight from '../commons/icons/ArrowInRight';
+import AdmirationCounter from './AdmirationCounter';
+import AdmirationButton from './AdmirationButton';
 
 function Trivia(props) {
   const { apiPut, apiGet } = appContainer.useContainer();
