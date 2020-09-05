@@ -29,6 +29,12 @@ handler.get(validator.paginate, ApiValidator, async(req, res) => {
 
   try {
     const result = await TriviaTagRelation.paginate({ tag: tagId }, options);
+
+    // set only trivia
+    result.docs = result.docs.map((doc) => {
+      return doc.trivia;
+    });
+
     return res.status(200).send(result);
   }
   catch (err) {
