@@ -6,6 +6,7 @@ const TagSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      unique: true,
       maxlength: [40, 'name cannot be more than 40 chars'],
     },
   },
