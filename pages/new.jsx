@@ -10,7 +10,7 @@ import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
 import LoginRequired from '@components/LoginRequired';
-import TagDropdown from '../components/Form/TagDropdown';
+import TagDropdown from '../components/Tag/TagDropdown';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
