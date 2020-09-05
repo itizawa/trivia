@@ -25,7 +25,7 @@ function TagDropdown(props) {
         {props.selectedGenre || 'タグを選択してください'}
       </DropdownToggle>
       <DropdownMenu right className="w-100">
-        {['生活', 'ゲーム', '動物', '食べ物', '人間関係', 'アニメ', '仕事'].map((genre) => {
+        {['生活', '動物', '食べ物', '人間関係', 'ゲーム', 'アニメ', '仕事', '雑学'].map((genre) => {
           return (
             <DropdownItem key={genre} onClick={() => onClickGenreHandler(genre)}>
               {genre}
