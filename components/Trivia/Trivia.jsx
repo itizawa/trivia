@@ -14,6 +14,7 @@ import appContainer from '@containers/appContainer';
 import ArrowInRight from '../commons/icons/ArrowInRight';
 import AdmirationCounter from './AdmirationCounter';
 import AdmirationButton from './AdmirationButton';
+import TagLabels from '../Tag/TagLabels';
 
 function Trivia(props) {
   const { apiPut, apiGet } = appContainer.useContainer();
@@ -103,10 +104,14 @@ function Trivia(props) {
 
   return (
     <>
-      <div>
-        <img height="24px" className="rounded-circle bg-white mr-2" src={creator?.image} />
-        <span className="text-center">{creator?.name} </span>
-        <span className="ml-auto">hoge</span>
+      <div className="d-flex">
+        <div>
+          <img height="24px" className="rounded-circle bg-white mr-2" src={creator?.image} />
+          <span className="text-center">{creator?.name} </span>
+        </div>
+        <div className="ml-auto">
+          <TagLabels />
+        </div>
       </div>
       <div className="d-flex">
         <span className="mr-auto">{fromTimeStampToDate(trivia?.createdAt)}</span>
