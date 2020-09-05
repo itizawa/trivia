@@ -5,7 +5,7 @@ import ApiValidator from '@middlewares/ApiValidator';
 import { query } from 'express-validator';
 
 import TriviaTagRelation from '@models/TriviaTagRelation';
-import User from '@models/User';
+import Trivia from '@models/Trivia';
 import dbConnect from '@middlewares/dbConnect';
 
 const handler = nextConnect();
@@ -23,7 +23,7 @@ handler.get(validator.paginate, ApiValidator, async(req, res) => {
     page: req.query.page || 1,
     sort: { createdAt: -1 },
     limit: 10,
-    populate: { path: 'creator', model: User },
+    populate: { path: 'trivia', model: Trivia },
   };
 
   try {
