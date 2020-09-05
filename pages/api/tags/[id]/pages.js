@@ -14,6 +14,7 @@ dbConnect();
 
 validator.paginate = [
   query('page').isInt({ min: 1 }),
+  query('id').isMongoId(),
 ];
 
 handler.get(validator.paginate, ApiValidator, async(req, res) => {
