@@ -2,21 +2,31 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
-import { Collapse, Button } from 'reactstrap';
+import TagsInput from 'react-tagsinput';
+import {
+  Collapse, Button,
+} from 'reactstrap';
 import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
 import LoginRequired from '@components/LoginRequired';
+import TagDropdown from '../components/form/TagDropdown';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
 
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [tags, setTags] = useState([]);
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
   const [invalidFormValue, setInvalidFormValue] = useState(false);
 
   const [previewUrl, setPreviewUrl] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+
+  const onChangeTagsValue = (tags) => {
+    setTags(tags);
+  };
 
   async function onClickSubmit() {
     try {
@@ -45,7 +55,15 @@ function Page() {
         <title>トリビアを作る</title>
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
-        <h1 className="text-center">トリビアを作成する</h1>
+        <h1 className="text-center border-bottom mb-3">トリビアを作成する</h1>
+        <label className="form-label">ジャンル</label>
+        <TagDropdown selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre} />
+        <label className="form-label mt-3">タグ (3件まで)</label>
+        <TagsInput
+          value={tags}
+          onChange={onChangeTagsValue}
+          maxTags="3"
+        />
         <form className="mt-3">
           <div className="mb-3">
             <label htmlFor="forwardText" className="form-label">前の文</label>

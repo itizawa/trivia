@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
-import Pencil from './atoms/svg/Pencil';
-import Home from './atoms/svg/Home';
-import ViewList from './atoms/svg/ViewList';
+import Pencil from './icons/Pencil';
+import Home from './icons/Home';
+import ViewList from './icons/ViewList';
 
 function FixedFooter() {
   return (

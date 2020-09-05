@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/client';
 
 import PersonalDropdown from '../Navbar/PersonalDropdown';
-import ArrowInRight from './atoms/svg/ArrowInRight';
+import ArrowInRight from './icons/ArrowInRight';
 
 function Navbar() {
   const [session, loading] = useSession();

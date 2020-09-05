@@ -2,8 +2,8 @@ import React from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
-import Pencil from '@components/commons/atoms/svg/Pencil';
-import ViewList from '@components/commons/atoms/svg/ViewList';
+import Pencil from '@components/commons/icons/Pencil';
+import ViewList from '@components/commons/icons/ViewList';
 
 const IndexPage = () => (
   <>

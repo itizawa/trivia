@@ -11,7 +11,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { toastError } from '@utils/toaster';
 
 import appContainer from '@containers/appContainer';
-import ArrowInRight from './atoms/svg/ArrowInRight';
+import ArrowInRight from './icons/ArrowInRight';
 import AdmirationCounter from './trivia/AdmirationCounter';
 import AdmirationButton from './trivia/AdmirationButton';
 
