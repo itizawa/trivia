@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const { Schema } = require('mongoose');
 
@@ -16,5 +17,7 @@ const TriviaTagRelationSchema = new mongoose.Schema({
     index: true,
   },
 });
+
+TriviaTagRelationSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.models.TriviaTagRelation || mongoose.model('TriviaTagRelation', TriviaTagRelationSchema);
