@@ -56,12 +56,10 @@ function Page() {
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center border-bottom mb-3">トリビアを作成する</h1>
-        <label htmlFor="forwardText" className="form-label">ジャンル</label>
+        <label className="form-label">ジャンル</label>
         <TagDropdown selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre} />
-        <div className="px-2 d-flex">
-          <i className="fas fa-tags mx-2 my-auto" />
-          <TagsInput value={tags} onChange={onChangeTagsValue} />
-        </div>
+        <label className="form-label mt-3">タグ (3件まで)</label>
+        <TagsInput value={tags} onChange={onChangeTagsValue} maxTags="3" />
         <form className="mt-3">
           <div className="mb-3">
             <label htmlFor="forwardText" className="form-label">前の文</label>
