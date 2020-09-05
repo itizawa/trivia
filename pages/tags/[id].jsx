@@ -4,18 +4,29 @@ import Head from 'next/head';
 import axios from 'axios';
 
 import TriviaList from '@components/Trivia/TriviaList';
+import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
+import TagIcon from '../../components/commons/icons/TagIcon';
 
 
 function ListPage(props) {
   const { id } = props.router.query;
+  const { tag } = props.pageProps;
 
   return (
     <>
       <Head>
-        <title>トリビア一覧</title>
+        <title>{tag?.name}タグが付けられたTrivia</title>
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
-        <h1 className="text-center">タグ</h1>
+        <h1 className="text-center">
+          <TagIcon />
+          <span className="ml-2">
+            {tag?.name}
+          </span>
+        </h1>
+        <div className="my-2 text-right">
+          <span>タグが作られた日 : {fromTimeStampToDate(tag?.createdAt)}</span>
+        </div>
         <TriviaList tagId={id} />
       </div>
     </>
@@ -45,6 +56,7 @@ export async function getServerSideProps(context) {
 
 ListPage.propTypes = {
   router: PropTypes.object,
+  pageProps: PropTypes.object,
 };
 
 export default ListPage;

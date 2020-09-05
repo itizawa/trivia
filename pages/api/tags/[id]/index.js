@@ -19,7 +19,7 @@ handler.get(validator.paginate, ApiValidator, async(req, res) => {
   const { id } = req.query;
 
   try {
-    const tag = await Tag.find({ _id: id });
+    const tag = await Tag.findOne({ _id: id });
 
     return res.status(200).send({ tag });
   }
