@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import useSWR from 'swr';
 import Skeleton from 'react-loading-skeleton';
 
@@ -6,12 +7,21 @@ import appContainer from '@containers/appContainer';
 import TriviaCard from '@components/Trivia/TriviaCard';
 import TriviaModal from '@components/Trivia/TriviaModal';
 
-function TriviaList() {
+function TriviaList(props) {
 
   const [triviaForModal, setTriviaForModal] = useState(null);
 
   const { apiGet } = appContainer.useContainer();
-  const { data, error } = useSWR('/trivias/list', () => apiGet('/trivias/list', { page: 1 }));
+
+  let url;
+  if (props.tagId != null) {
+    url = `/tags/${props.tagId}/pages`;
+  }
+  else {
+    url = '/trivias/list';
+  }
+
+  const { data, error } = useSWR(url, () => apiGet(url, { page: 1 }));
 
   /**
    * open trivia modal
@@ -60,5 +70,9 @@ function TriviaList() {
   );
 
 }
+
+TriviaList.propTypes = {
+  tagId: PropTypes.string,
+};
 
 export default TriviaList;
