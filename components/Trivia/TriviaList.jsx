@@ -35,7 +35,7 @@ function TriviaList() {
     const Skeletons = [];
 
     for (let index = 0; index < 10; index++) {
-      Skeletons.push(<Skeleton key={index} className="box-fix-aspect mb-5" />);
+      Skeletons.push(<Skeleton key={index} className="box-fix-aspect mb-3" />);
     }
 
     return (

@@ -7,6 +7,7 @@ import { query } from 'express-validator';
 import dbConnect from '@middlewares/dbConnect';
 
 import TriviaTagRelation from '@models/TriviaTagRelation';
+import Tag from '@models/Tag';
 
 const handler = nextConnect();
 
@@ -22,8 +23,8 @@ handler.get(validator.get, ApiValidator, async(req, res) => {
   const triviaId = req.query.id;
 
   try {
-    const tags = await TriviaTagRelation.find({ trivia: triviaId });
-    return res.status(200).send({ tags });
+    const tags = await TriviaTagRelation.find({ trivia: triviaId }).populate({ path: 'tag', model: Tag });
+    return res.status(200).send(tags);
   }
   catch (err) {
     return res.status(500).send({ success: false });

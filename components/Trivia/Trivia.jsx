@@ -110,7 +110,7 @@ function Trivia(props) {
           <span className="text-center">{creator?.name} </span>
         </div>
         <div className="ml-auto">
-          <TagLabels />
+          <TagLabels triviaId={trivia._id} />
         </div>
       </div>
       <div className="d-flex">
