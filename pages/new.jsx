@@ -30,7 +30,7 @@ function Page() {
 
   async function onClickSubmit() {
     try {
-      await apiPost('/trivias', { forwardText, backwardText });
+      await apiPost('/trivias', { forwardText, backwardText, tags: [...tags, selectedGenre] });
       Router.push('/list');
     }
     catch (error) {
@@ -45,9 +45,9 @@ function Page() {
 
   useEffect(() => {
     // validate form
-    const bool = (forwardText === '' || backwardText === '');
+    const bool = (forwardText === '' || backwardText === '' || selectedGenre == null);
     setInvalidFormValue(bool);
-  }, [forwardText, backwardText]);
+  }, [forwardText, backwardText, selectedGenre]);
 
   return (
     <>
