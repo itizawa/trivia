@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = require('mongoose');
 
-const TriviaTagRelation = new mongoose.Schema({
+const TriviaTagRelationSchema = new mongoose.Schema({
   trivia: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -17,4 +17,4 @@ const TriviaTagRelation = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.models.TriviaTagRelation || mongoose.model('TriviaTagRelation', TriviaTagRelation);
+module.exports = mongoose.models.TriviaTagRelation || mongoose.model('TriviaTagRelation', TriviaTagRelationSchema);
