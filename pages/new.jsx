@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
+import TagsInput from 'react-tagsinput';
 import {
   Collapse, Button,
 } from 'reactstrap';
@@ -15,12 +16,17 @@ function Page() {
   const { apiPost } = appContainer.useContainer();
 
   const [selectedGenre, setSelectedGenre] = useState(null);
+  const [tags, setTags] = useState([]);
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
   const [invalidFormValue, setInvalidFormValue] = useState(false);
 
   const [previewUrl, setPreviewUrl] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+
+  const onChangeTagsValue = (tags) => {
+    setTags(tags);
+  };
 
   async function onClickSubmit() {
     try {
@@ -52,6 +58,10 @@ function Page() {
         <h1 className="text-center border-bottom mb-3">トリビアを作成する</h1>
         <label htmlFor="forwardText" className="form-label">ジャンル</label>
         <TagDropdown selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre} />
+        <div className="px-2 d-flex">
+          <i className="fas fa-tags mx-2 my-auto" />
+          <TagsInput value={tags} onChange={onChangeTagsValue} />
+        </div>
         <form className="mt-3">
           <div className="mb-3">
             <label htmlFor="forwardText" className="form-label">前の文</label>
