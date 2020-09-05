@@ -11,7 +11,7 @@ const IndexPage = () => (
       <title>トリビアの泉</title>
     </Head>
     <div className="bg-snow rounded mt-3 p-3">
-      <div className="img-box-fix-aspect">
+      <div className="img-box-fix-aspect mb-3">
         <img className="mb-3" src="/eye-catch@2x.png" />
       </div>
       「生きていく上で何の役にも立たない無駄な知識、<br />しかし、つい人に教えたくなってしまうような<b>トリビア（雑学・知識）</b>」
