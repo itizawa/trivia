@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import TriviaList from '../components/commons/trivia/TriviaList';
+import TriviaList from '../components/Trivia/TriviaList';
 
 function ListPage() {
 

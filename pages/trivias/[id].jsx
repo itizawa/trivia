@@ -4,7 +4,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 
-import Trivia from '../../components/commons/Trivia';
+import Trivia from '../../components/Trivia/Trivia';
 
 
 function Page({ pageProps }) {
@@ -21,7 +21,6 @@ function Page({ pageProps }) {
         <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.push('/list') }}>リストに戻る</button>
         <Trivia trivia={trivia} />
       </div>
-
     </>
   );
 }

@@ -11,9 +11,10 @@ import { useDebouncedCallback } from 'use-debounce';
 import { toastError } from '@utils/toaster';
 
 import appContainer from '@containers/appContainer';
-import ArrowInRight from './icons/ArrowInRight';
-import AdmirationCounter from './trivia/AdmirationCounter';
-import AdmirationButton from './trivia/AdmirationButton';
+import ArrowInRight from '../commons/icons/ArrowInRight';
+import AdmirationCounter from './AdmirationCounter';
+import AdmirationButton from './AdmirationButton';
+import TagLabels from '../Tag/TagLabels';
 
 function Trivia(props) {
   const { apiPut, apiGet } = appContainer.useContainer();
@@ -103,9 +104,14 @@ function Trivia(props) {
 
   return (
     <>
-      <div>
-        <img height="24px" className="rounded-circle bg-white mr-2" src={creator?.image} />
-        <span className="text-center">{creator?.name} </span><br />
+      <div className="d-flex">
+        <div>
+          <img height="24px" className="rounded-circle bg-white mr-2" src={creator?.image} />
+          <span className="text-center">{creator?.name} </span>
+        </div>
+        <div className="ml-auto">
+          <TagLabels triviaId={trivia._id} />
+        </div>
       </div>
       <div className="d-flex">
         <span className="mr-auto">{fromTimeStampToDate(trivia?.createdAt)}</span>

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { Modal, ModalBody, ModalFooter } from 'reactstrap';
 
-import Trivia from '@components/commons/Trivia';
+import Trivia from '@components/Trivia/Trivia';
 
 function TriviaModal(props) {
 

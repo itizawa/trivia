@@ -3,8 +3,8 @@ import useSWR from 'swr';
 import Skeleton from 'react-loading-skeleton';
 
 import appContainer from '@containers/appContainer';
-import TriviaCard from '@components/commons/TriviaCard';
-import TriviaModal from '@components/commons/TriviaModal';
+import TriviaCard from '@components/Trivia/TriviaCard';
+import TriviaModal from '@components/Trivia/TriviaModal';
 
 function TriviaList() {
 
@@ -35,7 +35,7 @@ function TriviaList() {
     const Skeletons = [];
 
     for (let index = 0; index < 10; index++) {
-      Skeletons.push(<Skeleton key={index} className="box-fix-aspect mb-5" />);
+      Skeletons.push(<Skeleton key={index} className="box-fix-aspect mb-3" />);
     }
 
     return (
