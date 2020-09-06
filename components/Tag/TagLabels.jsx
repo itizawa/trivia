@@ -12,7 +12,7 @@ function TagLabels(props) {
   const { apiGet } = appContainer.useContainer();
   const { triviaId } = props;
 
-  const { data, error } = useSWR('/trivias/[id]/tags', () => apiGet(`/trivias/${triviaId}/tags`));
+  const { data, error } = useSWR(`/trivias/${triviaId}/tags`, () => apiGet(`/trivias/${triviaId}/tags`));
 
   useEffect(() => {
     if (data == null) { return }
