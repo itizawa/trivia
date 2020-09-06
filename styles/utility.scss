@@ -5,9 +5,9 @@
 
 
 $cursor-vars: 'pointer',
-'not-allowed',
-'zoom-in',
-'zoom-out';
+  'not-allowed',
+  'zoom-in',
+  'zoom-out';
 
 @each $var in $cursor-vars {
   .cursor-#{$var} {
