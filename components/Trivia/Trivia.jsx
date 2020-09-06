@@ -25,14 +25,22 @@ function Trivia(props) {
   const creator = props.trivia?.creator;
 
   const triviaCardEl = useRef();
+
   const shareUrl = `https://summary-post.vercel.app/trivias/${trivia?._id}`;
   const [count, setCount] = useState(null);
+  const [hashTags, setHashTags] = useState('');
+
+  const tweetText = `${trivia?.forwardText}.... ${shareUrl}`;
 
   // count for increment DB
   const [incrementCount, setIncrementCount] = useState(0);
 
   if (trivia == null) {
     return null;
+  }
+
+  function onSetHashTags(hashTags) {
+    setHashTags(hashTags);
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -110,7 +118,7 @@ function Trivia(props) {
           <span className="text-center">{creator?.name} </span>
         </div>
         <div className="ml-auto">
-          <TagLabels triviaId={trivia._id} />
+          <TagLabels triviaId={trivia._id} onSetHashTags={onSetHashTags} />
         </div>
       </div>
       <div className="d-flex">
@@ -147,7 +155,7 @@ function Trivia(props) {
         <div className="col-4 text-right">
           <a
             className="btn text-white btn-twitter"
-            href={`https://twitter.com/intent/tweet?text=${shareUrl}`}
+            href={`https://twitter.com/intent/tweet?text=${tweetText}&hashtags=${hashTags}`}
             rel="noopener noreferrer"
             target="_blank"
           >

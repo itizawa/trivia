@@ -3,9 +3,10 @@ import '../styles/global.scss';
 
 import { Provider } from 'next-auth/client';
 
-import Navbar from '@components/commons/Navbar';
 import appContainer from '@containers/appContainer';
 import TriviaListContainer from '@containers/TriviaListContainer';
+
+import Navbar from '@components/commons/Navbar';
 import FixedFooter from '../components/commons/FexedFooter';
 
 function Page(pageProps) {

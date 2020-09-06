@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useSWR from 'swr';
 import PropTypes from 'prop-types';
 
@@ -14,8 +14,17 @@ function TagLabels(props) {
 
   const { data, error } = useSWR('/trivias/[id]/tags', () => apiGet(`/trivias/${triviaId}/tags`));
 
+  useEffect(() => {
+    if (data == null) { return }
+    // generate hash tag
+    const hashTag = data.map(item => `${item.tag.name}`);
+    props.onSetHashTags(hashTag.join('%2C'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
   if (error) return <div>failed to retrieve tags</div>;
   if (!data) return <Skeleton width={100} />;
+
 
   return (
     <>
@@ -37,6 +46,7 @@ function TagLabels(props) {
 
 TagLabels.propTypes = {
   triviaId: PropTypes.string.isRequired,
+  onSetHashTags: PropTypes.func,
 };
 
 
