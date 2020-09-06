@@ -12,7 +12,7 @@ function TagLabels(props) {
   const { apiGet } = appContainer.useContainer();
   const { triviaId } = props;
 
-  const { data, error } = useSWR('/trivias/[id]/tags', () => apiGet(`/trivias/${triviaId}/tags`));
+  const { data, error } = useSWR(`/trivias/${triviaId}/tags`, () => apiGet(`/trivias/${triviaId}/tags`));
 
   useEffect(() => {
     if (data == null) { return }
@@ -34,7 +34,7 @@ function TagLabels(props) {
       {data.map((item) => {
         return (
           <Link key={item.tag._id} href={`/tags/${item.tag._id}`}>
-            <span className="badge rounded-pill bg-teal mr-1 py-1 px-2">
+            <span className="badge rounded-pill bg-teal mr-1 py-1 px-2 cursor-pointer">
               {item.tag.name}
             </span>
           </Link>

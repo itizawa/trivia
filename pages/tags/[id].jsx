@@ -15,7 +15,7 @@ function ListPage(props) {
   return (
     <>
       <Head>
-        <title>{tag?.name}タグが付けられたTrivia</title>
+        <title>「{tag?.name}」タグが付けられたTrivia</title>
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center border-bottom mb-3">

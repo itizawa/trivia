@@ -17,7 +17,7 @@ function TriviaCard(props) {
   }
 
   return (
-    <div className="card" onClick={() => { openTriviaModalHandler(_id) }}>
+    <div className="card cursor-pointer" onClick={() => { openTriviaModalHandler(_id) }}>
       <div className="img-box-fix-aspect">
         <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${forwardText}&backwardText=${backwardText}`} />
       </div>

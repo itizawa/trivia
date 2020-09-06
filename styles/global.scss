@@ -42,10 +42,6 @@ body {
   }
 }
 
-.box-fix-aspect {
-  width: 100%;
-  padding-top: 55%;
-}
-
+@import './utility.scss';
 @import './btn.scss';
 @import './trivia.scss';

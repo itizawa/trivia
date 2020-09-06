@@ -1,0 +1,16 @@
+.box-fix-aspect {
+  width: 100%;
+  padding-top: 55%;
+}
+
+
+$cursor-vars: 'pointer',
+  'not-allowed',
+  'zoom-in',
+  'zoom-out';
+
+@each $var in $cursor-vars {
+  .cursor-#{$var} {
+    cursor: #{$var};
+  }
+}
