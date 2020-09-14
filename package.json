@@ -6,6 +6,7 @@
   "author": "itizawa <itizawa@weseek.co.jp>",
   "license": "MIT",
   "scripts": {
+    "mongo": "cd docker && docker-compose up",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
