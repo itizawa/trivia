@@ -1,0 +1,5 @@
+.term-for-login {
+  @include media-breakpoint-down(sm) {
+    max-height: 200px;
+  }
+}

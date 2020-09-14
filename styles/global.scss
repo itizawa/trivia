@@ -2,7 +2,6 @@
 @import './vender.scss';
 
 a {
-  color: unset;
   text-decoration: none;
 }
 
@@ -17,6 +16,10 @@ html {
   @include media-breakpoint-down(sm) {
     font-size: 14px;
   }
+}
+
+.container {
+  margin-bottom: 80px;
 }
 
 body {
@@ -45,3 +48,4 @@ body {
 @import './utility.scss';
 @import './btn.scss';
 @import './trivia.scss';
+@import './term.scss';
