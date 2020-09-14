@@ -24,7 +24,7 @@ function TagLabels(props) {
 
   if (error) return <div>failed to retrieve tags</div>;
   if (!data) return <Skeleton width={100} />;
-
+  if (data.length === 0) return null;
 
   return (
     <>

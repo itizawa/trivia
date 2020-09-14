@@ -10,19 +10,19 @@ function TagDropdown(props) {
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   useEffect(() => {
-    const genre = localStorage.getItem('selectedGenre');
-    props.setSelectedGenre(genre);
+    const genre = localStorage.getItem('genre');
+    props.setGenre(genre);
   }, [props]);
 
   function onClickGenreHandler(genre) {
-    localStorage.setItem('selectedGenre', genre);
-    props.setSelectedGenre(genre);
+    localStorage.setItem('genre', genre);
+    props.setGenre(genre);
   }
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret className="w-100 bg-light">
-        {props.selectedGenre || 'タグを選択してください'}
+        {props.genre || 'タグを選択してください'}
       </DropdownToggle>
       <DropdownMenu right className="w-100">
         {['生活', '動物', '食べ物', '人間関係', 'ゲーム', 'アニメ', '仕事', '雑学', '技術'].map((genre) => {
@@ -38,8 +38,8 @@ function TagDropdown(props) {
 }
 
 TagDropdown.propTypes = {
-  selectedGenre: PropTypes.string,
-  setSelectedGenre: PropTypes.func,
+  genre: PropTypes.string,
+  setGenre: PropTypes.func,
 };
 
 export default TagDropdown;

@@ -20,6 +20,7 @@ const validator = {
     body('forwardText').isString().isLength({ min: 1, max: 40 }).withMessage('前の文は 40 文字以下です'),
     body('backwardText').isString().isLength({ min: 1, max: 40 }).withMessage('後ろの文は 40 文字以下です'),
     body('tags').isArray(),
+    body('genre').isString(),
   ],
 };
 
@@ -54,11 +55,15 @@ async function AssociateTagAndTrivia(tags, triviaId) {
 }
 
 handler.post(validator.summary, ApiValidator, AccessTokenParser, LoginRequired, async(req, res) => {
-  const { forwardText, backwardText, tags } = req.body;
+  const {
+    forwardText, backwardText, tags, genre,
+  } = req.body;
   const creator = req.user._id;
 
   try {
-    const trivia = new Trivia({ forwardText, backwardText, creator });
+    const trivia = new Trivia({
+      forwardText, backwardText, creator, genre,
+    });
     const createdTrivia = await trivia.save();
 
     await AssociateTagAndTrivia(tags, createdTrivia._id);

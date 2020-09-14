@@ -26,6 +26,11 @@ const TriviaSchema = new mongoose.Schema(
       default: 0,
       index: true,
     },
+    genre: {
+      type: String,
+      required: true,
+      index: true,
+    },
   },
   { timestamps: true },
 );
