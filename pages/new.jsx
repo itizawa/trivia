@@ -15,7 +15,7 @@ import TagDropdown from '../components/Tag/TagDropdown';
 function Page() {
   const { apiPost } = appContainer.useContainer();
 
-  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [genre, setGenre] = useState(null);
   const [tags, setTags] = useState([]);
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
@@ -30,7 +30,9 @@ function Page() {
 
   async function onClickSubmit() {
     try {
-      await apiPost('/trivias', { forwardText, backwardText, tags: [...tags, selectedGenre] });
+      await apiPost('/trivias', {
+        forwardText, backwardText, tags, genre,
+      });
       Router.push('/list');
     }
     catch (error) {
@@ -45,9 +47,9 @@ function Page() {
 
   useEffect(() => {
     // validate form
-    const bool = (forwardText === '' || backwardText === '' || selectedGenre == null);
+    const bool = (forwardText === '' || backwardText === '' || genre == null);
     setInvalidFormValue(bool);
-  }, [forwardText, backwardText, selectedGenre]);
+  }, [forwardText, backwardText, genre]);
 
   return (
     <>
@@ -57,7 +59,7 @@ function Page() {
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center border-bottom mb-3">トリビアを作成する</h1>
         <label className="form-label">ジャンル</label>
-        <TagDropdown selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre} />
+        <TagDropdown genre={genre} setGenre={setGenre} />
         <label className="form-label mt-3">タグ (3件まで)</label>
         <TagsInput
           value={tags}
