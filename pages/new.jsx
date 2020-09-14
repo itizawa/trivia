@@ -67,24 +67,22 @@ function Page() {
         <form className="mt-3">
           <div className="mb-3">
             <label htmlFor="forwardText" className="form-label">前の文</label>
-            <textarea
+            <input
               type="text"
               className="form-control"
               id="forwardText"
               value={forwardText}
               onChange={e => setForwardText(e.target.value)}
-              rows="3"
             />
           </div>
           <div className="mb-3">
             <label htmlFor="backwardText" className="form-label">後ろの文(モザイクで表示されます)</label>
-            <textarea
+            <input
               type="text"
               className="form-control"
               id="backwardText"
               value={backwardText}
               onChange={e => setBackwardText(e.target.value)}
-              rows="3"
             />
           </div>
           <div className="row">
