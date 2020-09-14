@@ -4,6 +4,7 @@ import Router from 'next/router';
 
 import { signin } from 'next-auth/client';
 
+import Term from '@components/Term/Term';
 import LogoutRequired from '@components/LogoutRequired';
 
 function IndexPage() {
@@ -17,6 +18,9 @@ function IndexPage() {
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center mb-3">ログインページ</h1>
         {query.isRedirect && <p className="alert alert-info mb-3">その操作にはログインが必要です</p>}
+        <div className="mb-3 overflow-auto term-for-login">
+          <Term />
+        </div>
         <div className="row mb-3">
           <div className="col-12 col-md-6 px-2 mb-4 mb-md-0">
             <button type="button" className="btn btn-google text-white w-100" onClick={() => signin('google')}>
