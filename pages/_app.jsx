@@ -17,7 +17,7 @@ function Page(pageProps) {
       <Provider session={session}>
         <TriviaListContainer.Provider>
           <Navbar {...pageProps} />
-          <div className="container mb-5">
+          <div className="container">
             <pageProps.Component {...pageProps} />
           </div>
           <FixedFooter />
