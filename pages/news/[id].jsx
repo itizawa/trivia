@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Head from 'next/head';
 import Router from 'next/router';
+import Markdown from 'react-markdown';
 
 import newsList from '../../lib/newsList';
 
@@ -20,7 +21,7 @@ function Page(props) {
 
         <h1 className="text-center border-bottom mb-3">{news.title}</h1>
         {news.createdAt}<br />
-        {news.body}
+        <Markdown source={news.body} />
       </div>
     </>
   );
