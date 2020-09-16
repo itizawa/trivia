@@ -7,10 +7,8 @@ import TriviaCard from '@components/Trivia/TriviaCard';
 import TriviaModal from '@components/Trivia/TriviaModal';
 import { useTriviaList } from '../Fooks/swrApi';
 
-function TriviaList(props) {
-
+function TriviaListBlock(props) {
   const [triviaForModal, setTriviaForModal] = useState(null);
-
 
   let url;
   if (props.tagId != null) {
@@ -19,8 +17,7 @@ function TriviaList(props) {
   else {
     url = '/trivias/list';
   }
-
-  const { data, error } = useTriviaList(url, 1);
+  const { data, error } = useTriviaList(`${url}?page=${props.index}`, props.index);
   /**
    * open trivia modal
    * @param {string} id id of trivia
@@ -55,18 +52,9 @@ function TriviaList(props) {
 
   const triviasList = data?.docs;
 
-  function loadFunc() {
-    console.log('hoge');
-  }
   return (
     <>
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={loadFunc}
-        hasMore
-        loader={<div className="loader" key={0}>Loading ...</div>}
-      >
-        {triviasList.map((trivia) => {
+      {triviasList.map((trivia) => {
         return (
           <div className="mb-3" key={trivia._id}>
             <TriviaCard trivia={trivia} onClickTriviaCard={onClickTriviaCard} />
@@ -74,7 +62,31 @@ function TriviaList(props) {
           </div>
         );
       })}
-      </InfiniteScroll>
+    </>
+  );
+}
+
+function TriviaList(props) {
+
+
+  const [activePage, setActivePage] = useState(1);
+  const pages = [];
+  for (let i = 0; i < activePage; i++) {
+    pages.push(<TriviaListBlock index={i + 1} key={i} props={props} />);
+  }
+
+
+  return (
+    <>
+      {/* <InfiniteScroll
+        pageStart={1}
+        loadMore={loadFunc}
+        hasMore
+        loader={<div className="loader" key={0}>Loading ...</div>}
+      > */}
+      {pages}
+      <button onClick={() => setActivePage(activePage + 1)}>hogehoge></button>
+      {/* </InfiniteScroll> */}
     </>
   );
 
