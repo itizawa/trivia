@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import newsList from '../../lib/newsList';
 
-const NewsPage = () => {
+function NewsPage() {
   return (
     <>
       <Head>
@@ -29,6 +29,6 @@ const NewsPage = () => {
       </div>
     </>
   );
-};
+}
 
 export default NewsPage;
