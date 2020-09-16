@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import useSWR from 'swr';
 import Skeleton from 'react-loading-skeleton';
+import InfiniteScroll from 'react-infinite-scroller';
 
-import appContainer from '@containers/appContainer';
 import TriviaCard from '@components/Trivia/TriviaCard';
 import TriviaModal from '@components/Trivia/TriviaModal';
+import { useTriviaList } from '../Fooks/swrApi';
 
 function TriviaList(props) {
 
   const [triviaForModal, setTriviaForModal] = useState(null);
 
-  const { apiGet } = appContainer.useContainer();
 
   let url;
   if (props.tagId != null) {
@@ -21,8 +20,7 @@ function TriviaList(props) {
     url = '/trivias/list';
   }
 
-  const { data, error } = useSWR(url, () => apiGet(url, { page: 1 }));
-
+  const { data, error } = useTriviaList(url, 1);
   /**
    * open trivia modal
    * @param {string} id id of trivia
@@ -56,9 +54,19 @@ function TriviaList(props) {
   }
 
   const triviasList = data?.docs;
+
+  function loadFunc() {
+    console.log('hoge');
+  }
   return (
     <>
-      {triviasList.map((trivia) => {
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={loadFunc}
+        hasMore
+        loader={<div className="loader" key={0}>Loading ...</div>}
+      >
+        {triviasList.map((trivia) => {
         return (
           <div className="mb-3" key={trivia._id}>
             <TriviaCard trivia={trivia} onClickTriviaCard={onClickTriviaCard} />
@@ -66,6 +74,7 @@ function TriviaList(props) {
           </div>
         );
       })}
+      </InfiniteScroll>
     </>
   );
 

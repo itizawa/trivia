@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react';
-import useSWR from 'swr';
 import PropTypes from 'prop-types';
 
 import Skeleton from 'react-loading-skeleton';
 
-import appContainer from '@containers/appContainer';
 import Link from 'next/link';
 import TagIcon from '../commons/icons/TagIcon';
+import { useTags } from '../Fooks/swrApi';
 
 function TagLabels(props) {
-  const { apiGet } = appContainer.useContainer();
   const { triviaId } = props;
-
-  const { data, error } = useSWR(`/trivias/${triviaId}/tags`, () => apiGet(`/trivias/${triviaId}/tags`));
+  const { data, error } = useTags(triviaId);
 
   useEffect(() => {
     if (data == null) { return }
