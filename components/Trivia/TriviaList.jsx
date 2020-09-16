@@ -92,8 +92,9 @@ function TriviaList(props) {
 
 }
 
-TriviaList.propTypes = {
+TriviaListBlock.propTypes = {
   tagId: PropTypes.string,
+  index: PropTypes.number,
 };
 
 export default TriviaList;
