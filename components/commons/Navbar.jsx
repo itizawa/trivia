@@ -9,6 +9,7 @@ import ArrowInRight from './icons/ArrowInRight';
 import Pencil from './icons/Pencil';
 import Home from './icons/Home';
 import ViewList from './icons/ViewList';
+import NewsIcon from './icons/NewsIcon';
 
 function Navbar() {
   const [session, loading] = useSession();
@@ -47,19 +48,25 @@ function Navbar() {
           <Link href="/">
             <a className="text-white text-center mr-5">
               <Home width="24px" height="24px" />
-              <span className="ml-2 align-bottom">Home</span>
+              <span className="ml-2 align-bottom d-none d-lg-inline-block">Home</span>
             </a>
           </Link>
           <Link href="/list">
             <a className="text-white text-center mr-5">
               <ViewList width="24px" height="24px" />
-              <span className="ml-2 align-bottom">List</span>
+              <span className="ml-2 align-bottom d-none d-lg-inline-block">List</span>
             </a>
           </Link>
           <Link href="/new">
             <a className="text-white text-center mr-5">
               <Pencil width="24px" height="24px" />
-              <span className="ml-2 align-bottom">Create</span>
+              <span className="ml-2 align-bottom d-none d-lg-inline-block">Create</span>
+            </a>
+          </Link>
+          <Link href="/news">
+            <a className="text-white text-center mr-5">
+              <NewsIcon width="24px" height="24px" />
+              <span className="ml-2 align-bottom d-none d-lg-inline-block">News</span>
             </a>
           </Link>
         </div>
