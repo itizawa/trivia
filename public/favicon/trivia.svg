@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-カスタムサイズ_1">
+      <rect width="16" height="16"/>
+    </clipPath>
+  </defs>
+  <g id="カスタムサイズ_1" data-name="カスタムサイズ – 1" clip-path="url(#clip-カスタムサイズ_1)">
+    <rect width="16" height="16" fill="navy"/>
+    <text id="T" transform="translate(0 11)" fill="#ecf4fc" font-size="12" font-family="Apple-Chancery, Apple Chancery"><tspan x="0" y="0">T</tspan></text>
+    <text id="O" transform="translate(7 15)" fill="#ecf4fc" font-size="12" font-family="Apple-Chancery, Apple Chancery"><tspan x="0" y="0">O</tspan></text>
+  </g>
+</svg>

@@ -17,6 +17,11 @@ export default class MyDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
           <meta name="google-site-verification" content="iT9UqKdRcRp9KwhH5MrYL6HeWcNbQYFESsnONwk4Tro" />
 
+          {/* Favicon */}
+          <link rel="icon" href="/favicon/trivia.svg" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/favicon/trivia.svg" />
+          <link rel="icon" type="image/png" href="/favicon/trivia.svg" sizes="192x192" />
+
           <meta property="og:url" content="https://summary-post.vercel.app/" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="トリビアの泉" />
