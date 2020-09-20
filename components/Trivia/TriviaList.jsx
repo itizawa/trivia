@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Link from 'next/link';
 
 import appContainer from '@containers/appContainer';
 import TriviaCard from '@components/Trivia/TriviaCard';
 import TriviaModal from '@components/Trivia/TriviaModal';
+import Pencil from '@components/commons/icons/Pencil';
 
 function TriviaList(props) {
   const [triviaForModal, setTriviaForModal] = useState(null);
@@ -71,7 +73,17 @@ function TriviaList(props) {
       next={() => setActivePage(activePage + 1)}
       hasMore={hasmore}
       loader={<Skeleton className="box-fix-aspect mb-3" />}
-      endMessage={<p className="text-center">これで全てです</p>}
+      endMessage={(
+        <p className="alert alert-info my-3 text-center">
+          <span className="mr-2">あなたの無駄知識を残そう</span>
+          <Link href="/new">
+            <a className="text-center">
+              <Pencil />
+              <span className="ml-1">Trivia を作成する</span>
+            </a>
+          </Link>
+        </p>
+      )}
     >
       {triviasList.map((trivia) => {
         return (
