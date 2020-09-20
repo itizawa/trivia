@@ -76,6 +76,7 @@ function TriviaList(props) {
       endMessage={(
         <p className="alert alert-info my-3 text-center">
           <span className="mr-2">あなたの無駄知識を残そう</span>
+          <br />
           <Link href="/new">
             <a className="text-center">
               <Pencil />
