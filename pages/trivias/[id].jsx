@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
 
   let trivia;
 
-  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
+  const hostUrl = process.env.SITE_URL;
 
   try {
     const res = await Axios.get(`${hostUrl}/api/trivias/${params.id}`);
