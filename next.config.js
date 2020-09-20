@@ -16,5 +16,6 @@ module.exports = {
   },
   env: {
     SITE_URL: process.env.SITE_URL,
+    DEV_MODE: process.env.DEV_MODE,
   },
 };
