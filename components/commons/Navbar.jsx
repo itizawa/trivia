@@ -34,7 +34,7 @@ function Navbar() {
   }
 
   return (
-    <nav className={`navbar ${process.env.DEV_MODE ? 'bg-tblue' : 'bg-orange'}`}>
+    <nav className={`navbar ${process.env.DEV_MODE ? 'bg-orange' : 'bg-tblue'}`}>
       <div className="container-fluid">
         <div className="mr-auto">
           <Link href="/">
