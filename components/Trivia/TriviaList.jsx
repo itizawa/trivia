@@ -85,14 +85,16 @@ function TriviaList(props) {
         </p>
       )}
     >
-      {triviasList.map((trivia) => {
-        return (
-          <div className="mb-3" key={trivia._id}>
-            <TriviaCard trivia={trivia} onClickTriviaCard={onClickTriviaCard} />
-            <TriviaModal trivia={trivia} isOpen={triviaForModal === trivia._id} onClose={onCloseModal} />
-          </div>
-        );
-      })}
+      <div className="row">
+        {triviasList.map((trivia, index) => {
+          return (
+            <div className={`mb-3 ${index === 0 ? 'col-md-12' : 'col-md-6'}`} key={trivia._id}>
+              <TriviaCard trivia={trivia} onClickTriviaCard={onClickTriviaCard} />
+              <TriviaModal trivia={trivia} isOpen={triviaForModal === trivia._id} onClose={onCloseModal} />
+            </div>
+          );
+        })}
+      </div>
     </InfiniteScroll>
   );
 
