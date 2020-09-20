@@ -80,7 +80,7 @@ function Term() {
       <h3>第6条(一般条件)</h3>
       <p>
         本規約は、随時改定される場合があります。改定は溯って適用されることはありません。また、ユーザーと当社の関係を定めた本規約の最新版は常に
-        <a className="mx-1" href="https://trivia-online/term">https://trivia-online/term</a>
+        <a className="mx-1" href="https://trivia-online.com/term">https://trivia-online.com/term</a>
         でご覧になることができます。<br />
         ユーザーは、本規約への改定が有効となって以降に本サービスへのアクセスまたは本サービスの利用を継続することによって、
         改定後の本規約に拘束されることに同意したものとみなされます。
