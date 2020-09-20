@@ -17,8 +17,7 @@ function Page(props) {
         <title>{news.title}</title>
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
-        <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.push('/list') }}>リストに戻る</button>
-
+        <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.push('/news') }}>リストに戻る</button>
         <h1 className="text-center border-bottom mb-3">{news.title}</h1>
         {news.createdAt}<br />
         <Markdown source={news.body} />
