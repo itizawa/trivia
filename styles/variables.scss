@@ -7,9 +7,9 @@ $teal: #20c997;
 $light: #ccc;
 $snow: #fafafa;
 $info: #0cccc9;
+$bronze:#8a693e;
 
-$theme-colors: (
-  'indigo': $indigo,
+$theme-colors: ('indigo': $indigo,
   'purple': $purple,
   'tblue': $tblue,
   'pink': $pink,
@@ -18,4 +18,5 @@ $theme-colors: (
   'light': $light,
   'snow': $snow,
   'info': $info,
+  'bronze': $bronze,
 );
