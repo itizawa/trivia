@@ -5,7 +5,7 @@ import Skeleton from 'react-loading-skeleton';
 
 import Link from 'next/link';
 import TagIcon from '../commons/icons/TagIcon';
-import { useTags } from '../Fooks/swrApi';
+import useTags from '../Fooks/swrApi';
 
 function TagLabels(props) {
   const { triviaId } = props;
