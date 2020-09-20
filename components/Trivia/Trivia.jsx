@@ -26,7 +26,7 @@ function Trivia(props) {
 
   const triviaCardEl = useRef();
 
-  const shareUrl = `https://summary-post.vercel.app/trivias/${trivia?._id}`;
+  const shareUrl = `${process.env.SITE_URL}/trivias/${trivia?._id}`;
   const [count, setCount] = useState(null);
   const [hashTags, setHashTags] = useState('');
 
