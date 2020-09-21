@@ -130,7 +130,7 @@ function Trivia(props) {
         <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`} />
       </div>
       {trivia?.bodyText && (
-        <div className="p-2 my-3 bg-aliceblue">
+        <div className="p-3 my-3 bg-aliceblue">
           <Markdown source={trivia?.bodyText} />
         </div>
       )}

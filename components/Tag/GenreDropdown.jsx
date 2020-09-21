@@ -29,7 +29,7 @@ function GenreDropdown(props) {
   return (
     <InputGroup>
       <Input
-        value={props.genre}
+        value={props.genre || ''}
         disabled={defaultGenre.includes(props.genre)}
         onChange={e => onChangeGenreHandler(e.target.value)}
       />
