@@ -5,15 +5,16 @@ import Router from 'next/router';
 import Markdown from 'react-markdown';
 
 function Page() {
+  const title = 'β版をリリースしました';
 
   return (
     <>
       <Head>
-        <title>β版をリリースしました</title>
+        <title>{title}</title>
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.push('/news') }}>リストに戻る</button>
-        <h1 className="text-center border-bottom mb-3">β版をリリースしました</h1>
+        <h1 className="text-center border-bottom mb-3">{title}</h1>
         2020/09/22<br />
         <Markdown source={`こんにちは、Trivia Online 運営チームです。\n
 2020年9月22日、β版をリリースすることとなりました。\n
