@@ -10,7 +10,7 @@ import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
 import LoginRequired from '@components/LoginRequired';
-import TagDropdown from '../components/Tag/TagDropdown';
+import GenreDropdown from '../components/Tag/GenreDropdown';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
@@ -24,6 +24,7 @@ function Page() {
 
   const [previewUrl, setPreviewUrl] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [isAlreadySubmit, setIsAlreadySubmit] = useState(false);
 
   const onChangeTagsValue = (tags) => {
     setTags(tags);
@@ -31,12 +32,14 @@ function Page() {
 
   async function onClickSubmit() {
     try {
+      setIsAlreadySubmit(true);
       await apiPost('/trivias', {
         forwardText, backwardText, tags, genre, bodyText,
       });
       Router.push('/list');
     }
     catch (error) {
+      setIsAlreadySubmit(false);
       toastError(error, 'Error');
     }
   }
@@ -60,7 +63,7 @@ function Page() {
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center border-bottom mb-3">トリビアを作成する</h1>
         <label className="form-label">ジャンル</label>
-        <TagDropdown genre={genre} setGenre={setGenre} />
+        <GenreDropdown genre={genre} setGenre={setGenre} />
         <label className="form-label mt-3">タグ (3件まで)</label>
         <TagsInput
           value={tags}
@@ -122,7 +125,7 @@ function Page() {
               <Button
                 type="button"
                 className="btn btn-teal text-snow w-100"
-                disabled={invalidFormValue}
+                disabled={invalidFormValue || isAlreadySubmit}
                 onClick={onClickSubmit}
               >
                 作成する！
