@@ -6,6 +6,7 @@ import Markdown from 'react-markdown';
 
 function Page() {
   const title = 'β版をリリースしました';
+  const date = '20200922';
 
   return (
     <>
@@ -14,6 +15,14 @@ function Page() {
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.push('/news') }}>リストに戻る</button>
+        <a
+          className="btn text-white btn-twitter"
+          href={`https://twitter.com/intent/tweet?text=🎉${title}🎉 詳しくはこちら https://trivia-online.com/news/${date}&hashtags=trivia_online`}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <i className="fab fa-twitter"></i>
+        </a>
         <h1 className="text-center border-bottom mb-3">{title}</h1>
         2020/09/22<br />
         <Markdown source={`こんにちは、Trivia Online 運営チームです。\n
