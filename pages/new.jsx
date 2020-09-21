@@ -19,6 +19,7 @@ function Page() {
   const [tags, setTags] = useState([]);
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
+  const [bodyText, setBodyText] = useState('');
   const [invalidFormValue, setInvalidFormValue] = useState(false);
 
   const [previewUrl, setPreviewUrl] = useState('');
@@ -31,7 +32,7 @@ function Page() {
   async function onClickSubmit() {
     try {
       await apiPost('/trivias', {
-        forwardText, backwardText, tags, genre,
+        forwardText, backwardText, tags, genre, bodyText,
       });
       Router.push('/list');
     }
@@ -87,7 +88,7 @@ function Page() {
               onChange={e => setBackwardText(e.target.value)}
             />
           </div>
-          <div className="row">
+          <div className="row mb-3">
             <div className="col-12 px-2 mb-md-0">
               <button
                 type="button"
@@ -104,6 +105,19 @@ function Page() {
                 src={`https://trivia-ogp.vercel.app/api/ogp?${previewUrl}`}
               />
             </Collapse>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="backwardText" className="form-label">本文(必須ではありません)</label>
+            <textarea
+              type="text"
+              className="form-control"
+              id="bodyText"
+              rows="10"
+              value={bodyText}
+              onChange={e => setBodyText(e.target.value)}
+            />
+          </div>
+          <div className="row">
             <div className="col-12 px-2 mb-4 mb-md-0 mt-3">
               <Button
                 type="button"
