@@ -69,6 +69,7 @@ function Page() {
           value={tags}
           onChange={onChangeTagsValue}
           maxTags="3"
+          onlyUnique
         />
         <form className="mt-3">
           <div className="mb-3">
