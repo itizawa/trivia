@@ -1,0 +1,5 @@
+.infinite-scroll-component__outerdiv {
+  &>div.infinite-scroll-component {
+    overflow: unset !important;
+  }
+}
