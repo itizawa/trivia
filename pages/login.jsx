@@ -18,7 +18,7 @@ function IndexPage() {
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center mb-3">ログインページ</h1>
         {query.isRedirect && <p className="alert alert-info mb-3">その操作にはログインが必要です</p>}
-        <div className="mb-3 overflow-auto term-for-login">
+        <div className="mb-3 overflow-auto term-for-login border p-2">
           <Term />
         </div>
         <div className="row mb-3">
