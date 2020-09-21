@@ -33,12 +33,13 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar bg-orange">
+    <nav className={`navbar ${process.env.DEV_MODE ? 'bg-tblue' : 'bg-orange'}`}>
       <div className="container-fluid">
         <div className="mr-auto">
           <Link href="/">
             <a className="navbar-brand text-white">
               トリビアオンライン
+              {process.env.DEV_MODE && 'Dev Mode'}
             </a>
           </Link>
         </div>
