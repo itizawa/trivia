@@ -5,14 +5,14 @@ import {
   DropdownToggle, DropdownMenu, DropdownItem, Input, InputGroup, InputGroupButtonDropdown,
 } from 'reactstrap';
 
-function TagDropdown(props) {
+function GenreDropdown(props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   useEffect(() => {
     const genre = localStorage.getItem('genre');
     if (genre != null) {
-      props.setGenre(genre);
+      return props.setGenre(genre);
     }
     props.setGenre('生活');
   }, [props]);
@@ -51,9 +51,9 @@ function TagDropdown(props) {
   );
 }
 
-TagDropdown.propTypes = {
+GenreDropdown.propTypes = {
   genre: PropTypes.string,
   setGenre: PropTypes.func,
 };
 
-export default TagDropdown;
+export default GenreDropdown;
