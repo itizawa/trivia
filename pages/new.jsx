@@ -10,7 +10,7 @@ import appContainer from '@containers/appContainer';
 
 import { toastError } from '@utils/toaster';
 import LoginRequired from '@components/LoginRequired';
-import TagDropdown from '../components/Tag/TagDropdown';
+import GenreDropdown from '../components/Tag/GenreDropdown';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
@@ -19,10 +19,12 @@ function Page() {
   const [tags, setTags] = useState([]);
   const [forwardText, setForwardText] = useState('');
   const [backwardText, setBackwardText] = useState('');
+  const [bodyText, setBodyText] = useState('');
   const [invalidFormValue, setInvalidFormValue] = useState(false);
 
   const [previewUrl, setPreviewUrl] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [isAlreadySubmit, setIsAlreadySubmit] = useState(false);
 
   const onChangeTagsValue = (tags) => {
     setTags(tags);
@@ -30,12 +32,14 @@ function Page() {
 
   async function onClickSubmit() {
     try {
+      setIsAlreadySubmit(true);
       await apiPost('/trivias', {
-        forwardText, backwardText, tags, genre,
+        forwardText, backwardText, tags, genre, bodyText,
       });
       Router.push('/list');
     }
     catch (error) {
+      setIsAlreadySubmit(false);
       toastError(error, 'Error');
     }
   }
@@ -59,7 +63,7 @@ function Page() {
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center border-bottom mb-3">トリビアを作成する</h1>
         <label className="form-label">ジャンル</label>
-        <TagDropdown genre={genre} setGenre={setGenre} />
+        <GenreDropdown genre={genre} setGenre={setGenre} />
         <label className="form-label mt-3">タグ (3件まで)</label>
         <TagsInput
           value={tags}
@@ -87,7 +91,7 @@ function Page() {
               onChange={e => setBackwardText(e.target.value)}
             />
           </div>
-          <div className="row">
+          <div className="row mb-3">
             <div className="col-12 px-2 mb-md-0">
               <button
                 type="button"
@@ -104,11 +108,24 @@ function Page() {
                 src={`https://trivia-ogp.vercel.app/api/ogp?${previewUrl}`}
               />
             </Collapse>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="backwardText" className="form-label">本文(必須ではありません)</label>
+            <textarea
+              type="text"
+              className="form-control"
+              id="bodyText"
+              rows="10"
+              value={bodyText}
+              onChange={e => setBodyText(e.target.value)}
+            />
+          </div>
+          <div className="row">
             <div className="col-12 px-2 mb-4 mb-md-0 mt-3">
               <Button
                 type="button"
                 className="btn btn-teal text-snow w-100"
-                disabled={invalidFormValue}
+                disabled={invalidFormValue || isAlreadySubmit}
                 onClick={onClickSubmit}
               >
                 作成する！
