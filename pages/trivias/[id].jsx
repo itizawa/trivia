@@ -14,8 +14,9 @@ function Page({ pageProps }) {
   return (
     <>
       <Head>
-        <title>{trivia.forwardText}</title>
+        <title>{trivia.forwardText}{trivia.backwardText}</title>
         <meta property="og:image" content={url} />
+        <meta property="og:description" content={trivia.bodyText} />
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.push('/list') }}>リストに戻る</button>

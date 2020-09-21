@@ -56,13 +56,13 @@ async function AssociateTagAndTrivia(tags, triviaId) {
 
 handler.post(validator.summary, ApiValidator, AccessTokenParser, LoginRequired, async(req, res) => {
   const {
-    forwardText, backwardText, tags, genre,
+    forwardText, backwardText, tags, genre, bodyText,
   } = req.body;
   const creator = req.user._id;
 
   try {
     const trivia = new Trivia({
-      forwardText, backwardText, creator, genre,
+      forwardText, backwardText, creator, genre, bodyText,
     });
     const createdTrivia = await trivia.save();
 

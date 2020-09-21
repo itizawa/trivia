@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Router from 'next/router';
 import '../styles/global.scss';
 
 import { Provider } from 'next-auth/client';
@@ -8,9 +9,25 @@ import TriviaListContainer from '@containers/TriviaListContainer';
 
 import Navbar from '@components/commons/Navbar';
 import FixedFooter from '../components/commons/FexedFooter';
+import * as gtag from '../lib/gtag';
 
 function Page(pageProps) {
   const { session } = pageProps;
+
+  useEffect(() => {
+    if (!gtag.existsGaId) {
+      return;
+    }
+
+    const handleRouteChange = (path) => {
+      gtag.pageview(path);
+    };
+
+    Router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
 
   return (
     <appContainer.Provider>

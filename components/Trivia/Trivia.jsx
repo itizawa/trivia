@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import Markdown from 'react-markdown';
 
 import { useSession } from 'next-auth/client';
 
@@ -128,6 +129,11 @@ function Trivia(props) {
       <div className="img-box-fix-aspect trivia-card" ref={triviaCardEl}>
         <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`} />
       </div>
+      {trivia?.bodyText && (
+        <div className="p-3 my-3 bg-aliceblue">
+          <Markdown source={trivia?.bodyText} />
+        </div>
+      )}
       {(session == null && !isLoading) && (
         <>
           <p className="alert alert-info my-3 text-center">
