@@ -43,6 +43,7 @@
     "react-dom": "^16.13.1",
     "react-infinite-scroll-component": "^5.1.0",
     "react-loading-skeleton": "^2.1.1",
+    "react-markdown": "^4.3.1",
     "react-tagsinput": "^3.19.0",
     "reactstrap": "^8.5.1",
     "sass": "^1.26.10",
