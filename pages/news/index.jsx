@@ -2,8 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import newsList from '../../lib/newsList';
-
 function NewsPage() {
   return (
     <>
@@ -13,18 +11,14 @@ function NewsPage() {
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center border-bottom mb-3">News 一覧</h1>
         <ul className="list-group">
-          {newsList.map((news) => {
-          return (
-            <li className="list-group-item" key={news.id}>
-              {news.createdAt}<br />
-              <Link href={`/news/${news.id}`}>
-                <a>
-                  {news.title}
-                </a>
-              </Link>
-            </li>
-          );
-        })}
+          <li className="list-group-item">
+            2020/09/22<br />
+            <Link href="/news/20200922">
+              <a>
+                β版をリリースしました
+              </a>
+            </Link>
+          </li>
         </ul>
       </div>
     </>
