@@ -127,7 +127,10 @@ function Trivia(props) {
         <span>合計 {trivia?.acquisitionCount} へえ</span>
       </div>
       <div className="img-box-fix-aspect trivia-card" ref={triviaCardEl}>
-        <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`} alt={trivia?.forwardText} />
+        <img
+          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`}
+          alt={trivia?.forwardText}
+        />
       </div>
       {trivia?.bodyText && (
         <div className="p-3 my-3 bg-aliceblue">
