@@ -1,5 +1,5 @@
 import React from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -8,6 +8,11 @@ import Trivia from '../../components/Trivia/Trivia';
 
 
 function Page({ pageProps }) {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   const { trivia } = pageProps;
   const url = `https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}`;
 
@@ -34,7 +39,7 @@ export async function getStaticPaths() {
   const { docs } = await res.data;
   const paths = docs.map(doc => `/trivias/${doc._id}`);
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
