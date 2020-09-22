@@ -31,7 +31,6 @@ function Page(pageProps) {
       Router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, []);
-  console.log(p.version);
 
   return (
     <>
