@@ -12,6 +12,7 @@ import TriviaListContainer from '@containers/TriviaListContainer';
 import Navbar from '@components/commons/Navbar';
 import FixedFooter from '../components/commons/FexedFooter';
 import * as gtag from '../lib/gtag';
+import p from '../package.json';
 
 function Page(pageProps) {
   const { session } = pageProps;
@@ -30,6 +31,7 @@ function Page(pageProps) {
       Router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, []);
+  console.log(p.version);
 
   return (
     <>
@@ -45,6 +47,7 @@ function Page(pageProps) {
             </div>
             <FixedFooter />
           </TriviaListContainer.Provider>
+          <span className="version-logo">v {p.version}</span>
         </Provider>
       </appContainer.Provider>
     </>
