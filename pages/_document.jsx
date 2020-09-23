@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html, Head, Main, NextScript,
+} from 'next/document';
 import { existsGaId, GA_ID } from '../lib/gtag';
 
 export default class MyDocument extends Document {
@@ -12,10 +14,9 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <Html>
         <Head>
           <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/ fb# prefix属性: http://ogp.me/ns/ prefix属性#" />
-          <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
           <meta name="google-site-verification" content="iT9UqKdRcRp9KwhH5MrYL6HeWcNbQYFESsnONwk4Tro" />
 
           {/* Favicon */}
@@ -58,7 +59,8 @@ export default class MyDocument extends Document {
           <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossOrigin="anonymous"></script>
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossOrigin="anonymous"></script>
         </body>
-      </html>
+      </Html>
+
     );
   }
 

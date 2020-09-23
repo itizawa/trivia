@@ -1,13 +1,18 @@
 import React from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import Axios from 'axios';
+import axios from 'axios';
 
 import Trivia from '../../components/Trivia/Trivia';
 
 
 function Page({ pageProps }) {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   const { trivia } = pageProps;
   const url = `https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}`;
 
@@ -26,15 +31,24 @@ function Page({ pageProps }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { params } = context;
+export async function getStaticPaths() {
+  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
 
+  const res = await axios.get(`${hostUrl}/api/trivias/list?page=1`);
+
+  const { docs } = await res.data;
+  const paths = docs.map(doc => `/trivias/${doc._id}`);
+
+  return { paths, fallback: true };
+}
+
+export async function getStaticProps({ params }) {
   let trivia;
 
   const hostUrl = process.env.SITE_URL;
 
   try {
-    const res = await Axios.get(`${hostUrl}/api/trivias/${params.id}`);
+    const res = await axios.get(`${hostUrl}/api/trivias/${params.id}`);
     trivia = res.data.trivia;
   }
   catch (error) {

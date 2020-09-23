@@ -12,6 +12,7 @@ function Page() {
     <>
       <Head>
         <title>{title}</title>
+        <meta property="og:image" content="/release/20200922@2x.png" />
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <div className="d-flex">

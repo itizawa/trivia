@@ -30,7 +30,7 @@ function TriviaCard(props) {
   return (
     <div className="card cursor-pointer shadow-sm" onClick={() => { openTriviaModalHandler(_id) }}>
       <div className="img-box-fix-aspect">
-        <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${forwardText}&backwardText=${backwardText}`} />
+        <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${forwardText}&backwardText=${backwardText}`} alt={forwardText} />
       </div>
       <span className="ml-auto count-for-trivia-card">
         <span className={`mr-2 count-text text-${textColor}`}>

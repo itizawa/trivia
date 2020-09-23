@@ -45,6 +45,18 @@ body {
   }
 }
 
+.version-logo {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  font-size: 8px;
+  color: transparent;
+
+  &:hover {
+    color: black;
+  }
+}
+
 @import './utility.scss';
 @import './btn.scss';
 @import './trivia.scss';
