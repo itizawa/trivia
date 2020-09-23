@@ -52,6 +52,7 @@ export default class MyDocument extends Document {
               />
             </>
           ) : null}
+          <meta name="google-site-verification" content="Mu616nJ4RjocSbl0vYSX1fL4ldsRpJqqnND7AWURYmo" />
         </Head>
         <body>
           <Main />
