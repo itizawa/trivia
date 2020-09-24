@@ -2,10 +2,14 @@ import { createContainer } from 'unstated-next';
 import Axios from 'axios';
 import urljoin from 'url-join';
 import toArrayIfNot from '@utils/toArrayIfNot';
-import { getSession } from 'next-auth/client';
+import { useSession, getSession } from 'next-auth/client';
+import { useEffect, useState } from 'react';
 
-function appContainer() {
+function AppContainer() {
   Axios.defaults.baseURL = process.env.SITE_URL || 'http://localhost:3000/';
+  const [session] = useSession();
+  const [currentUser, setCurrentUser] = useState(null);
+
   // API
   const apiRequest = async(method, path, params) => {
 
@@ -50,14 +54,39 @@ function appContainer() {
     return apiRequest('put', route, params);
   };
 
-  const apiDelete = (route, params = {}) => {
-    return apiRequest('delete', route, params);
+  const apiDelete = async(route, __params = {}) => {
+    const params = __params;
 
+    // set accessToken
+    const session = await getSession();
+    params.accessToken = session?.accessToken;
+
+    try {
+      const res = await Axios.delete(urljoin('api', route), { params });
+      return res.data;
+    }
+    catch (_err) {
+      const err = _err.response ? _err.response.data.errors : _err;
+      const errs = toArrayIfNot(err);
+      throw errs;
+    }
   };
 
+  useEffect(() => {
+    async function retrieveUser() {
+      if (session == null) {
+        return;
+      }
+      const res = await apiGet('/users/me');
+      const { user } = res;
+      setCurrentUser(user);
+    }
+    retrieveUser();
+  }, [session]);
+
   return {
-    apiGet, apiPost, apiPut, apiDelete,
+    currentUser, apiGet, apiPost, apiPut, apiDelete,
   };
 }
 
-export default createContainer(appContainer);
+export default createContainer(AppContainer);
