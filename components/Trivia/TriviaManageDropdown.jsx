@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 
 import {
   Modal, ModalHeader, ModalBody, ModalFooter,
@@ -25,6 +26,7 @@ function TriviaManageDropdown(props) {
   async function deleteTriviaHandler() {
     try {
       await apiDelete(`/trivias/${props.triviaId}`);
+      Router.push('/list');
     }
     catch (error) {
       toastError(error, 'Error');
