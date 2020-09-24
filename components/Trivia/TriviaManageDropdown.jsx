@@ -1,7 +1,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import GearIcon from '../commons/icons/GearIcon';
+import TrashIcon from '../commons/icons/TrashIcon';
 
 function TriviaManageDropdown(props) {
 
@@ -11,7 +13,12 @@ function TriviaManageDropdown(props) {
         <GearIcon />
       </button>
       <div className="dropdown-menu dropdown-menu-right">
-        <button className="dropdown-item" type="button">Something else here</button>
+        <button className="dropdown-item" type="button">
+          <TrashIcon />
+          <span className="ml-2">
+            削除する
+          </span>
+        </button>
       </div>
     </div>
   );
