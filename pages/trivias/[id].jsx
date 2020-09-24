@@ -35,9 +35,10 @@ function Page({ pageProps }) {
             </div>
           )}
         </div>
-        {trivia != null && (
+        {trivia != null ? (
           <Trivia trivia={trivia} />
-        )}
+        )
+        : (<p>Trivia が存在しません</p>)}
       </div>
     </>
   );
