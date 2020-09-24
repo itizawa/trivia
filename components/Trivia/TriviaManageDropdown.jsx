@@ -6,17 +6,29 @@ import {
   Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 
+import appContainer from '@containers/appContainer';
+
+import { toastError } from '@utils/toaster';
+
 import GearIcon from '../commons/icons/GearIcon';
 import TrashIcon from '../commons/icons/TrashIcon';
 
 function TriviaManageDropdown(props) {
+  const { apiDelete } = appContainer.useContainer();
+
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
   function toggleDeleteModalHandler() {
     setIsOpenDeleteModal(!isOpenDeleteModal);
   }
 
-  function deleteTriviaHandler() {
+  async function deleteTriviaHandler() {
+    try {
+      await apiDelete(`/trivias/${props.triviaId}`);
+    }
+    catch (error) {
+      toastError(error, 'Error');
+    }
     setIsOpenDeleteModal(!isOpenDeleteModal);
   }
 
@@ -53,7 +65,7 @@ function TriviaManageDropdown(props) {
 }
 
 TriviaManageDropdown.propTypes = {
-  count: PropTypes.number,
+  triviaId: PropTypes.string.isRequired,
 };
 
 export default TriviaManageDropdown;

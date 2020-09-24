@@ -50,9 +50,22 @@ function appContainer() {
     return apiRequest('put', route, params);
   };
 
-  const apiDelete = (route, params = {}) => {
-    return apiRequest('delete', route, params);
+  const apiDelete = async(route, __params = {}) => {
+    const params = __params;
 
+    // set accessToken
+    const session = await getSession();
+    params.accessToken = session?.accessToken;
+
+    try {
+      const res = await Axios.delete(urljoin('api', route), { params });
+      return res.data;
+    }
+    catch (_err) {
+      const err = _err.response ? _err.response.data.errors : _err;
+      const errs = toArrayIfNot(err);
+      throw errs;
+    }
   };
 
   return {
