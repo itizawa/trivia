@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Trivia from '../../components/Trivia/Trivia';
+import TriviaManageDropdown from '../../components/Trivia/TriviaManageDropdown';
 
 
 function Page({ pageProps }) {
@@ -24,7 +25,12 @@ function Page({ pageProps }) {
         <meta property="og:description" content={trivia.bodyText} />
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
-        <button type="button" className="btn btn-outline-light mb-3" onClick={() => { Router.push('/list') }}>リストに戻る</button>
+        <div className="d-flex mb-3">
+          <button type="button" className="btn btn-outline-light" onClick={() => { Router.push('/list') }}>リストに戻る</button>
+          <div className="ml-auto">
+            <TriviaManageDropdown />
+          </div>
+        </div>
         <Trivia trivia={trivia} />
       </div>
     </>
