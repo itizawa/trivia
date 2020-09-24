@@ -2,10 +2,14 @@ import { createContainer } from 'unstated-next';
 import Axios from 'axios';
 import urljoin from 'url-join';
 import toArrayIfNot from '@utils/toArrayIfNot';
-import { getSession } from 'next-auth/client';
+import { useSession, getSession } from 'next-auth/client';
+import { useEffect, useState } from 'react';
 
-function appContainer() {
+function AppContainer() {
   Axios.defaults.baseURL = process.env.SITE_URL || 'http://localhost:3000/';
+  const [session] = useSession();
+  const [currentUser, setCurrentUser] = useState(null);
+
   // API
   const apiRequest = async(method, path, params) => {
 
@@ -68,9 +72,21 @@ function appContainer() {
     }
   };
 
+  useEffect(() => {
+    async function retrieveUser() {
+      if (session == null) {
+        return;
+      }
+      const res = await apiGet('/users/me');
+      const { user } = res;
+      setCurrentUser(user);
+    }
+    retrieveUser();
+  }, [session]);
+
   return {
-    apiGet, apiPost, apiPut, apiDelete,
+    currentUser, apiGet, apiPost, apiPut, apiDelete,
   };
 }
 
-export default createContainer(appContainer);
+export default createContainer(AppContainer);

@@ -4,6 +4,8 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import appContainer from '@containers/appContainer';
+
 import Trivia from '../../components/Trivia/Trivia';
 import TriviaManageDropdown from '../../components/Trivia/TriviaManageDropdown';
 
@@ -14,6 +16,7 @@ function Page({ pageProps }) {
     return <div>Loading...</div>;
   }
 
+  const { currentUser } = appContainer.useContainer();
   const { trivia } = pageProps;
   const url = `https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}`;
 
@@ -27,9 +30,11 @@ function Page({ pageProps }) {
       <div className="bg-snow rounded mt-3 p-3">
         <div className="d-flex mb-3">
           <button type="button" className="btn btn-outline-light btn-sm" onClick={() => { Router.push('/list') }}>リストに戻る</button>
-          <div className="ml-auto">
-            <TriviaManageDropdown triviaId={trivia._id} />
-          </div>
+          {currentUser?._id === trivia.creator._id && (
+            <div className="ml-auto">
+              <TriviaManageDropdown triviaId={trivia._id} />
+            </div>
+          )}
         </div>
         <Trivia trivia={trivia} />
       </div>
