@@ -28,7 +28,7 @@ function Page({ pageProps }) {
         <div className="d-flex mb-3">
           <button type="button" className="btn btn-outline-light btn-sm" onClick={() => { Router.push('/list') }}>リストに戻る</button>
           <div className="ml-auto">
-            <TriviaManageDropdown />
+            <TriviaManageDropdown triviaId={trivia._id} />
           </div>
         </div>
         <Trivia trivia={trivia} />

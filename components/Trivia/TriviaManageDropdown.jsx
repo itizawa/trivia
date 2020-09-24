@@ -10,10 +10,13 @@ import GearIcon from '../commons/icons/GearIcon';
 import TrashIcon from '../commons/icons/TrashIcon';
 
 function TriviaManageDropdown(props) {
-
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
   function toggleDeleteModalHandler() {
+    setIsOpenDeleteModal(!isOpenDeleteModal);
+  }
+
+  function deleteTriviaHandler() {
     setIsOpenDeleteModal(!isOpenDeleteModal);
   }
 
@@ -42,7 +45,7 @@ function TriviaManageDropdown(props) {
           削除します(一度消した物は元には戻せません)
         </ModalBody>
         <ModalFooter>
-          <button type="button" className="btn btn-danger" onClick={toggleDeleteModalHandler}>削除します</button>
+          <button type="button" className="btn btn-danger" onClick={deleteTriviaHandler}>削除します</button>
         </ModalFooter>
       </Modal>
     </>
