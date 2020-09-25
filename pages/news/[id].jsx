@@ -8,7 +8,7 @@ import { getSortedPostsData, getPostData } from '@lib/utils/fetchPostData';
 
 function NewsPage({ pageProps }) {
   const { postData } = pageProps;
-  console.log(pageProps);
+
   return (
     <>
       <Head>
