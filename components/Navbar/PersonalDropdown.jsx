@@ -9,7 +9,7 @@ function PersonalDropdown() {
 
   return (
     <div className="btn-group">
-      <button className="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+      <button className="btn btn-sm dropdown-toggle border-0" type="button" data-toggle="dropdown" aria-expanded="false">
         <img height="24px" className="rounded-circle bg-white mr-2" src={user.image} />
       </button>
       <ul className="dropdown-menu dropdown-menu-right">
