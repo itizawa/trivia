@@ -1,6 +1,5 @@
 
 import nextConnect from 'next-connect';
-import validator from 'validator';
 import ApiValidator from '@middlewares/ApiValidator';
 import { query } from 'express-validator';
 
@@ -15,11 +14,16 @@ const handler = nextConnect();
 
 dbConnect();
 
-validator.delete = [
-  query('id').isMongoId(),
-];
+const validator = {
+  get: [
+    query('id').isMongoId(),
+  ],
+  delete: [
+    query('id').isMongoId(),
+  ],
+};
 
-handler.get(async(req, res) => {
+handler.get(validator.get, ApiValidator, async(req, res) => {
   const { id } = req.query;
 
   try {
