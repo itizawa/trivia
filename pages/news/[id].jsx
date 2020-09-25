@@ -8,19 +8,18 @@ import { getSortedPostsData, getPostData } from '@lib/utils/fetchPostData';
 
 function NewsPage({ pageProps }) {
   const { postData } = pageProps;
-
+  console.log(pageProps);
   return (
     <>
       <Head>
         <title>{postData.title}</title>
-        <meta property="og:image" content="/release/20200922@2x.png" />
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <div className="d-flex mb-3">
           <button type="button" className="btn btn-sm btn-outline-light mr-auto" onClick={() => { Router.push('/news') }}>リストに戻る</button>
           <a
             className="btn text-white btn-twitter"
-            href={`https://twitter.com/intent/tweet?text=🎉${postData.title}🎉 詳しくはこちら https://trivia-online.com/news/${postData.date}&hashtags=trivia_online`}
+            href={`https://twitter.com/intent/tweet?text=🎉${postData.title}🎉 詳しくはこちら https://trivia-online.com/news/${postData.id}&hashtags=trivia_online`}
             rel="noopener noreferrer"
             target="_blank"
           >
