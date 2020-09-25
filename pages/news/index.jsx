@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import getSortedPostsData from '@lib/utils/fetchPostData';
+import { getSortedPostsData } from '@lib/utils/fetchPostData';
 
 function NewsPage(props) {
   const { newsPosts } = props.pageProps;
