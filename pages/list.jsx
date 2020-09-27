@@ -10,8 +10,6 @@ import PaginationMenu from '../components/commons/PaginationWrapper';
 function ListPage({ pageProps }) {
   const { data } = pageProps;
   const { docs } = data;
-  console.log(data);
-  console.log(data.totalDocs);
   const [triviaForModal, setTriviaForModal] = useState(null);
 
   /**
@@ -35,7 +33,7 @@ function ListPage({ pageProps }) {
    * @param {number} selectedPage selectedPage of trivia
    */
   function onChangePage(selectedPage) {
-    console.log(selectedPage);
+    // console.log(selectedPage);
   }
 
   return (
@@ -68,15 +66,7 @@ function ListPage({ pageProps }) {
 }
 
 
-// export async function getStaticPaths() {
-//   return {
-//     paths: ['/foo'],
-//     fallback: true,
-//   };
-// }
-
-export const getStaticProps = async(ctx) => {
-
+export const getStaticProps = async() => {
   let data;
 
   try {
@@ -84,7 +74,7 @@ export const getStaticProps = async(ctx) => {
     data = res.data;
   }
   catch (error) {
-  // eslint-disable-next-line no-console
+    // eslint-disable-next-line no-console
     console.log(error);
   }
 
@@ -92,6 +82,7 @@ export const getStaticProps = async(ctx) => {
     props: {
       data,
     },
+    revalidate: 60,
   };
 };
 
