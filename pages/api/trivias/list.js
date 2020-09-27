@@ -20,7 +20,7 @@ handler.get(validator.paginate, ApiValidator, async(req, res) => {
   const options = {
     page: req.query.page || 1,
     sort: { createdAt: -1 },
-    limit: 5,
+    limit: 20,
     populate: { path: 'creator', model: User },
   };
 
