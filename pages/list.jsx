@@ -5,11 +5,13 @@ import Head from 'next/head';
 import axios from 'axios';
 import TriviaCard from '@components/Trivia/TriviaCard';
 import TriviaModal from '@components/Trivia/TriviaModal';
+import PaginationMenu from '../components/commons/PaginationWrapper';
 
 function ListPage({ pageProps }) {
   const { data } = pageProps;
   const { docs } = data;
-
+  console.log(data);
+  console.log(data.totalDocs);
   const [triviaForModal, setTriviaForModal] = useState(null);
 
   /**
@@ -26,6 +28,14 @@ function ListPage({ pageProps }) {
    */
   function onCloseModal() {
     setTriviaForModal(null);
+  }
+
+  /**
+   * on click page
+   * @param {number} selectedPage selectedPage of trivia
+   */
+  function onChangePage(selectedPage) {
+    console.log(selectedPage);
   }
 
   return (
@@ -46,25 +56,12 @@ function ListPage({ pageProps }) {
             );
           })}
         </div>
-        <nav aria-label="Page navigation example">
-          <ul className="pagination justify-content-center">
-            <li className="page-item">
-              <a className="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span className="sr-only">Previous</span>
-              </a>
-            </li>
-            <li className="page-item"><a className="page-link" href="#">1</a></li>
-            <li className="page-item"><a className="page-link" href="#">2</a></li>
-            <li className="page-item"><a className="page-link" href="#">3</a></li>
-            <li className="page-item">
-              <a className="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span className="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <PaginationMenu
+          activePage={data.page}
+          totalItemsCount={parseInt(data.totalDocs)}
+          pagingLimit={data.limit}
+          changePage={onChangePage}
+        />
       </div>
     </>
   );
