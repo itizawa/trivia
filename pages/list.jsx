@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Router from 'next/router';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
@@ -33,7 +34,7 @@ function ListPage({ pageProps }) {
    * @param {number} selectedPage selectedPage of trivia
    */
   function onChangePage(selectedPage) {
-    // console.log(selectedPage);
+    Router.push(`/trivias/list/${selectedPage}`);
   }
 
   return (
