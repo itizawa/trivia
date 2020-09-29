@@ -67,10 +67,12 @@ function ListPage({ pageProps }) {
 
 
 export const getStaticProps = async() => {
+  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
+
   let data;
 
   try {
-    const res = await axios.get('/api/trivias/list?page=1');
+    const res = await axios.get(`${hostUrl}/api/trivias/list?page=1`);
     data = res.data;
   }
   catch (error) {
