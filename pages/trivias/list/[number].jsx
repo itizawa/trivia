@@ -71,13 +71,15 @@ export async function getStaticPaths() {
   const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
   const res = await axios.get(`${hostUrl}/api/trivias/list?page=1`);
 
-  const { totalDocs } = await res.data;
+  const { totalPages } = await res.data;
 
+  // その数字までの整数を配列にする。
+  // ex) 5 => [1,2,3,4,5]
   // https://qiita.com/sakymark/items/710f0b9a632c375fbc31
-  const minitues = [...Array(totalDocs).keys()].map(i => ++i);
-  console.log(minitues);
+  const numberArray = [...Array(totalPages).keys()];
+  const paths = numberArray.map(index => `/trivias/list/${index + 1}`);
 
-  return { paths: ['/trivias/list/1'], fallback: true };
+  return { paths, fallback: true };
 }
 
 export const getStaticProps = async(context) => {
