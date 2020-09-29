@@ -34,6 +34,7 @@ function ListPage({ pageProps }) {
    * @param {number} selectedPage selectedPage of trivia
    */
   function onChangePage(selectedPage) {
+    window.scrollTo(0, 0);
     Router.push(`/trivias/list/${selectedPage}`);
   }
 
