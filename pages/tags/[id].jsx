@@ -8,9 +8,9 @@ import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
 import TagIcon from '../../components/commons/icons/TagIcon';
 
 
-function ListPage(props) {
-  const { id } = props.router.query;
-  const { tag } = props.pageProps;
+function ListPage({ pageProps }) {
+  const { data } = pageProps;
+  const { tag, docs } = data;
 
   return (
     <>
@@ -27,7 +27,7 @@ function ListPage(props) {
         <div className="my-2 text-right">
           <span>タグが作られた日 : {fromTimeStampToDate(tag?.createdAt)}</span>
         </div>
-        <TriviaList tagId={id} />
+        <TriviaList trivias={docs} />
       </div>
     </>
   );
@@ -36,13 +36,19 @@ function ListPage(props) {
 export async function getServerSideProps(context) {
   const { params } = context;
 
-  let tag;
+  let data;
 
   const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
 
   try {
-    const res = await axios.get(`${hostUrl}/api/tags/${params.id}`);
-    tag = res.data.tag;
+    const [{ data: tagData }, { data: triviasData }] = await Promise.all([
+      axios.get(`${hostUrl}/api/tags/${params.id}`),
+      axios.get(`${hostUrl}/api/tags/${params.id}/pages?page=1`),
+    ]);
+    data = {
+      tag: tagData.tag,
+      docs: triviasData.docs,
+    };
   }
   catch (error) {
     // eslint-disable-next-line no-console
@@ -50,7 +56,7 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { tag }, // will be passed to the page component as props
+    props: { data }, // will be passed to the page component as props
   };
 }
 
