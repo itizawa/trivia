@@ -9,7 +9,7 @@ import PaginationMenu from '@components/commons/PaginationWrapper';
 
 function ListPage({ pageProps }) {
   const { data } = pageProps;
-  console.log(pageProps);
+  // console.log(pageProps);
   return null;
   const { docs } = data;
   const [triviaForModal, setTriviaForModal] = useState(null);
@@ -68,24 +68,26 @@ function ListPage({ pageProps }) {
 }
 
 export async function getStaticPaths() {
+  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
+  const res = await axios.get(`${hostUrl}/api/trivias/list?page=1`);
 
-  const res = await axios.get('/api/trivias/list?page=1');
+  const { totalDocs } = await res.data;
 
-  const { docs } = await res.data;
-  console.log(res.data);
-  //   const paths = docs.map(doc => `/trivias/${doc._id}`);
+  // https://qiita.com/sakymark/items/710f0b9a632c375fbc31
+  const minitues = [...Array(totalDocs).keys()].map(i => ++i);
+  console.log(minitues);
 
   return { paths: ['/trivias/list/1'], fallback: true };
 }
 
 export const getStaticProps = async(context) => {
   const { params } = context;
-  console.log(params);
+  // console.log(params);
   let data;
 
   try {
     const res = await axios.get('/api/trivias/list?page=1');
-    console.log(res.data);
+    // console.log(res.data);
     data = res.data;
   }
   catch (error) {
