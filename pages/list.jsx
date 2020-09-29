@@ -44,7 +44,6 @@ function ListPage({ pageProps }) {
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center border-bottom mb-3">トリビア一覧</h1>
-        {/* <TriviaList /> */}
         <div className="row">
           {docs.map((trivia, index) => {
             return (

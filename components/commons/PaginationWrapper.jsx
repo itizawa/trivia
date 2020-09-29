@@ -121,7 +121,7 @@ function PaginationWrapper(props) {
 
   return (
     <React.Fragment>
-      <Pagination size="sm" listClassName={getListClassName()}>
+      <Pagination listClassName={getListClassName()}>
         {renderFirstPrev(activePage)}
         {renderPaginations(activePage, paginationStart, maxViewPageNum)}
         {renderNextLast(activePage, totalPage)}
