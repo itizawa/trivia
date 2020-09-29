@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import Router from 'next/router';
 
 import axios from 'axios';
 import TriviaCard from '@components/Trivia/TriviaCard';
@@ -9,8 +10,6 @@ import PaginationMenu from '@components/commons/PaginationWrapper';
 
 function ListPage({ pageProps }) {
   const { data } = pageProps;
-  // console.log(pageProps);
-  return null;
   const { docs } = data;
   const [triviaForModal, setTriviaForModal] = useState(null);
 
@@ -35,7 +34,7 @@ function ListPage({ pageProps }) {
    * @param {number} selectedPage selectedPage of trivia
    */
   function onChangePage(selectedPage) {
-    // console.log(selectedPage);
+    Router.push(`/trivias/list/${selectedPage}`);
   }
 
   return (
@@ -83,13 +82,12 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async(context) => {
-  const { params } = context;
-  // console.log(params);
+  const { number } = context.params;
+  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
   let data;
 
   try {
-    const res = await axios.get('/api/trivias/list?page=1');
-    // console.log(res.data);
+    const res = await axios.get(`${hostUrl}/api/trivias/list?page=${number}`);
     data = res.data;
   }
   catch (error) {
