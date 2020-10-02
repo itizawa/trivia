@@ -16,6 +16,8 @@ function ListPage({ pageProps }) {
     <>
       <Head>
         <title>「{tag?.name}」タグが付けられたTrivia</title>
+        <meta name="description" content={`${tag.name}を含んだトリビア`} />
+
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <h1 className="text-center border-bottom mb-3">
