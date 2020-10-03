@@ -20,17 +20,17 @@ function TriviaManageDropdown(props) {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       confirmButtonText: '削除する!',
-    }).then(async(result) => {
-      if (result.isConfirmed) {
-        await apiDelete(`/trivias/${props.triviaId}`);
-        Swal.fire(
-          '削除しました!',
-          'リストページに戻ります。',
-          'success',
-        ).then(() => {
+      preConfirm: async() => {
+        try {
+          await apiDelete(`/trivias/${props.triviaId}`);
           Router.push('/list');
-        });
-      }
+        }
+        catch (err) {
+          Swal.showValidationMessage(
+            `トリビア削除中にエラーが発生しました<br>${err.message}`,
+          );
+        }
+      },
     });
   }
 
