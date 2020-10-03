@@ -41,9 +41,7 @@ function TriviaManageDropdown(props) {
       </button>
       <div className="dropdown-menu dropdown-menu-right">
         <button className="dropdown-item" type="button" onClick={showDeleteAlertHandler}>
-          <span className="ml-2">
-            削除する
-          </span>
+          削除する
         </button>
       </div>
     </div>
