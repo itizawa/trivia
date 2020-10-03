@@ -12,7 +12,7 @@ import GearIcon from '../commons/icons/GearIcon';
 function TriviaManageDropdown(props) {
   const { apiDelete } = appContainer.useContainer();
 
-  async function showAlertHandler() {
+  async function showDeleteAlertHandler() {
     Swal.fire({
       title: 'Trivia を削除しますか?',
       text: '一度消した Trivia は元には戻せません。',
@@ -40,7 +40,7 @@ function TriviaManageDropdown(props) {
         <GearIcon />
       </button>
       <div className="dropdown-menu dropdown-menu-right">
-        <button className="dropdown-item" type="button" onClick={showAlertHandler}>
+        <button className="dropdown-item" type="button" onClick={showDeleteAlertHandler}>
           <span className="ml-2">
             削除する
           </span>
