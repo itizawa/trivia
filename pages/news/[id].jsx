@@ -13,9 +13,10 @@ function NewsPage({ pageProps }) {
     <>
       <Head>
         <title>{postData.title}</title>
-        <meta property="og:image" content="/release/20200926.gif" />
-        <meta name="twitter:image" content="/release/20200926.gif" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:image" content={`https://release-ogp.vercel.app/api/ogp?text=${postData.title}`} />
+        <meta name="twitter:image" content={`https://release-ogp.vercel.app/api/ogp?text=${postData.title}`} />
+        <meta name="twitter:card" content={`https://release-ogp.vercel.app/api/ogp?text=${postData.title}`} />
+        <meta name="description" content={`${postData.content.substr(0, 80)}...`} />
       </Head>
       <div className="bg-snow rounded mt-3 p-3">
         <div className="d-flex mb-3">

@@ -8,6 +8,8 @@ import AccessTokenParser from '@middlewares/AccessTokenParser';
 import LoginRequired from '@middlewares/LoginRequired';
 
 import Trivia from '@models/Trivia';
+import TriviaTagRelation from '@models/TriviaTagRelation';
+import TriviaAdmirationRelation from '@models/TriviaAdmirationRelation';
 import User from '@models/User';
 
 const handler = nextConnect();
@@ -40,8 +42,12 @@ handler.delete(validator.delete, ApiValidator, AccessTokenParser, LoginRequired,
   const { _id: userId } = req.user;
 
   try {
-    const trivia = await Trivia.findOneAndDelete({ _id: id, creator: userId });
-    return res.status(200).send({ trivia });
+    await Promise.all([
+      Trivia.findOneAndDelete({ _id: id, creator: userId }),
+      TriviaTagRelation.deleteMany({ trivia: id }),
+      TriviaAdmirationRelation.deleteMany({ trivia: id }),
+    ]);
+    return res.status(200).send({});
   }
   catch (err) {
     return res.status(500).send({ success: false });
