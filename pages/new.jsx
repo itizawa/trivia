@@ -102,7 +102,7 @@ function Page() {
             <label htmlFor="title" className="form-label">
               タイトル
               <span id="tooltipForTitle" className="ml-1">
-                <QuestionIcon />
+                <QuestionIcon height="0.8em" width="0.8em" />
               </span>
               <UncontrolledTooltip placement="right" target="tooltipForTitle">
                 {'"<>" で挟まれた文字は伏字になります'}
