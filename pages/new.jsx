@@ -36,8 +36,8 @@ function Page() {
       icon: 'info',
       confirmButtonText: 'いますぐ知識を発信する',
       preConfirm: () => {
-        Swal.showLoading();
         Swal.update({ showConfirmButton: false });
+        Swal.showLoading();
         try {
           return apiPost('/trivias', {
             forwardText, backwardText, tags, genre, bodyText,
