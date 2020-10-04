@@ -18,8 +18,7 @@ function Page() {
 
   const [genre, setGenre] = useState(null);
   const [tags, setTags] = useState([]);
-  const [forwardText, setForwardText] = useState('');
-  const [backwardText, setBackwardText] = useState('');
+  const [title, setTitle] = useState('');
   const [bodyText, setBodyText] = useState('');
   const [invalidFormValue, setInvalidFormValue] = useState(false);
 
@@ -40,7 +39,7 @@ function Page() {
         Swal.showLoading();
         try {
           return apiPost('/trivias', {
-            forwardText, backwardText, tags, genre, bodyText,
+            title, tags, genre, bodyText,
           });
         }
         catch (err) {
@@ -72,14 +71,14 @@ function Page() {
 
   function generatePreview() {
     setIsOpen(true);
-    setPreviewUrl(`forwardText=${forwardText}&backwardText=${backwardText}`);
+    setPreviewUrl(`forwardText=${title}`);
   }
 
   useEffect(() => {
     // validate form
-    const bool = (forwardText === '' || backwardText === '' || genre == null);
+    const bool = (title === '' || genre == null);
     setInvalidFormValue(bool);
-  }, [forwardText, backwardText, genre]);
+  }, [title, genre]);
 
   return (
     <>
@@ -99,23 +98,13 @@ function Page() {
         />
         <form className="mt-3">
           <div className="mb-3">
-            <label htmlFor="forwardText" className="form-label">前の文</label>
+            <label htmlFor="title" className="form-label">タイトル</label>
             <input
               type="text"
               className="form-control"
-              id="forwardText"
-              value={forwardText}
-              onChange={e => setForwardText(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="backwardText" className="form-label">後ろの文(モザイクで表示されます)</label>
-            <input
-              type="text"
-              className="form-control"
-              id="backwardText"
-              value={backwardText}
-              onChange={e => setBackwardText(e.target.value)}
+              id="title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
             />
           </div>
           <div className="row mb-3">
