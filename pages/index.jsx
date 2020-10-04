@@ -8,7 +8,7 @@ import ViewList from '@components/commons/icons/ViewList';
 const IndexPage = () => (
   <>
     <Head>
-      <title>トリビアの泉</title>
+      <title>トリビアオンライン</title>
     </Head>
     <div className="bg-snow rounded mt-3 p-3">
       <div className="img-box-fix-aspect mb-3">
