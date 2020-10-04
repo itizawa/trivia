@@ -30,7 +30,7 @@ function Page() {
     setTags(tags);
   };
 
-  async function onClickSubmit() {
+  function submitFormHandler() {
     Swal.fire({
       title: 'Trivia を作成中します',
       icon: 'info',
@@ -153,7 +153,7 @@ function Page() {
                 type="button"
                 className="btn btn-teal text-snow w-100"
                 disabled={invalidFormValue}
-                onClick={onClickSubmit}
+                onClick={submitFormHandler}
               >
                 作成する！
               </Button>
