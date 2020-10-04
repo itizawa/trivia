@@ -14,7 +14,8 @@
     "lint:js": "eslint \"**/*.{js,jsx}\"",
     "lint:styles:fix": "stylelint --fix styles/**/*.scss",
     "lint:styles": "stylelint styles/**/*.scss",
-    "lint": "npm-run-all -p lint:js lint:styles"
+    "lint": "npm-run-all -p lint:js lint:styles",
+    "test": "jest"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
