@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 import TagsInput from 'react-tagsinput';
 import {
-  Collapse, Button, UncontrolledTooltip,
+  Collapse, UncontrolledTooltip,
 } from 'reactstrap';
 import appContainer from '@containers/appContainer';
 
@@ -108,18 +108,13 @@ function Page() {
                 {'"<>" で挟まれた文字は伏字になります'}
               </UncontrolledTooltip>
             </label>
-            <div className="input-group mb-3">
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-              />
-              <div className="input-group-append d-none d-md-block">
-                <button className="btn btn-light" type="button" id="title-addon">Button</button>
-              </div>
-            </div>
+            <input
+              type="text"
+              className="form-control"
+              id="title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+            />
           </div>
           <div className="row mb-3">
             <div className="col-12 px-2 mb-md-0">
