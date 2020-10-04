@@ -126,7 +126,7 @@ function Page() {
             </Collapse>
           </div>
           <div className="mb-3">
-            <label htmlFor="backwardText" className="form-label">本文(必須ではありません)</label>
+            <label htmlFor="bodyText" className="form-label">本文(必須ではありません)</label>
             <textarea
               type="text"
               className="form-control"

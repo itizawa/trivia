@@ -6,9 +6,9 @@ const TriviaSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, 'Please add a forward text'],
+      required: [true, 'Please add a title text'],
       trim: true,
-      maxlength: [100, 'Forward text cannot be more than 100 chars'],
+      maxlength: [100, 'Title text cannot be more than 100 chars'],
     },
     bodyText: {
       type: String,

@@ -31,7 +31,7 @@ function Trivia(props) {
   const [count, setCount] = useState(null);
   const [hashTags, setHashTags] = useState('');
 
-  const tweetText = `${trivia?.forwardText}.... ${shareUrl}`;
+  const tweetText = `${trivia?.title}.... ${shareUrl}`;
 
   // count for increment DB
   const [incrementCount, setIncrementCount] = useState(0);
@@ -128,8 +128,8 @@ function Trivia(props) {
       </div>
       <div className="img-box-fix-aspect trivia-card" ref={triviaCardEl}>
         <img
-          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`}
-          alt={trivia?.forwardText}
+          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.title}`}
+          alt={trivia?.title}
         />
       </div>
       {trivia?.bodyText && (
