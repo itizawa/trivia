@@ -6,12 +6,13 @@ import Swal from 'sweetalert2';
 
 import TagsInput from 'react-tagsinput';
 import {
-  Collapse, Button,
+  Collapse, Button, UncontrolledTooltip,
 } from 'reactstrap';
 import appContainer from '@containers/appContainer';
 
 import LoginRequired from '@components/LoginRequired';
 import GenreDropdown from '../components/Tag/GenreDropdown';
+import QuestionIcon from '../components/commons/icons/QuestionIcon';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
@@ -98,7 +99,15 @@ function Page() {
         />
         <form className="mt-3">
           <div className="mb-3">
-            <label htmlFor="title" className="form-label">タイトル</label>
+            <label htmlFor="title" className="form-label">
+              タイトル
+              <span id="UncontrolledTooltipExample" className="ml-1">
+                <QuestionIcon />
+              </span>
+              <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
+                Hello world!
+              </UncontrolledTooltip>
+            </label>
             <input
               type="text"
               className="form-control"
@@ -126,7 +135,7 @@ function Page() {
             </Collapse>
           </div>
           <div className="mb-3">
-            <label htmlFor="bodyText" className="form-label">本文(必須ではありません)</label>
+            <label htmlFor="bodyText" className="form-label">本文</label>
             <textarea
               type="text"
               className="form-control"
@@ -138,14 +147,14 @@ function Page() {
           </div>
           <div className="row">
             <div className="col-12 px-2 mb-4 mb-md-0 mt-3">
-              <Button
+              <button
                 type="button"
                 className="btn btn-teal text-snow w-100"
                 disabled={invalidFormValue}
                 onClick={submitFormHandler}
               >
                 作成する！
-              </Button>
+              </button>
             </div>
           </div>
         </form>
