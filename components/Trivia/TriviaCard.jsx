@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { generateLieDownText } from '@lib/utils/generateText';
+
 function TriviaCard(props) {
   const {
     _id, title, acquisitionCount,
@@ -27,10 +29,13 @@ function TriviaCard(props) {
     textColor = 'bronze';
   }
 
+  // 伏字に変換する
+  const generatedText = generateLieDownText(title);
+
   return (
     <div className="card cursor-pointer shadow-sm" onClick={() => { openTriviaModalHandler(_id) }}>
       <div className="img-box-fix-aspect">
-        <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${title}`} alt={title} />
+        <img src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${generatedText}`} alt={generatedText} />
       </div>
       <span className="ml-auto count-for-trivia-card">
         <span className={`mr-2 count-text text-${textColor}`}>
