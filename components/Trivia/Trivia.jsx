@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/client';
 import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
 import { useDebouncedCallback } from 'use-debounce';
 import { toastError } from '@utils/toaster';
+import { generateCleanText } from '@lib/utils/generateText';
 
 import appContainer from '@containers/appContainer';
 import ArrowInRight from '../commons/icons/ArrowInRight';
@@ -128,7 +129,7 @@ function Trivia(props) {
       </div>
       <div className="img-box-fix-aspect trivia-card" ref={triviaCardEl}>
         <img
-          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.title}`}
+          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${generateCleanText(trivia?.title)}`}
           alt={trivia?.title}
         />
       </div>
