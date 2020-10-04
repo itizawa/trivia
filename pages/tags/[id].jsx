@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import Link from 'next/link';
 import axios from 'axios';
 
-import TriviaList from '@components/Trivia/TriviaList';
 import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
-import TagIcon from '../../components/commons/icons/TagIcon';
+import TriviaCard from '@components/Trivia/TriviaCard';
+import TagIcon from '@components/commons/icons/TagIcon';
 
 
 function ListPage({ pageProps }) {
@@ -29,7 +30,17 @@ function ListPage({ pageProps }) {
         <div className="my-2 text-right">
           <span>タグが作られた日 : {fromTimeStampToDate(tag?.createdAt)}</span>
         </div>
-        <TriviaList trivias={docs} />
+        <div className="row">
+          {docs.map((trivia, index) => {
+            return (
+              <Link key={trivia._id} href={`/trivias/${trivia._id}`}>
+                <div className={`mb-3 ${index === 0 ? 'col-md-12' : 'col-md-6'}`} key={trivia._id}>
+                  <TriviaCard trivia={trivia} />
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </>
   );
