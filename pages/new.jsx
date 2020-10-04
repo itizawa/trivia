@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
+import Swal from 'sweetalert2';
+
 import TagsInput from 'react-tagsinput';
 import {
   Collapse, Button,
@@ -32,11 +34,27 @@ function Page() {
 
   async function onClickSubmit() {
     try {
-      setIsAlreadySubmit(true);
-      await apiPost('/trivias', {
-        forwardText, backwardText, tags, genre, bodyText,
+      Swal.fire({
+        title: 'Trivia 作成中!',
+        html: 'あなたの知識を共有中...',
+        timerProgressBar: true,
+        willOpen: async() => {
+          Swal.showLoading();
+          try {
+            await apiPost('/trivias', {
+              forwardText, backwardText, tags, genre, bodyText,
+            });
+            Swal.close();
+            Router.push('/list');
+          }
+          catch (err) {
+            Swal.showValidationMessage(
+              `ログアウト中にエラーが発生しました。<br>${err.message}`,
+            );
+          }
+
+        },
       });
-      Router.push('/list');
     }
     catch (error) {
       setIsAlreadySubmit(false);
