@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
 
           <meta property="og:url" content="https://summary-post.vercel.app/" />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="トリビアの泉" />
+          <meta property="og:title" content="トリビアオンライン" />
           <meta
             property="og:description"
             content="「生きていく上で何の役にも立たない無駄な知識、しかし、つい人に教えたくなってしまうようなトリビア（雑学・知識）」共有するサイトです。"
