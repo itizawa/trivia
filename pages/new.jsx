@@ -35,25 +35,41 @@ function Page() {
   async function onClickSubmit() {
     try {
       Swal.fire({
-        title: 'Trivia 作成中!',
-        html: 'あなたの知識を共有中...',
-        timerProgressBar: true,
-        willOpen: async() => {
+        title: 'Trivia を作成中します',
+        icon: 'info',
+        confirmButtonText: 'いますぐ知識を発信する',
+        preConfirm: () => {
           Swal.showLoading();
+          Swal.update({ showConfirmButton: false });
           try {
-            await apiPost('/trivias', {
+            return apiPost('/trivias', {
               forwardText, backwardText, tags, genre, bodyText,
             });
-            Swal.close();
-            Router.push('/list');
           }
           catch (err) {
-            Swal.showValidationMessage(
-              `ログアウト中にエラーが発生しました。<br>${err.message}`,
-            );
+            Swal.fire({
+              icon: 'error',
+              title: 'エラーが発生しています!',
+              text: `${err}`,
+              showConfirmButton: false,
+              showCancelButton: true,
+              cancelButtonText: '閉じる',
+            });
           }
-
         },
+      }).then((result) => {
+        // 作成ボタンを押して、エラーが発生しなかった時
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            title: '作成完了 !',
+            html: '一覧ページに戻ります',
+            timer: 2000,
+            timerProgressBar: true,
+          }).then(() => {
+            Router.push('/list');
+          });
+        }
       });
     }
     catch (error) {
