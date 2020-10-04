@@ -2,6 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import axios from 'axios';
 import TriviaCard from '@components/Trivia/TriviaCard';
@@ -30,9 +31,11 @@ function ListPage({ pageProps }) {
         <div className="row">
           {docs.map((trivia, index) => {
             return (
-              <div className={`mb-3 ${index === 0 ? 'col-md-12' : 'col-md-6'}`} key={trivia._id}>
-                <TriviaCard trivia={trivia} />
-              </div>
+              <Link key={trivia._id} href={`/trivias/${trivia._id}`}>
+                <div className={`mb-3 ${index === 0 ? 'col-md-12' : 'col-md-6'}`} key={trivia._id}>
+                  <TriviaCard trivia={trivia} />
+                </div>
+              </Link>
             );
           })}
         </div>
