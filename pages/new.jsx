@@ -101,11 +101,11 @@ function Page() {
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
               タイトル
-              <span id="UncontrolledTooltipExample" className="ml-1">
+              <span id="tooltipForTitle" className="ml-1">
                 <QuestionIcon />
               </span>
-              <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
-                Hello world!
+              <UncontrolledTooltip placement="right" target="tooltipForTitle">
+                {'"<>" で挟まれた文字は伏字になります'}
               </UncontrolledTooltip>
             </label>
             <input
