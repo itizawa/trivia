@@ -11,6 +11,7 @@ import {
 import appContainer from '@containers/appContainer';
 
 import LoginRequired from '@components/LoginRequired';
+import { generateLieDownText } from '@lib/utils/generateText';
 import GenreDropdown from '../components/Tag/GenreDropdown';
 import QuestionIcon from '../components/commons/icons/QuestionIcon';
 
@@ -72,7 +73,9 @@ function Page() {
 
   function generatePreview() {
     setIsOpen(true);
-    setPreviewUrl(`forwardText=${title}`);
+
+    const generatedText = generateLieDownText(title);
+    setPreviewUrl(`forwardText=${generatedText}`);
   }
 
   useEffect(() => {
