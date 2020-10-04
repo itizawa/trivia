@@ -108,13 +108,18 @@ function Page() {
                 {'"<>" で挟まれた文字は伏字になります'}
               </UncontrolledTooltip>
             </label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              value={title}
-              onChange={e => setTitle(e.target.value)}
-            />
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+              />
+              <div className="input-group-append d-none d-md-block">
+                <button className="btn btn-light" type="button" id="title-addon">Button</button>
+              </div>
+            </div>
           </div>
           <div className="row mb-3">
             <div className="col-12 px-2 mb-md-0">
