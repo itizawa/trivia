@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import appContainer from '@containers/appContainer';
+import { generateLieDownText } from '@lib/utils/generateText';
 
 import Trivia from '../../components/Trivia/Trivia';
 import TriviaManageDropdown from '../../components/Trivia/TriviaManageDropdown';
@@ -17,12 +18,14 @@ function Page({ pageProps }) {
     return <div>Loading...</div>;
   }
 
-  const url = `https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}`;
+  // 伏字に変換する
+  const generatedText = generateLieDownText(trivia?.title);
+  const url = `https://trivia-ogp.vercel.app/api/ogp?forwardText=${generatedText}`;
 
   return (
     <>
       <Head>
-        <title>{trivia?.forwardText}{trivia?.backwardText}</title>
+        <title>{trivia?.title}</title>
         <meta property="og:image" content={url} />
         <meta property="og:description" content={trivia?.bodyText} />
       </Head>

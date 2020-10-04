@@ -6,20 +6,21 @@ import Swal from 'sweetalert2';
 
 import TagsInput from 'react-tagsinput';
 import {
-  Collapse, Button,
+  Collapse, UncontrolledTooltip,
 } from 'reactstrap';
 import appContainer from '@containers/appContainer';
 
 import LoginRequired from '@components/LoginRequired';
+import { generateLieDownText } from '@lib/utils/generateText';
 import GenreDropdown from '../components/Tag/GenreDropdown';
+import QuestionIcon from '../components/commons/icons/QuestionIcon';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
 
   const [genre, setGenre] = useState(null);
   const [tags, setTags] = useState([]);
-  const [forwardText, setForwardText] = useState('');
-  const [backwardText, setBackwardText] = useState('');
+  const [title, setTitle] = useState('');
   const [bodyText, setBodyText] = useState('');
   const [invalidFormValue, setInvalidFormValue] = useState(false);
 
@@ -40,7 +41,7 @@ function Page() {
         Swal.showLoading();
         try {
           return apiPost('/trivias', {
-            forwardText, backwardText, tags, genre, bodyText,
+            title, tags, genre, bodyText,
           });
         }
         catch (err) {
@@ -72,14 +73,16 @@ function Page() {
 
   function generatePreview() {
     setIsOpen(true);
-    setPreviewUrl(`forwardText=${forwardText}&backwardText=${backwardText}`);
+
+    const generatedText = generateLieDownText(title);
+    setPreviewUrl(`forwardText=${generatedText}`);
   }
 
   useEffect(() => {
     // validate form
-    const bool = (forwardText === '' || backwardText === '' || genre == null);
+    const bool = (title === '' || genre == null);
     setInvalidFormValue(bool);
-  }, [forwardText, backwardText, genre]);
+  }, [title, genre]);
 
   return (
     <>
@@ -99,23 +102,21 @@ function Page() {
         />
         <form className="mt-3">
           <div className="mb-3">
-            <label htmlFor="forwardText" className="form-label">前の文</label>
+            <label htmlFor="title" className="form-label">
+              タイトル
+              <span id="tooltipForTitle" className="ml-1">
+                <QuestionIcon height="0.8em" width="0.8em" />
+              </span>
+              <UncontrolledTooltip placement="right" target="tooltipForTitle">
+                {'"<>" で挟まれた文字は伏字になります'}
+              </UncontrolledTooltip>
+            </label>
             <input
               type="text"
               className="form-control"
-              id="forwardText"
-              value={forwardText}
-              onChange={e => setForwardText(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="backwardText" className="form-label">後ろの文(モザイクで表示されます)</label>
-            <input
-              type="text"
-              className="form-control"
-              id="backwardText"
-              value={backwardText}
-              onChange={e => setBackwardText(e.target.value)}
+              id="title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
             />
           </div>
           <div className="row mb-3">
@@ -137,7 +138,7 @@ function Page() {
             </Collapse>
           </div>
           <div className="mb-3">
-            <label htmlFor="backwardText" className="form-label">本文(必須ではありません)</label>
+            <label htmlFor="bodyText" className="form-label">本文</label>
             <textarea
               type="text"
               className="form-control"
@@ -149,14 +150,14 @@ function Page() {
           </div>
           <div className="row">
             <div className="col-12 px-2 mb-4 mb-md-0 mt-3">
-              <Button
+              <button
                 type="button"
                 className="btn btn-teal text-snow w-100"
                 disabled={invalidFormValue}
                 onClick={submitFormHandler}
               >
                 作成する！
-              </Button>
+              </button>
             </div>
           </div>
         </form>

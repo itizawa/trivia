@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/client';
 import { fromTimeStampToDate } from '@lib/utils/fromTimeStampToDate';
 import { useDebouncedCallback } from 'use-debounce';
 import { toastError } from '@utils/toaster';
+import { generateCleanText } from '@lib/utils/generateText';
 
 import appContainer from '@containers/appContainer';
 import ArrowInRight from '../commons/icons/ArrowInRight';
@@ -31,7 +32,7 @@ function Trivia(props) {
   const [count, setCount] = useState(null);
   const [hashTags, setHashTags] = useState('');
 
-  const tweetText = `${trivia?.forwardText}.... ${shareUrl}`;
+  const tweetText = `${trivia?.title}.... ${shareUrl}`;
 
   // count for increment DB
   const [incrementCount, setIncrementCount] = useState(0);
@@ -128,8 +129,8 @@ function Trivia(props) {
       </div>
       <div className="img-box-fix-aspect trivia-card" ref={triviaCardEl}>
         <img
-          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${trivia?.forwardText}&backwardText=${trivia?.backwardText}&isShow=true`}
-          alt={trivia?.forwardText}
+          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${generateCleanText(trivia?.title)}`}
+          alt={trivia?.title}
         />
       </div>
       {trivia?.bodyText && (
