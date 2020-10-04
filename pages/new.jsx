@@ -33,7 +33,7 @@ function Page() {
 
   function submitFormHandler() {
     Swal.fire({
-      title: 'Trivia を作成中します',
+      title: 'Trivia を作成します',
       icon: 'info',
       confirmButtonText: 'いますぐ知識を発信する',
       preConfirm: () => {
@@ -75,7 +75,7 @@ function Page() {
     setIsOpen(true);
 
     const generatedText = generateLieDownText(title);
-    setPreviewUrl(`forwardText=${generatedText}`);
+    setPreviewUrl(`text=${generatedText}`);
   }
 
   useEffect(() => {
@@ -133,7 +133,7 @@ function Page() {
               <img
                 className="mt-3"
                 width="100%"
-                src={`https://trivia-ogp.vercel.app/api/ogp?${previewUrl}`}
+                src={`https://trivia-ogpv2.vercel.app/api/ogp?${previewUrl}`}
               />
             </Collapse>
           </div>

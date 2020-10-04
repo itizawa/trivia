@@ -20,7 +20,7 @@ function Page({ pageProps }) {
 
   // 伏字に変換する
   const generatedText = generateLieDownText(trivia?.title);
-  const url = `https://trivia-ogp.vercel.app/api/ogp?forwardText=${generatedText}`;
+  const url = `https://trivia-ogpv2.vercel.app/api/ogp?text=${generatedText}`;
 
   return (
     <>

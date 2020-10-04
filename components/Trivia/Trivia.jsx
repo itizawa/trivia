@@ -129,7 +129,7 @@ function Trivia(props) {
       </div>
       <div className="img-box-fix-aspect trivia-card" ref={triviaCardEl}>
         <img
-          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${generateCleanText(trivia?.title)}`}
+          src={`https://trivia-ogpv2.vercel.app/api/ogp?text=${generateCleanText(trivia?.title)}`}
           alt={trivia?.title}
         />
       </div>
