@@ -28,7 +28,7 @@ function Trivia(props) {
 
   const triviaCardEl = useRef();
 
-  const shareUrl = `https://summary-post.vercel.app/trivias/${trivia?._id}`;
+  const shareUrl = `https://trivia-online.com/trivias/${trivia?._id}`;
   const [count, setCount] = useState(null);
   const [hashTags, setHashTags] = useState('');
 
@@ -129,7 +129,7 @@ function Trivia(props) {
       </div>
       <div className="img-box-fix-aspect trivia-card" ref={triviaCardEl}>
         <img
-          src={`https://trivia-ogp.vercel.app/api/ogp?forwardText=${generateCleanText(trivia?.title)}`}
+          src={`https://trivia-ogpv2.vercel.app/api/ogp?text=${generateCleanText(trivia?.title)}`}
           alt={trivia?.title}
         />
       </div>

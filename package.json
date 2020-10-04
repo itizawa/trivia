@@ -1,8 +1,8 @@
 {
-  "name": "summary-post",
+  "name": "trivia-online",
   "version": "1.1.0",
   "main": "index.js",
-  "repository": "https://github.com/itizawa/Summary-Post.git",
+  "repository": "https://github.com/itizawa/trivia.git",
   "author": "itizawa <itizawa@weseek.co.jp>",
   "license": "MIT",
   "scripts": {

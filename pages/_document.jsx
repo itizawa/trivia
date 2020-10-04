@@ -24,7 +24,7 @@ export default class MyDocument extends Document {
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/trivia.svg" />
           <link rel="icon" type="image/png" href="/favicon/trivia.svg" sizes="192x192" />
 
-          <meta property="og:url" content="https://summary-post.vercel.app/" />
+          <meta property="og:url" content="https://trivia-online.com" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="トリビアオンライン" />
           <meta
