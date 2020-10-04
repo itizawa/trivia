@@ -16,7 +16,7 @@ const handler = nextConnect();
 dbConnect();
 
 const validator = {
-  summary: [
+  trivia: [
     body('title').isString().isLength({ min: 1, max: 100 }).withMessage('タイトルは 100 文字以下です'),
     body('tags').isArray(),
     body('genre').isString(),
@@ -53,7 +53,7 @@ async function AssociateTagAndTrivia(tags, triviaId) {
   return TriviaTagRelation.bulkWrite(associatePromise);
 }
 
-handler.post(validator.summary, ApiValidator, AccessTokenParser, LoginRequired, async(req, res) => {
+handler.post(validator.trivia, ApiValidator, AccessTokenParser, LoginRequired, async(req, res) => {
   const {
     title, tags, genre, bodyText,
   } = req.body;
