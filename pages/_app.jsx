@@ -7,7 +7,6 @@ import '../styles/global.scss';
 import { Provider } from 'next-auth/client';
 
 import appContainer from '@containers/appContainer';
-import TriviaListContainer from '@containers/TriviaListContainer';
 
 import Navbar from '@components/commons/Navbar';
 import FixedFooter from '../components/commons/FexedFooter';
@@ -43,13 +42,11 @@ function Page(pageProps) {
       </Head>
       <appContainer.Provider>
         <Provider session={session}>
-          <TriviaListContainer.Provider>
-            <Navbar {...pageProps} />
-            <div className="container">
-              <pageProps.Component {...pageProps} />
-            </div>
-            <FixedFooter />
-          </TriviaListContainer.Provider>
+          <Navbar {...pageProps} />
+          <div className="container">
+            <pageProps.Component {...pageProps} />
+          </div>
+          <FixedFooter />
           <span className="version-logo">v {p.version}</span>
         </Provider>
       </appContainer.Provider>

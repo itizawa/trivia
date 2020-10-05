@@ -1,11 +1,33 @@
 import React from 'react';
 import Link from 'next/link';
 
+import Swal from 'sweetalert2';
+
 import { useSession, signout } from 'next-auth/client';
 
 function PersonalDropdown() {
   const [session] = useSession();
   const { user } = session;
+
+  const signOutHandler = () => {
+    Swal.fire({
+      title: 'ログアウトしますか?',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'ログアウトする !',
+      preConfirm: async() => {
+        try {
+          signout();
+        }
+        catch (err) {
+          Swal.showValidationMessage(
+            `ログアウト中にエラーが発生しました。<br>${err.message}`,
+          );
+        }
+      },
+    });
+  };
 
   return (
     <div className="btn-group">
@@ -22,7 +44,7 @@ function PersonalDropdown() {
           <hr className="dropdown-divider" />
         </li>
         <li>
-          <button className="dropdown-item" type="button" onClick={() => { signout() }}>Logout</button>
+          <button className="dropdown-item" type="button" onClick={signOutHandler}>Logout</button>
         </li>
       </ul>
     </div>

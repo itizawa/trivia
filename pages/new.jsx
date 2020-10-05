@@ -2,58 +2,87 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
+import Swal from 'sweetalert2';
+
 import TagsInput from 'react-tagsinput';
 import {
-  Collapse, Button,
+  Collapse, UncontrolledTooltip,
 } from 'reactstrap';
 import appContainer from '@containers/appContainer';
 
-import { toastError } from '@utils/toaster';
 import LoginRequired from '@components/LoginRequired';
+import { generateLieDownText } from '@lib/utils/generateText';
 import GenreDropdown from '../components/Tag/GenreDropdown';
+import QuestionIcon from '../components/commons/icons/QuestionIcon';
 
 function Page() {
   const { apiPost } = appContainer.useContainer();
 
   const [genre, setGenre] = useState(null);
   const [tags, setTags] = useState([]);
-  const [forwardText, setForwardText] = useState('');
-  const [backwardText, setBackwardText] = useState('');
+  const [title, setTitle] = useState('');
   const [bodyText, setBodyText] = useState('');
   const [invalidFormValue, setInvalidFormValue] = useState(false);
 
   const [previewUrl, setPreviewUrl] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [isAlreadySubmit, setIsAlreadySubmit] = useState(false);
 
   const onChangeTagsValue = (tags) => {
     setTags(tags);
   };
 
-  async function onClickSubmit() {
-    try {
-      setIsAlreadySubmit(true);
-      await apiPost('/trivias', {
-        forwardText, backwardText, tags, genre, bodyText,
-      });
-      Router.push('/list');
-    }
-    catch (error) {
-      setIsAlreadySubmit(false);
-      toastError(error, 'Error');
-    }
+  function submitFormHandler() {
+    Swal.fire({
+      title: 'Trivia を作成します',
+      icon: 'info',
+      confirmButtonText: 'いますぐ知識を発信する',
+      preConfirm: () => {
+        Swal.update({ showConfirmButton: false });
+        Swal.showLoading();
+        try {
+          return apiPost('/trivias', {
+            title, tags, genre, bodyText,
+          });
+        }
+        catch (err) {
+          Swal.fire({
+            icon: 'error',
+            title: 'エラーが発生しています!',
+            text: `${err}`,
+            showConfirmButton: false,
+            showCancelButton: true,
+            cancelButtonText: '閉じる',
+          });
+        }
+      },
+    }).then((result) => {
+      // 作成ボタンを押して、エラーが発生しなかった時
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: 'success',
+          title: '作成完了 !',
+          html: '一覧ページに戻ります',
+          timer: 2000,
+          timerProgressBar: true,
+        }).then(() => {
+          Router.push('/list');
+        });
+      }
+    });
   }
 
   function generatePreview() {
     setIsOpen(true);
-    setPreviewUrl(`forwardText=${forwardText}&backwardText=${backwardText}`);
+
+    const generatedText = generateLieDownText(title);
+    setPreviewUrl(`text=${generatedText}`);
   }
 
   useEffect(() => {
     // validate form
-    const bool = (forwardText === '' || backwardText === '' || genre == null);
+    const bool = (title === '' || genre == null);
     setInvalidFormValue(bool);
-  }, [forwardText, backwardText, genre]);
+  }, [title, genre]);
 
   return (
     <>
@@ -73,23 +102,21 @@ function Page() {
         />
         <form className="mt-3">
           <div className="mb-3">
-            <label htmlFor="forwardText" className="form-label">前の文</label>
+            <label htmlFor="title" className="form-label">
+              タイトル
+              <span id="tooltipForTitle" className="ml-1">
+                <QuestionIcon height="0.8em" width="0.8em" />
+              </span>
+              <UncontrolledTooltip placement="right" target="tooltipForTitle">
+                {'"<>" で挟まれた文字は伏字になります'}
+              </UncontrolledTooltip>
+            </label>
             <input
               type="text"
               className="form-control"
-              id="forwardText"
-              value={forwardText}
-              onChange={e => setForwardText(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="backwardText" className="form-label">後ろの文(モザイクで表示されます)</label>
-            <input
-              type="text"
-              className="form-control"
-              id="backwardText"
-              value={backwardText}
-              onChange={e => setBackwardText(e.target.value)}
+              id="title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
             />
           </div>
           <div className="row mb-3">
@@ -106,12 +133,12 @@ function Page() {
               <img
                 className="mt-3"
                 width="100%"
-                src={`https://trivia-ogp.vercel.app/api/ogp?${previewUrl}`}
+                src={`https://trivia-ogpv2.vercel.app/api/ogp?${previewUrl}`}
               />
             </Collapse>
           </div>
           <div className="mb-3">
-            <label htmlFor="backwardText" className="form-label">本文(必須ではありません)</label>
+            <label htmlFor="bodyText" className="form-label">本文</label>
             <textarea
               type="text"
               className="form-control"
@@ -123,14 +150,14 @@ function Page() {
           </div>
           <div className="row">
             <div className="col-12 px-2 mb-4 mb-md-0 mt-3">
-              <Button
+              <button
                 type="button"
                 className="btn btn-teal text-snow w-100"
-                disabled={invalidFormValue || isAlreadySubmit}
-                onClick={onClickSubmit}
+                disabled={invalidFormValue}
+                onClick={submitFormHandler}
               >
                 作成する！
-              </Button>
+              </button>
             </div>
           </div>
         </form>
