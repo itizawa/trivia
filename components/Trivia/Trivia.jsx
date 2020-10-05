@@ -32,7 +32,7 @@ function Trivia(props) {
   const [count, setCount] = useState(null);
   const [hashTags, setHashTags] = useState('');
 
-  const tweetText = `${trivia?.title}.... ${shareUrl}`;
+  const tweetText = `${trivia?.title}... ${shareUrl}`;
 
   // count for increment DB
   const [incrementCount, setIncrementCount] = useState(0);
