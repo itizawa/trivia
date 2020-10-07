@@ -18,7 +18,7 @@ export default class MyDocument extends Document {
         <Head>
           <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/ fb# prefix属性: http://ogp.me/ns/ prefix属性#" />
           <meta name="google-site-verification" content="iT9UqKdRcRp9KwhH5MrYL6HeWcNbQYFESsnONwk4Tro" />
-          <meta charset="utf-8" />
+          <meta charSet="utf-8" />
           {/* Favicon */}
           <link rel="icon" href="/favicon/trivia.svg" />
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/trivia.svg" />
