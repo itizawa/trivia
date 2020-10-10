@@ -72,6 +72,7 @@ function AppContainer() {
     }
   };
 
+  // TODO useSWR
   useEffect(() => {
     async function retrieveUser() {
       if (session == null) {
