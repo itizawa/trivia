@@ -20,7 +20,6 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install
 
-
       - name: Print dependencies
         run: |
           echo -n "node " && node -v

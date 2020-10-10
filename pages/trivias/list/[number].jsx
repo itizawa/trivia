@@ -53,8 +53,8 @@ function ListPage({ pageProps }) {
 }
 
 export async function getStaticPaths() {
-  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
-  const res = await axios.get(`${hostUrl}/api/trivias/list?page=1`);
+  const backendUrl = process.env.BACKEND_URL;
+  const res = await axios.get(`${backendUrl}/api/trivias/list?page=1`);
 
   const { totalPages } = await res.data;
 
@@ -69,11 +69,11 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async(context) => {
   const { number } = context.params;
-  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
+  const backendUrl = process.env.BACKEND_URL;
   let data;
 
   try {
-    const res = await axios.get(`${hostUrl}/api/trivias/list?page=${number}`);
+    const res = await axios.get(`${backendUrl}/api/trivias/list?page=${number}`);
     data = res.data;
   }
   catch (error) {
