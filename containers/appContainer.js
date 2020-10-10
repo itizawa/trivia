@@ -18,7 +18,7 @@ function AppContainer() {
     params.accessToken = session?.accessToken;
 
     try {
-      const res = await Axios[method](urljoin('api', path), params);
+      const res = await Axios[method](urljoin('https://trivia-backend.an.r.appspot.com', 'api', path), params);
       return res.data;
     }
     catch (_err) {
@@ -36,7 +36,7 @@ function AppContainer() {
     params.accessToken = session?.accessToken;
 
     try {
-      const res = await Axios.get(urljoin('api', route), { params });
+      const res = await Axios.get(urljoin('https://trivia-backend.an.r.appspot.com', 'api', route), { params });
       return res.data;
     }
     catch (_err) {
