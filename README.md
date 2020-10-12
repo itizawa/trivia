@@ -4,7 +4,7 @@ https://itizawa-tech.growi.cloud/5f098fc3a50921004813300d
 
 ## どんなアプリ？
 トリビアを作って共有できる知識共有ツール
-https://trivia-online.com/release/20201006.gif
+<img src="https://trivia-online.com/release/20201006.gif" />
 
 ## Twitter 共有すると表示される画像
 
