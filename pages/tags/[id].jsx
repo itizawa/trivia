@@ -51,12 +51,12 @@ export async function getServerSideProps(context) {
 
   let data;
 
-  const backendUrl = process.env.BACKEND_URL;
+  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
 
   try {
     const [{ data: tagData }, { data: triviasData }] = await Promise.all([
-      axios.get(`${backendUrl}/api/tags/${params.id}`),
-      axios.get(`${backendUrl}/api/tags/${params.id}/pages?page=1`),
+      axios.get(`${hostUrl}/api/tags/${params.id}`),
+      axios.get(`${hostUrl}/api/tags/${params.id}/pages?page=1`),
     ]);
     data = {
       tag: tagData.tag,

@@ -47,9 +47,9 @@ function Page({ pageProps }) {
 }
 
 export async function getStaticPaths() {
-  const backendUrl = process.env.BACKEND_URL;
+  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
 
-  const res = await axios.get(`${backendUrl}/api/trivias/list?page=1`);
+  const res = await axios.get(`${hostUrl}/api/trivias/list?page=1`);
 
   const { docs } = await res.data;
   const paths = docs.map(doc => `/trivias/${doc._id}`);
@@ -60,10 +60,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   let trivia;
 
-  const backendUrl = process.env.BACKEND_URL;
+  const hostUrl = process.env.SITE_URL;
 
   try {
-    const res = await axios.get(`${backendUrl}/api/trivias/${params.id}`);
+    const res = await axios.get(`${hostUrl}/api/trivias/${params.id}`);
     trivia = res?.data?.trivia;
   }
   catch (error) {
