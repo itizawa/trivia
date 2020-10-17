@@ -78,7 +78,9 @@ function AppContainer() {
       if (session == null) {
         return;
       }
-      setCurrentUser(session.user);
+      const res = await apiGet('/users/me');
+      const { user } = res;
+      setCurrentUser(user);
     }
     retrieveUser();
   }, [session]);
