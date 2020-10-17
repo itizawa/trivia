@@ -50,7 +50,7 @@ function ListPage({ pageProps }) {
   );
 }
 
-export const getStaticProps = async() => {
+export const getServerSideProps = async() => {
   const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
 
   let data;
@@ -68,7 +68,6 @@ export const getStaticProps = async() => {
     props: {
       data,
     },
-    revalidate: 60,
   };
 };
 
