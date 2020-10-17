@@ -60,11 +60,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   let trivia;
 
-  const hostUrl = process.env.SITE_URL || 'http://localhost:3000';
+  const hostUrl = process.env.SITE_URL;
 
   try {
-    const res = await axios.get(`${hostUrl}/api/trivias/list?page=1`);
-
+    const res = await axios.get(`${hostUrl}/api/trivias/${params.id}`);
     trivia = res?.data?.trivia;
   }
   catch (error) {
